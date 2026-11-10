@@ -99,8 +99,11 @@ export function exportRows(res, set) {
   return {
     traditions: res.traditions.map((t, i) => ({ ...meta, rank: i + 1, tradition: t.tradition, similarity: +t.sim.toFixed(4) })),
     compositions: res.compositions.map(c => ({ ...meta, rank: c.rank, cth: c.cth, title: c.title, texts: c.texts, similarity: +c.sim.toFixed(4) })),
-    manuscripts: res.manuscripts.slice(0, set.top).map(m => ({ ...meta, rank: m.rank, txtid: m.doc.id, cth: m.doc.cth, words: m.doc.n,
-      model_verdict: m.verdict, similarity: +m.sim.toFixed(4), match_barcode: m.join.cells, shared_words: m.join.shared,
-      shared_phrases: m.join.phrases.map(p => p.join(" ")).join("; "), passes_match_checks: m.join.flagged })),
+    // column names as in the Zenodo dataset's nearest_manuscripts.csv where they mean the same
+    manuscripts: res.manuscripts.slice(0, set.top).map(m => ({ ...meta, rank: m.rank, candidate_txtid: m.doc.id, candidate_cth: m.doc.cth,
+      candidate_n_words: m.doc.n, candidate_model_verdict: m.verdict, similarity: +m.sim.toFixed(4), match_barcode: m.join.cells,
+      shared_words: m.join.shared, shared_phrases: m.join.phrases.map(p => p.join(" ")).join("; "),
+      check_half_the_words: m.join.checks.half, check_same_spellings: m.join.checks.spelling, check_shared_phrase: m.join.checks.phrase,
+      passes_match_checks: m.join.flagged })),
   };
 }
