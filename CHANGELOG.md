@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 (2026-11-10)
+
+- New title design on the opening page: the name set in Cormorant Garamond on a clay-coloured band, with a line of cuneiform from KBo 41.22 and the tagline "Finding a home for every Hittite fragment"; the other pages carry the name above their title.
+- Carousel: the "Method pipeline" slide (five steps with KBo 41.22, written for the screen) replaces the paper's pipeline and worked-example figures; the Browse screenshot is removed.
+- Opening text: "the entire digitised Hittite corpus" instead of "the whole of TLHdig".
+- Fonts are self-hosted (`fonts/`, SIL Open Font License).
+
 ## 1.0.0 (2026-11-10)
 
 First release on its own, with the paper (repository moved from

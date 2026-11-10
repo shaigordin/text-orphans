@@ -1,7 +1,7 @@
-# Orphans and Archetypes: a tool for Hittite fragments
+# Orphans & Archetypes: finding a home for every Hittite fragment
 
-Where does a Hittite fragment belong? This static website compares any fragment with the whole
-of TLHdig, word by word and sign by sign, and shows the textual tradition, the compositions and
+Where does a Hittite fragment belong? This static website compares any fragment with the entire
+digitised Hittite corpus (TLHdig), word by word and sign by sign, and shows the textual tradition, the compositions and
 the manuscripts it is closest to, with a duplicate/join check for each manuscript. It
 accompanies S. Gordin, *Orphans and Archetypes* (2026). Everything runs in the browser.
 
@@ -48,6 +48,7 @@ verdict. Every table can be exported as CSV or JSON, the wheel and the rose as S
 | `build/build_data.py` | Writes `data/` from the TLHdig token table, using the experiments' model code. |
 | `build/make_collages.mjs`, `build/collages.json` | The photograph collages of the carousel. |
 | `build/make_screens.mjs` | The screenshots of the carousel. |
+| `build/make_pipeline.mjs` | The "Method pipeline" slide of the carousel (KBo 41.22, step by step). |
 | `tests/check.mjs`, `tests/check_library.mjs` | Browser model against the Python export, and closest manuscripts and join checks against the Python case study (EBo 133). |
 
 ## Rebuild
@@ -80,7 +81,7 @@ ranking).
 
 ## Rights
 
-Code: MIT licence (`LICENSE`). The files in `data/` are derived from TLHdig and shared, like it, under CC BY 4.0. The photographs in the carousel are
+Code: MIT licence (`LICENSE`). The fonts in `fonts/` (Cormorant Garamond, a subset of Noto Sans Cuneiform) are under the SIL Open Font License (`fonts/OFL.txt`). The files in `data/` are derived from TLHdig and shared, like it, under CC BY 4.0. The photographs in the carousel are
 from the Hethitologie-Archiv Mainz (hethiter.net/: fotarch, numbers on each image; HT 49 ©
 The Trustees of the British Museum) and are shown, credited, to illustrate results; the rights
 stay with their holders.

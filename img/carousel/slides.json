@@ -40,22 +40,6 @@
   "link": "closest.html#id=KBo%2045.111"
  },
  {
-  "src": "screen_browse.jpg",
-  "alt": "The orphan bins and how much of each the method places",
-  "title": "How far the method gets.",
-  "caption": "Browse every CTH number and see where the method places its fragments, from the orphans of CTH 470 and the EBo fragments to the reference manuscripts.",
-  "credit": "",
-  "link": "browse.html#group=cth&kind=orphan"
- },
- {
-  "src": "pipeline.jpg",
-  "alt": "Diagram of the method: corpus, reference traditions, features, score, decision, output, with the validation tests",
-  "title": "The method.",
-  "caption": "From TLHdig to a placement: traditions defined from the literature, words and spellings weighed by rarity, a placement only when the lead is clear, and a test for each step.",
-  "credit": "",
-  "link": "about.html"
- },
- {
   "src": "collage_KBo59.124.jpg",
   "alt": "Photographs of KBo 59.124 and KBo 59.104",
   "title": "Two pieces of one tablet?",
@@ -72,12 +56,12 @@
   "link": "closest.html#id=HT%2049"
  },
  {
-  "src": "worked_example_KBo41.22.jpg",
-  "alt": "Worked example for KBo 41.22 in six steps",
-  "title": "One fragment, step by step.",
-  "caption": "KBo 41.22 read, counted, compared, decided, explained and checked by hand: the formula pa-an-ga-u-wa-aš EME-an places it with the Luwian rituals.",
-  "credit": "",
-  "link": "place.html#id=KBo%2041.22"
+  "src": "method_pipeline.jpg",
+  "alt": "The method in five steps: read, weigh, compare, decide, check, with KBo 41.22 as the example",
+  "title": "Method pipeline.",
+  "caption": "Read the fragment, weigh its words and spellings by rarity, compare it with ten traditions from the literature, place it only when the lead is clear, and show the evidence. KBo 41.22 is placed with the Luwian rituals by the formula pa-an-ga-u-wa-aš EME-an.",
+  "credit": "Text: TLHdig Beta 0.3.",
+  "link": "about.html"
  },
  {
   "src": "screen_gallery.jpg",

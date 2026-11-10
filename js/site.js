@@ -1,5 +1,5 @@
 // Shared page frame: the navigation and the footer with the data citation, the same on every page.
-export const VERSION = "1.0.0";
+export const VERSION = "1.1.0";
 export const DATA = {
   name: "TLHdig Beta 0.3",
   cite: "G. Müller, D. Prechel, E. Rieken, D. Schwemer, Thesaurus Linguarum Hethaeorum digitalis (TLHdig) Beta Version 0.3, Zenodo, 21 May 2026, CC BY 4.0",
@@ -17,6 +17,8 @@ const PAGES = [
 
 export function frame() {
   const here = location.pathname.split("/").pop() || "index.html";
+  const h1 = document.querySelector("header:not(.hero) h1");
+  if (h1) h1.insertAdjacentHTML("beforebegin", `<a class="brand" href="index.html">Orphans <span class="amp">&amp;</span> Archetypes</a>`);
   const nav = document.getElementById("nav");
   if (nav) nav.innerHTML = PAGES.map(([href, label]) =>
     `<a href="${href}"${href === here ? ' aria-current="page"' : ""}>${label}</a>`).join("");

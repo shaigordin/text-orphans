@@ -9,7 +9,6 @@ const out = path.join(path.dirname(new URL(import.meta.url).pathname), "..", "im
 const SHOTS = [
   // [file, page, element to wait for, element to capture, setup]
   ["screen_wheel.png", "place.html#id=KBo%2041.22", "#bars span", "#hex", async p => { await p.check("#showOrph"); }],
-  ["screen_browse.png", "browse.html#group=cth&kind=orphan&sort=size", ".bin", "main", null],
   ["screen_closest.png", "closest.html#id=HT%2049", "#ms tbody tr", "#msCard", null],
   ["screen_window.png", "closest.html#id=HT%2049", "#win p", "#winCard", null],
   ["screen_gallery.png", "place.html#id=KBo%2041.22", ".gallery .tile", ".gallery", null],
