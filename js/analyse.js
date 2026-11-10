@@ -100,7 +100,7 @@ export function exportRows(res, set) {
     traditions: res.traditions.map((t, i) => ({ ...meta, rank: i + 1, tradition: t.tradition, similarity: +t.sim.toFixed(4) })),
     compositions: res.compositions.map(c => ({ ...meta, rank: c.rank, cth: c.cth, title: c.title, texts: c.texts, similarity: +c.sim.toFixed(4) })),
     manuscripts: res.manuscripts.slice(0, set.top).map(m => ({ ...meta, rank: m.rank, txtid: m.doc.id, cth: m.doc.cth, words: m.doc.n,
-      model_verdict: m.verdict, similarity: +m.sim.toFixed(4), join_barcode: m.join.cells, shared_words: m.join.shared,
-      shared_phrases: m.join.phrases.map(p => p.join(" ")).join("; "), passes_join_checks: m.join.flagged })),
+      model_verdict: m.verdict, similarity: +m.sim.toFixed(4), match_barcode: m.join.cells, shared_words: m.join.shared,
+      shared_phrases: m.join.phrases.map(p => p.join(" ")).join("; "), passes_match_checks: m.join.flagged })),
   };
 }
