@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About, cite, rebuild · Orphans and Archetypes</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>About, cite, rebuild</h1>
+  <p>What the tool does, what it is built on, how far to trust it, and how to cite and rebuild it.</p>
+  <nav class="tabs" id="nav"></nav>
+</header>
+<main class="prose">
+  <h2>The method in short</h2>
+  <p>Every text is described by the words it contains (TLHdig's word forms) and by how they are written (each word's signs, and its sequences of two and three signs). Words and spellings that are frequent everywhere count for little; rare ones count for more (tf-idf). Two texts are close when they share many of the same words written the same way, in similar proportions (cosine similarity, from 0 to 1).</p>
+  <p>A <b>tradition</b> is the average of the manuscripts that the scholarly literature assigns to it. There are ten: the Hurrian groups of Gordin, Yavasan &amp; Romach 2025 (StBoT 73), the Luwian, Ḫuwaššanna and Palaic festivals, the Kizzuwatna rituals (Miller 2004), the Luwian rituals of Puriyanni and Kuwattalla (Yakubovich &amp; Mouton 2023), the Arzawa or western rituals (Bawanypeck 2005, Mouton 2010) and the Hattian cult layer (Klinger 1996). A fragment is <b>placed</b> in a tradition only when that tradition beats the runner-up by a margin calibrated to be right about 80% of the time on held-out pieces of known manuscripts. A further check says when a fragment <b>fits no known tradition</b>, either because it is not close enough to any, or because it is closer to a genre outside the ten (myths, prayers, oracles, treaties, instructions, cult inventories, other festivals).</p>
+  <p>A <b>composition</b> is a CTH number, taken as the average of its manuscripts, leaving out the orphans (CTH 470 and the EBo fragments) and the bins CTH 470, 500, 670 and 832. The <b>closest manuscripts</b> are ranked among all 18,491 TLHdig texts of five or more words. For each of them three checks look for a duplicate or a join: does it have at least half of the fragment's words, are all shared words spelled the same way, and does it share a two-word phrase?</p>
+
+  <h2>How far to trust it</h2>
+  <ul>
+    <li>Placements: 84% of the reference manuscripts are placed in their own tradition when held out; the margin is set so that placed fragments are right about 80% of the time. Fragments under about 8 words are rarely placed reliably.</li>
+    <li>When more than half of a placement rests on words every tradition shares (nu, -ma, the sign a), it is right much less often; the tool warns about these, and the settings let you treat them as unplaced.</li>
+    <li>Duplicates: for 212 duplicates the Konkordanz records for fragments of the Laroche bins (CTH 390–470, 500, 670, 832), the known duplicate is the single closest of 18,490 texts in 91 cases, among the closest five in 141 and among the closest twenty in 165 (median rank 2). For the 11 proposed joins with a separately edited partner, the partner is among the closest twenty in 3; pieces of one tablet that join rarely share text, so a join needs the photographs and the find data.</li>
+    <li>The settings "words only", "spellings only", "logograms only" and "phonetic only" are for exploring. The thresholds above were calibrated on words and spellings together, so with other settings the tool shows what is nearest but gives no verdict.</li>
+  </ul>
+
+  <h2>Data</h2>
+  <p>All results are computed from <b>TLHdig Beta Version 0.3</b>: G. Müller, D. Prechel, E. Rieken, D. Schwemer, <i>Thesaurus Linguarum Hethaeorum digitalis (TLHdig) Beta Version 0.3</i>, Zenodo, 21 May 2026, <a href="https://doi.org/10.5281/zenodo.20328284">doi:10.5281/zenodo.20328284</a> (CC BY 4.0). CTH numbers and titles are those of TLHdig; the links to fragments and the joins and duplicates come from the Konkordanz der hethitischen Keilschrifttafeln (S. Košak, <a href="https://hethport.net/hetkonk/">hethport.net/hetkonk</a>, accessed 10 November 2026). Photographs on the opening page are from the Hethitologie-Archiv Mainz (<a href="https://hethport.net">hethiter.net/: fotarch</a>, numbers given with each image), and the photograph of HT 49 is © The Trustees of the British Museum; they are shown to illustrate results, and the rights stay with their holders.</p>
+  <p>When a new TLHdig release appears, the site will be rebuilt with it and this page will name the new version.</p>
+
+  <h2>How to cite</h2>
+  <p>The method: S. Gordin, <i>Orphans and Archetypes</i> (paper in preparation, 2026).</p>
+  <p>This tool: S. Gordin, <i>Orphans and Archetypes: a tool for Hittite fragments</i>, version <span id="ver"></span>, <a href="https://github.com/shaigordin/text-orphans">github.com/shaigordin/text-orphans</a>, built on TLHdig Beta 0.3. A <code>CITATION.cff</code> file in the repository gives the same in machine-readable form.</p>
+  <p>The dataset of closest traditions, compositions, manuscripts and duplicate or join candidates for every fragment of the Laroche bins is published on Zenodo with the paper.</p>
+  <p>Every export from the tool names the data version and the settings used.</p>
+
+  <h2>How to rebuild</h2>
+  <p>The site is static: the pages read JSON files in <code>data/</code>, made once by a Python script from the TLHdig release. To rebuild them on your computer (Python 3.13, Node 22):</p>
+<pre><code>git clone https://github.com/shaigordin/text-orphans
+git clone https://github.com/shaigordin/measuring-scribal-literacy   # the model code (orphans/)
+cd measuring-scribal-literacy/orphans
+python3 -m pip install -r requirements.txt
+bash reproduce.sh        # downloads TLHdig 0.3 from Zenodo, checks it, parses it and reruns the experiments
+cd ../../text-orphans
+python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens.csv   # writes data/
+node tests/check.mjs && node tests/check_library.mjs                               # browser = Python
+python3 -m http.server   # then open http://localhost:8000</code></pre>
+  <p>For a newer TLHdig release, change the Zenodo address and checksum at the top of <code>reproduce.sh</code>, rerun the steps above, and update the data citation in <code>js/site.js</code>. The full instructions are in the repository's <a href="https://github.com/shaigordin/text-orphans#readme">README</a>.</p>
+
+  <h2>Versions</h2>
+  <p>See the <a href="https://github.com/shaigordin/text-orphans/blob/main/CHANGELOG.md">changelog</a>.</p>
+</main>
+<footer id="foot"></footer>
+<script type="module">
+  import { VERSION } from "./js/site.js";
+  document.getElementById("ver").textContent = VERSION;
+</script>
+</body>
+</html>

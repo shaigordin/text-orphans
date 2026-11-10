@@ -1,0 +1,90 @@
+[
+ {
+  "src": "collage_HT49.jpg",
+  "alt": "Photographs of HT 49 and KUB 7.4, with the method's rank",
+  "title": "An orphan finds its duplicate.",
+  "caption": "HT 49 is filed among the ritual fragments of CTH 470. Of 18,490 TLHdig texts, the method finds KUB 7.4+ (CTH 449) closest, sharing all but one of its words in the same spellings; the Konkordanz records it as a duplicate.",
+  "credit": "Photographs: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=BM%20108647\">fotarch BM108647_1</a> (HT 49, © The Trustees of the British Museum (BM 108647)), <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=Bo%20105\">fotarch N12345</a> (KUB 7.4+). Konkordanz entry: <a href=\"https://hethport.net/hetkonk/hetkonk_abfrage.php?p=HT%2049\">HT 49</a>.",
+  "link": "closest.html#id=HT%2049"
+ },
+ {
+  "src": "screen_window.jpg",
+  "alt": "HT 49 and KUB 7.4+ side by side with shared words highlighted",
+  "title": "Read both texts.",
+  "caption": "Every closest manuscript can be read next to the fragment, with the shared words marked: same word in the same spelling, or the same word spelled differently.",
+  "credit": "Text: TLHdig Beta 0.3.",
+  "link": "closest.html#id=HT%2049"
+ },
+ {
+  "src": "collage_KBo38.290.jpg",
+  "alt": "Photographs of KBo 38.290 and KBo 30.131",
+  "title": "Two bins, one composition.",
+  "caption": "KBo 38.290 (CTH 500) and KBo 30.131 (CTH 470) sit in two different bins. Each is the other's closest text, with every word spelled the same; the Konkordanz notes them as duplicates or parallels.",
+  "credit": "Photographs: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=1477%2Fc\">fotarch N08259</a> (KBo 38.290), <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=2660%2Fc\">fotarch N08150</a> (KBo 30.131). Konkordanz entry: <a href=\"https://hethport.net/hetkonk/hetkonk_abfrage.php?p=KBo%2038.290\">KBo 38.290</a>.",
+  "link": "closest.html#id=KBo%2038.290"
+ },
+ {
+  "src": "screen_wheel.jpg",
+  "alt": "The tradition wheel with reference manuscripts and placed orphans",
+  "title": "Ten traditions, one wheel.",
+  "caption": "Each corner is a textual tradition defined in the scholarly literature. Manuscripts sit near the traditions they resemble; the ringed marker is KBo 41.22, placed among the Luwian rituals.",
+  "credit": "",
+  "link": "place.html#id=KBo%2041.22"
+ },
+ {
+  "src": "collage_KBo45.111.jpg",
+  "alt": "Photographs of KBo 45.111 and KBo 30.93",
+  "title": "An orphan and its festival parallel.",
+  "caption": "For KBo 45.111, an orphan of CTH 470, the closest of all TLHdig texts is KBo 30.93, a festival for Teššup and Ḫebat (CTH 706), which the Konkordanz gives as its parallel or duplicate.",
+  "credit": "Photographs: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=285%2Ft\">fotarch B0407f</a> (KBo 45.111), <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=1714%2Fc\">fotarch N10442</a> (KBo 30.93). Konkordanz entry: <a href=\"https://hethport.net/hetkonk/hetkonk_abfrage.php?p=KBo%2045.111\">KBo 45.111</a>.",
+  "link": "closest.html#id=KBo%2045.111"
+ },
+ {
+  "src": "screen_browse.jpg",
+  "alt": "The orphan bins and how much of each the method places",
+  "title": "How far the method gets.",
+  "caption": "Browse every CTH number and see where the method places its fragments, from the orphans of CTH 470 and the EBo fragments to the reference manuscripts.",
+  "credit": "",
+  "link": "browse.html#group=cth&kind=orphan"
+ },
+ {
+  "src": "pipeline.jpg",
+  "alt": "Diagram of the method: corpus, reference traditions, features, score, decision, output, with the validation tests",
+  "title": "The method.",
+  "caption": "From TLHdig to a placement: traditions defined from the literature, words and spellings weighed by rarity, a placement only when the lead is clear, and a test for each step.",
+  "credit": "",
+  "link": "about.html"
+ },
+ {
+  "src": "collage_KBo59.124.jpg",
+  "alt": "Photographs of KBo 59.124 and KBo 59.104",
+  "title": "Two pieces of one tablet?",
+  "caption": "J. Miller proposes an indirect join of KBo 59.124 with KBo 59.104. The method ranks KBo 59.104 second of 18,490 texts. Pieces that join share little text, so most joins rank lower: the list is a place to start looking.",
+  "credit": "Photographs: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=919%2Fz\">fotarch B1320e</a> (KBo 59.124), <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=738%2Fz\">fotarch B1323a</a> (KBo 59.104). Konkordanz entry: <a href=\"https://hethport.net/hetkonk/hetkonk_abfrage.php?p=KBo%2059.124\">KBo 59.124</a>.",
+  "link": "closest.html#id=KBo%2059.124"
+ },
+ {
+  "src": "screen_closest.jpg",
+  "alt": "Table of the closest manuscripts of HT 49 with the duplicate and join checks",
+  "title": "Duplicate and join checks.",
+  "caption": "For each of the closest manuscripts: how many of the fragment's words it has, whether they are spelled the same way, and whether a two-word phrase recurs.",
+  "credit": "",
+  "link": "closest.html#id=HT%2049"
+ },
+ {
+  "src": "worked_example_KBo41.22.jpg",
+  "alt": "Worked example for KBo 41.22 in six steps",
+  "title": "One fragment, step by step.",
+  "caption": "KBo 41.22 read, counted, compared, decided, explained and checked by hand: the formula pa-an-ga-u-wa-aš EME-an places it with the Luwian rituals.",
+  "credit": "",
+  "link": "place.html#id=KBo%2041.22"
+ },
+ {
+  "src": "screen_gallery.jpg",
+  "alt": "Similarity roses of orphan fragments",
+  "title": "Orphans at a glance.",
+  "caption": "Each rose shows a fragment's similarity to the ten traditions: the most confident placement per tradition, three unplaced fragments and three that fit no known tradition.",
+  "credit": "",
+  "link": "place.html"
+ }
+]

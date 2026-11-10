@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Closest texts and joins · Orphans and Archetypes</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>Closest texts and joins</h1>
+  <p>For any fragment: the traditions, compositions (CTH numbers) and manuscripts it is closest to in all of TLHdig, and for each manuscript a word-by-word check of whether it could be a duplicate or a join.</p>
+  <nav class="tabs" id="nav"></nav>
+</header>
+
+<main>
+<div class="grid">
+  <section class="card span2">
+    <form class="row" id="form" style="margin:0">
+      <label class="small" for="inp">Text</label>
+      <textarea id="inp" rows="2" spellcheck="false" placeholder="KBo 41.22, a TLHdig or Konkordanz link, or a transliteration" style="flex:1 1 30em;min-height:2.6em"></textarea>
+      <button type="submit" class="primary">Show</button>
+    </form>
+    <p class="small muted" id="msg"></p>
+    <div id="settings"></div>
+  </section>
+
+  <section class="card span2" id="out" hidden>
+    <div class="row" style="justify-content:space-between;margin:0">
+      <div><div class="verdict" id="verdict"></div><p class="sub" id="why"></p></div>
+      <div id="export"></div>
+    </div>
+    <div class="qgrid three">
+      <div><h3>Traditions</h3><p class="sub">The ten traditions of the paper, defined from the scholarly literature.</p><div class="bars" id="trad"></div></div>
+      <div><h3>Compositions</h3><p class="sub">CTH numbers, each as the average of its manuscripts (not the bins CTH 470, 500, 670, 832, and not the orphans).</p><ol class="rank" id="comp"></ol></div>
+      <div><h3>How to read the lists</h3><p class="sub">Numbers are cosine similarities: 1 means the same words and spellings in the same proportions, 0 nothing in common. Rare words count for more than common ones. Fragments under about 8 words give unstable lists.</p></div>
+    </div>
+  </section>
+
+  <section class="card span2" id="msCard" hidden>
+    <h2>Closest manuscripts, with the duplicate and join checks</h2>
+    <p class="sub">The barcode has one cell per word of the fragment, in line order: <span class="bc S"></span> the manuscript has the word spelled the same way, <span class="bc W"></span> spelled differently, <span class="bc o"></span> not at all. A manuscript passes the checks when it has (a) at least half of the words, (b) every shared word spelled the same way and (c) at least one shared two-word phrase. Duplicates share text, so they pass more often; pieces of one tablet that join usually share little. Click a row to read both texts.</p>
+    <div class="scroll tall"><table id="ms"><thead><tr><th class="num">#</th><th>Manuscript</th><th>CTH</th><th class="num">Words</th><th>Model's verdict</th><th class="num">Similarity</th><th>Barcode</th><th>Checks</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="card span2" id="winCard" hidden>
+    <h2 id="winTitle"></h2>
+    <p class="sub"><mark class="same">same word, same spelling</mark> <mark class="other">same word, other spelling</mark></p>
+    <div class="window" id="win"></div>
+  </section>
+</div>
+</main>
+<footer id="foot"></footer>
+<script type="module" src="js/site.js"></script>
+<script type="module" src="js/closest.js"></script>
+</body>
+</html>
