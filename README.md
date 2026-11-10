@@ -80,7 +80,7 @@ ranking).
 
 ## Rights
 
-Code: licence to be added before the release. Data derived from TLHdig (CC BY 4.0). The photographs in the carousel are
+Code: MIT licence (`LICENSE`). The files in `data/` are derived from TLHdig and shared, like it, under CC BY 4.0. The photographs in the carousel are
 from the Hethitologie-Archiv Mainz (hethiter.net/: fotarch, numbers on each image; HT 49 ©
 The Trustees of the British Museum) and are shown, credited, to illustrate results; the rights
 stay with their holders.

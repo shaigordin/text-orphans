@@ -8,6 +8,7 @@ authors:
     given-names: Shai
 repository-code: "https://github.com/shaigordin/text-orphans"
 url: "https://shaigordin.github.io/text-orphans/"
+license: MIT
 keywords: [Hittite, cuneiform, TLHdig, CTH, textual traditions, fragments, joins, digital humanities]
 references:
   - type: dataset
