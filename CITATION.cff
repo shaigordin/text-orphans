@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this tool or its results, please cite it as below, together with the TLHdig release it is built on."
+title: "Orphans and Archetypes: a tool for Hittite fragments"
+version: 1.0.0
+date-released: 2026-11-10
+authors:
+  - family-names: Gordin
+    given-names: Shai
+repository-code: "https://github.com/shaigordin/text-orphans"
+url: "https://shaigordin.github.io/text-orphans/"
+keywords: [Hittite, cuneiform, TLHdig, CTH, textual traditions, fragments, joins, digital humanities]
+references:
+  - type: dataset
+    title: "Thesaurus Linguarum Hethaeorum digitalis (TLHdig) Beta Version 0.3"
+    authors:
+      - family-names: Müller
+        given-names: Gerfrid
+      - family-names: Prechel
+        given-names: Doris
+      - family-names: Rieken
+        given-names: Elisabeth
+      - family-names: Schwemer
+        given-names: Daniel
+    date-released: 2026-05-21
+    doi: 10.5281/zenodo.20328284
+    license: CC-BY-4.0

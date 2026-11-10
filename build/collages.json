@@ -1,0 +1,132 @@
+[
+ {
+  "out": "collage_HT49.jpg",
+  "title": "An orphan finds its duplicate",
+  "relation": "Duplicate",
+  "a": {
+   "siglum": "HT 49",
+   "cth": "470",
+   "note": "filed among the orphans (CTH 470)",
+   "photo": "HT_49_BM108647_1.jpg",
+   "fotarch": "BM108647_1",
+   "crop": [
+    0.05,
+    0.06,
+    1,
+    1
+   ],
+   "rights": "© The Trustees of the British Museum (BM 108647)"
+  },
+  "b": {
+   "siglum": "KUB 7.4+",
+   "cth": "449",
+   "note": "CTH 449, rituals referring to the netherworld deities",
+   "photo": "KUB_7_4_N12345.jpg",
+   "fotarch": "N12345",
+   "crop": [
+    0,
+    0.07,
+    1,
+    1
+   ]
+  },
+  "konkordanz": "Konkordanz: “Dupl. KUB 7.4+ 5′ff.” (J. Lorenz, 21.02.2023)"
+ },
+ {
+  "out": "collage_KBo38.290.jpg",
+  "title": "Two bins, one composition",
+  "relation": "Duplicate or parallel",
+  "a": {
+   "siglum": "KBo 38.290",
+   "cth": "500",
+   "note": "filed under CTH 500 (Kizzuwatnaean fragments)",
+   "photo": "KBo_38_290_N08259.jpg",
+   "fotarch": "N08259",
+   "crop": [
+    0,
+    0.5,
+    0.62,
+    1
+   ]
+  },
+  "b": {
+   "siglum": "KBo 30.131",
+   "cth": "470",
+   "note": "filed among the orphans (CTH 470)",
+   "photo": "KBo_30_131_N08150.jpg",
+   "fotarch": "N08150",
+   "crop": [
+    0.02,
+    0.07,
+    0.86,
+    1
+   ]
+  },
+  "konkordanz": "Konkordanz: “Dupl. oder par. KBo 30.131 Rs. 6′–10′” (J.L. Miller, 24.3.2019)"
+ },
+ {
+  "out": "collage_KBo45.111.jpg",
+  "title": "An orphan and its festival parallel",
+  "relation": "Parallel or duplicate",
+  "a": {
+   "siglum": "KBo 45.111",
+   "cth": "470",
+   "note": "filed among the orphans (CTH 470)",
+   "photo": "KBo_45_111_B0407f.jpg",
+   "fotarch": "B0407f",
+   "crop": [
+    0,
+    0.04,
+    1,
+    1
+   ]
+  },
+  "b": {
+   "siglum": "KBo 30.93",
+   "cth": "706",
+   "note": "CTH 706, festivals for Teššup and Ḫebat",
+   "photo": "KBo_30_93_N10442.jpg",
+   "fotarch": "N10442",
+   "crop": [
+    0,
+    0.07,
+    1,
+    1
+   ],
+   "fit": "contain"
+  },
+  "konkordanz": "Konkordanz: “Par./Dupl. KBo 30.93 Vs.? 4′ff.” (J. Lorenz, 22.02.2024)"
+ },
+ {
+  "out": "collage_KBo59.124.jpg",
+  "title": "Two pieces of one tablet?",
+  "relation": "Proposed indirect join",
+  "a": {
+   "siglum": "KBo 59.124",
+   "cth": "670",
+   "note": "filed under CTH 670 (festival fragments)",
+   "photo": "KBo_59_124_B1320e.jpg",
+   "fotarch": "B1320e",
+   "crop": [
+    0,
+    0.04,
+    1,
+    1
+   ]
+  },
+  "b": {
+   "siglum": "KBo 59.104",
+   "cth": "670",
+   "note": "filed under CTH 670 (festival fragments)",
+   "photo": "KBo_59_104_B1323a.jpg",
+   "fotarch": "B1323a",
+   "crop": [
+    0,
+    0.04,
+    1,
+    1
+   ]
+  },
+  "konkordanz": "Konkordanz: J. Miller (21.04.2024) “schlägt einen indirekten Join mit KBo 59.104 vor”"
+ }
+]

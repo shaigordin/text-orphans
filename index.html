@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orphans and Archetypes: Hittite fragments and their traditions</title>
+<meta name="description" content="Find the textual tradition, the closest compositions and manuscripts, and possible joins of any Hittite fragment in TLHdig. Runs in your browser.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="home">
+<header>
+  <h1>Orphans and Archetypes</h1>
+  <p>Where does a Hittite fragment belong? This tool compares any fragment with the whole of TLHdig, word by word and sign by sign, and shows the textual tradition, the compositions and the manuscripts it is closest to, with the evidence for each.</p>
+  <nav class="tabs" id="nav"></nav>
+</header>
+
+<main>
+  <section class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Examples from the research"></section>
+
+  <section class="card quick" aria-labelledby="qTitle">
+    <h2 id="qTitle">Check a text</h2>
+    <p class="sub">Type a text number (<a href="#" data-try="KBo 41.22">KBo 41.22</a>, <a href="#" data-try="HT 49">HT 49</a>, <a href="#" data-try="EBo 133">EBo 133</a>), paste a TLHdig or Konkordanz link, or paste a transliteration.</p>
+    <form id="qForm" class="qrow">
+      <textarea id="qIn" rows="2" spellcheck="false" placeholder="KBo 41.22, or {NINDA}ta-kar-mu-un pár-ši-ia 1-ŠU e-ku-zi …" aria-label="Text number or transliteration"></textarea>
+      <button type="submit" class="primary">Check</button>
+    </form>
+    <p class="small muted" id="qMsg"></p>
+    <div id="qOut" hidden>
+      <div class="qhead">
+        <div>
+          <div class="verdict" id="qVerdict"></div>
+          <p class="sub" id="qWhy"></p>
+        </div>
+        <div id="qRose"></div>
+      </div>
+      <div class="qgrid">
+        <div><h3>Closest traditions</h3><div class="bars" id="qTrad"></div></div>
+        <div><h3>Closest compositions</h3><ol class="rank" id="qComp"></ol></div>
+        <div><h3>Closest manuscripts</h3><ol class="rank" id="qMs"></ol></div>
+      </div>
+      <h3 id="qWinTitle">Closest text, shared words marked</h3>
+      <p class="sub"><mark class="same">same word, same spelling</mark> <mark class="other">same word, other spelling</mark> · Click a manuscript above to show it here.</p>
+      <div class="window" id="qWin"></div>
+      <p class="small" id="qMore"></p>
+    </div>
+  </section>
+
+  <section class="intro" aria-label="The tools">
+    <a class="card" href="browse.html"><h3>Browse the CTH bins</h3><p>Every TLHdig text in its CTH number, as the Konkordanz files it, next to where the method places it. See how much of the "orphan" bins (CTH 470, EBo) finds a home.</p></a>
+    <a class="card" href="place.html"><h3>Place a fragment</h3><p>The ten textual traditions defined in the scholarly literature, the fragment's position among them, and which words decide it: function words, verbs, deities, realia, spelling or logograms.</p></a>
+    <a class="card" href="closest.html"><h3>Closest texts and joins</h3><p>The compositions and manuscripts a fragment is closest to, with a word-by-word check for duplicates and possible joins: shared words, same spellings, shared phrases.</p></a>
+    <a class="card" href="compare.html"><h3>Compare word by word</h3><p>Two witnesses side by side: which words they share, which are distinctive, and how each is spelled.</p></a>
+    <a class="card" href="about.html"><h3>About, cite, rebuild</h3><p>The method in short, the data it uses (TLHdig 0.3), how to cite the tool and the dataset, and how to rebuild everything on your own computer.</p></a>
+  </section>
+</main>
+<footer id="foot"></footer>
+<script type="module" src="js/site.js"></script>
+<script type="module" src="js/carousel.js"></script>
+<script type="module" src="js/home.js"></script>
+</body>
+</html>
