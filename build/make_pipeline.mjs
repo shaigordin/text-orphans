@@ -1,5 +1,5 @@
 // The "Method pipeline" slide of the opening page's carousel: the method in five steps, with
-// KBo 41.22 as the running example (numbers from the worked example of the paper and the tool).
+// KBo 44.52 as the running example (data version C: signs on the tablet; numbers from\n// results/tlhdig03_literature_C/case/case_KBo_44_52.json and data/C).
 // node build/make_pipeline.mjs  (Playwright) -> img/carousel/method_pipeline.jpg
 import fs from "fs";
 import path from "path";
@@ -10,16 +10,16 @@ const root = path.join(path.dirname(new URL(import.meta.url).pathname), "..");
 const font = f => `url(data:font/woff2;base64,${fs.readFileSync(path.join(root, "fonts", f)).toString("base64")})`;
 const bar = (label, v, max, col, d = 3) => `<div class="b"><span>${label}</span><i style="width:${(100 * v) / max}%;background:${col}"></i><em>${v.toFixed(d)}</em></div>`;
 const STEPS = [
-  ["Read", "Take the fragment's words as TLHdig edits them.",
-    `<div class="tl"><span>i-da-a-lu-un</span> <span>DINGIR<sup>MEŠ</sup>-aš</span> <span>kar-pí-in</span> <b>pa-an-ga-u-wa-aš</b> <b>EME-an</b> <span>na-aš-ta</span> <span>EN</span> <span>SÍSKUR</span> …</div><p class="n">33 words</p>`],
+  ["Read", "Take the words the tablet preserves, as TLHdig edits them; restored signs do not count.",
+    `<div class="tl"><span>EN</span> <span>SÍSKUR-ma</span> <span><sup>LÚ</sup>SIMUG-ia</span> <b><sup>LÚ</sup>ḪAL</b> <span>ša-ra-a</span> <b>da-a-i</b> <span>A-NA</span> <b><sup>GIŠ</sup>BANŠUR</b> <b><sup>LÚ</sup>AZU</b> …</div><p class="n">49 words on the tablet</p>`],
   ["Weigh", "Count each word and its spelling. Rare ones count for much, common ones for little.",
-    `${bar("the word pankawaš", 6.8, 7, "#8a4b1f", 1)}${bar("the sign na", 1.2, 7, "#c9b9a6", 1)}<p class="n">rarity of the word (idf)</p>`],
+    `${bar("the word ḪAL, diviner", 5.2, 6, "#8a4b1f", 1)}${bar("the sign a", 1.1, 6, "#c9b9a6", 1)}<p class="n">rarity of the word (idf)</p>`],
   ["Compare", "Measure the fragment against ten traditions defined in the scholarly literature.",
-    `${bar("Luwian rituals", 0.389, 0.4, "#a3368f")}${bar("Kizzuwatna rituals", 0.245, 0.4, "#6250d6")}${bar("Hattian cult layer", 0.204, 0.4, "#2a78d6")}<p class="n">similarity, 0 to 1</p>`],
+    `${bar("Syro-Mesopotamia (Hurrian)", 0.417, 0.43, "#008300")}${bar("Kizzuwatna rituals", 0.302, 0.43, "#6250d6")}${bar("Kizzuwatna–Lower Land", 0.301, 0.43, "#00a3b8")}<p class="n">similarity, 0 to 1</p>`],
   ["Decide", "Place it only when the nearest tradition leads clearly; otherwise say so.",
-    `<p class="big">0.389 − 0.245<br>= 0.144</p><p class="n">lead needed: 0.018</p><p class="res">→ Luwian rituals</p>`],
+    `<p class="big">0.417 − 0.302<br>= 0.115</p><p class="n">lead needed: 0.028</p><p class="res">→ Syro-Mesopotamia (Hurrian)</p>`],
   ["Check", "Show the evidence: the deciding words, the closest manuscripts and compositions, duplicates and joins.",
-    `<p class="tl"><b>pa-an-ga-u-wa-aš</b> <b>EME-an</b><br>decides it</p><p class="n">closest composition: CTH 409, the ritual of Tunnawiya</p>`],
+    `<p class="tl"><b><sup>LÚ</sup>AZU</b> <b><sup>GIŠ</sup>BANŠUR</b> <b>SÍSKUR</b> <b>da-a-i</b><br>decide it</p><p class="n">closest manuscript: KBo 59.165 (CTH 701, drink offering for the throne of Ḫebat)</p>`],
 ];
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face { font-family: CG; font-weight: 600; src: ${font("cg-600-latin.woff2")}; }
@@ -43,11 +43,11 @@ h2 { font: 600 42px CG, serif; margin: 16px 0 10px; }
 .b i { display: block; height: 16px; border-radius: 0 4px 4px 0; margin: 4px 0 0; }
 .b em { font-style: normal; font-size: 16px; color: #6c665a; }
 .big { font-size: 30px; font-weight: 650; }
-.res { font: 600 34px CG, serif; color: #a3368f; margin-top: 10px; }
+.res { font: 600 34px CG, serif; color: #008300; margin-top: 10px; font-size: 28px; line-height: 1.1; }
 .foot { position: absolute; left: 64px; bottom: 34px; font-size: 18px; color: #6c665a; }
 </style></head><body>
 <h1>Method pipeline</h1>
-<p class="sub">How the tool places a fragment, step by step, with the orphan KBo 41.22 (CTH 470) as the example.</p>
+<p class="sub">How the tool places a fragment, step by step, with the orphan KBo 44.52 (CTH 470) as the example, counting only the signs on the tablet.</p>
 <div class="row">${STEPS.map(([t, ex, box], i) => `<div class="st"><div class="num">${i + 1}</div><h2>${t}</h2><p class="ex">${ex}</p><div class="box">${box}</div></div>`).join("")}</div>
 <p class="foot">Text: TLHdig Beta 0.3. Method: S. Gordin, Orphans and Archetypes (2026).</p>
 </body></html>`;

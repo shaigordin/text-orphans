@@ -77,6 +77,6 @@ function submit(input) {
 $("form").onsubmit = e => { e.preventDefault(); submit($("inp").value); };
 $("inp").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submit($("inp").value); } });
 const h = new URLSearchParams(location.hash.slice(1));
-const start = h.get("id") ?? h.get("text") ?? "KBo 41.22";
+const start = h.get("id") ?? h.get("text") ?? "KBo 44.52";
 $("inp").value = start;
 submit(start);

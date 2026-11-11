@@ -24,7 +24,7 @@ on every page and in every export.
 | `compare.html` | Word-by-word tf-idf comparison of two witnesses. |
 | `about.html` | The method in short, how far to trust it, data, how to cite, how to rebuild. |
 
-Links: `place.html#id=KBo%2041.22`, `closest.html#id=HT%2049`, `browse.html#open=470`, `index.html#q=EBo%20133`.
+Links: `place.html#id=KBo%2044.52`, `closest.html#id=HT%2049`, `browse.html#open=470`, `index.html#q=EBo%20133`.
 
 ## Data versions
 
@@ -56,7 +56,8 @@ verdict. Every table can be exported as CSV or JSON, the wheel and the rose as S
 | `build/build_data.py` | Writes `data/` from the TLHdig token table, using the experiments' model code. |
 | `build/make_collages.mjs`, `build/collages.json` | The photograph collages of the carousel. |
 | `build/make_screens.mjs` | The screenshots of the carousel. |
-| `build/make_pipeline.mjs` | The "Method pipeline" slide of the carousel (KBo 41.22, step by step). |
+| `build/make_pipeline.mjs` | The "Method pipeline" slide of the carousel (KBo 44.52, step by step). |
+| `build/make_restorations.mjs` | The KBo 41.22 slide: placed with the editors' restorations (A), too close to call from the tablet alone (C). |
 | `tests/check.mjs`, `tests/check_library.mjs` | Browser model against the Python export, and closest manuscripts and join checks against the Python case study (EBo 133). |
 
 ## Rebuild

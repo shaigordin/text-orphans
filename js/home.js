@@ -1,4 +1,5 @@
 // The quick check of the opening page: one box, the main results at once, links to the full tools.
+import * as V from "./data.js";
 import * as A from "./analyse.js";
 import * as D from "./draw.js";
 import * as P from "./portal.js";
@@ -15,7 +16,7 @@ async function check(input) {
   if (!q) return;
   if (q.cth) { location.href = `browse.html#open=${q.cth}`; return; }
   if (q.text && q.text.split(/\s+/).length < 3 && /^[A-Za-z]+\s*\d/.test(q.text)) {
-    $("qMsg").textContent = `"${q.text}" is not a text of TLHdig Beta 0.3. Try a siglum like KBo 41.22, or paste a transliteration.`;
+    $("qMsg").textContent = `"${q.text}" is not a text of TLHdig Beta 0.3. Try a siglum like KBo 44.52, or paste a transliteration.`;
     return;
   }
   $("qMsg").textContent = "Reading the corpus (about 5 MB, once per visit)…";
@@ -70,3 +71,5 @@ $("qIn").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey
 for (const a of document.querySelectorAll("[data-try]")) a.onclick = e => { e.preventDefault(); $("qIn").value = a.dataset.try; check(a.dataset.try); };
 const asked = new URLSearchParams(location.hash.slice(1)).get("q");
 if (asked) { $("qIn").value = asked; check(asked); }
+
+document.getElementById("qVer").innerHTML = `Data: ${V.LABEL}. Switch versions in the settings bar of the tool pages; <a href="about.html">About</a> explains the difference.`;

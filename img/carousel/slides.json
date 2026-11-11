@@ -27,7 +27,7 @@
   "src": "screen_wheel.jpg",
   "alt": "The tradition wheel with reference manuscripts and placed orphans",
   "title": "Ten traditions, one wheel.",
-  "caption": "Each corner is a textual tradition defined in the scholarly literature. Manuscripts sit near the traditions they resemble; the ringed marker is KBo 41.22, placed among the Luwian rituals.",
+  "caption": "Each corner is a textual tradition defined in the scholarly literature. Manuscripts sit near the traditions they resemble; the ringed marker is KBo 44.52, placed with the Syro-Mesopotamian (Hurrian) rituals.",
   "credit": "",
   "link": "place.html#id=KBo%2041.22"
  },
@@ -51,7 +51,15 @@
   "src": "method_pipeline.jpg",
   "alt": "The method in five steps: read, weigh, compare, decide, check, with KBo 41.22 as the example",
   "title": "Method pipeline.",
-  "caption": "Read the fragment, weigh its words and spellings by rarity, compare it with ten traditions from the literature, place it only when the lead is clear, and show the evidence. KBo 41.22 is placed with the Luwian rituals by the formula pa-an-ga-u-wa-aš EME-an.",
+  "caption": "Read the words the tablet preserves, weigh words and spellings by rarity, compare the fragment with ten traditions from the literature, place it only when the lead is clear, and show the evidence. KBo 44.52 is placed with the Syro-Mesopotamian (Hurrian) rituals by the diviner (LÚAZU), the offering table (GIŠBANŠUR) and the ritual client (EN SÍSKUR).",
+  "credit": "Text: TLHdig Beta 0.3.",
+  "link": "about.html"
+ },
+ {
+  "src": "restorations_KBo41.22.jpg",
+  "alt": "KBo 41.22 placed with the Luwian rituals when the editor's restorations count, and too close to call from the signs on the tablet alone.",
+  "title": "When the editor's restorations decide.",
+  "caption": "KBo 41.22 looked like a clear Luwian ritual, but the formula that placed it, pa-an-ga-u-wa-aš EME-an, is restored by the editor in both lines where it appears. From the 13 words on the tablet the method cannot tell the traditions apart. The site's main results therefore count only what the tablet preserves.",
   "credit": "Text: TLHdig Beta 0.3.",
   "link": "about.html"
  },
