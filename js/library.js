@@ -22,7 +22,7 @@ export async function loadLibrary(model, corpus, base = V.DIR) {
   for (const [id, fi] of Object.entries(F.texts)) {
     const c = meta.get(id), text = texts[id];
     if (!c || text === undefined) continue;
-    const words = fi.map(i => F.forms[i]), translits = text.split(" ");
+    const words = fi.map(i => F.forms[i]), translits = text.split(" ").filter(Boolean);  // as forms.json, without empty words
     const d = { id, cth: c.cth, n: c.n, c, text, words, translits };
     if (c.n >= MIN_WORDS && !c.short) {
       const tf = new Map();

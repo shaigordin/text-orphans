@@ -345,3 +345,11 @@ header.hero { max-width: none; padding: 0; background:
 header h1 { font-family: var(--display); font-weight: 600; font-size: 34px; }
 .hero .cune { white-space: nowrap; }
 @media (max-width: 600px) { .hero .cune { font-size: 22px; } .hero-in { padding-top: 26px; } }
+
+/* ---------- 1.1: broken and restored signs in the text windows (data versions with an edition) ---------- */
+.sg-rest { color: #9a8f84; }
+.sg-part { color: #7d6f62; text-decoration: underline dotted #9a8f84; }
+.sg-dmg { text-decoration: underline wavy #c08a5a; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.uncounted { color: #b3a99f; font-style: italic; }
+.uncounted .sg-rest, .uncounted .sg-part { color: inherit; }
+.edlegend { display: block; font-weight: 400; margin: 2px 0 0; font-size: 13px; }

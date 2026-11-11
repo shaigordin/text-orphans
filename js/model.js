@@ -30,6 +30,10 @@ export function normaliseAscii(word) {
   return word.split(/([-.{}+])/).map((p, i) => (i % 2 ? p : asciiSign(p))).join("");
 }
 
+// A sign written ∅ is not on the tablet (data version C, qtm.variants): it keeps its place in the
+// word but is never part of a sign n-gram (qtm.features.sign_ngrams).
+export const LOST = "∅";
+
 export function signs(translit) {
   const t = translit.replace(EDIT, "").replace(LONE_X, "");
   return t.split(SIGN_SPLIT).filter(s => s && s !== "x" && !DIGITS.test(s));
@@ -65,7 +69,7 @@ export function features(parsed) {
   for (const w of parsed.words) {
     const sg = w.signs;
     for (let k = 1; k <= 3; k++)
-      for (let i = 0; i + k <= sg.length; i++) toks.push("§" + sg.slice(i, i + k).join("·"));
+      for (let i = 0; i + k <= sg.length; i++) if (!sg.slice(i, i + k).includes(LOST)) toks.push("§" + sg.slice(i, i + k).join("·"));
   }
   return toks;
 }
@@ -152,6 +156,7 @@ function wordFeatures(w) {
   const sg = w.signs;
   for (let k = 1; k <= 3; k++)
     for (let i = 0; i + k <= sg.length; i++) {
+      if (sg.slice(i, i + k).includes(LOST)) continue;
       const g = "§" + sg.slice(i, i + k).join("·");
       out.push([g, isLogo(g) ? 2 : 1]);
     }

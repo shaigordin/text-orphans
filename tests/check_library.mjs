@@ -8,10 +8,13 @@ globalThis.fetch = async p => ({ json: async () => JSON.parse(fs.readFileSync(ne
 const V = await import("../js/data.js");
 const Q = await import("../js/model.js");
 const L = await import("../js/library.js");
-const model = await Q.loadModel();
-const corpus = await (await fetch(V.url("corpus.json"))).json();
-const lib = await L.loadLibrary(model, corpus);
-const py = JSON.parse(fs.readFileSync(new URL("tests/fixtures/joins_EBo_133.json", root)));
+// the fixture comes from the version A run (results/tlhdig03_literature); VERSION=C with a C fixture
+const VER = process.env.VERSION || "A", base = `data/${VER}`;
+console.log(`data version ${VER}`);
+const model = await Q.loadModel(base);
+const corpus = await (await fetch(`${base}/corpus.json`)).json();
+const lib = await L.loadLibrary(model, corpus, base);
+const py = JSON.parse(fs.readFileSync(new URL(VER === "A" ? "tests/fixtures/joins_EBo_133.json" : `tests/fixtures/joins_EBo_133_${VER}.json`, root)));
 
 const id = py.txtid, filter = Q.featureFilter(model);
 const r = Q.scoreParsed(L.parsedOf(id, model), model, { filter });

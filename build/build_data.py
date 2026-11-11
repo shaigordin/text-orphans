@@ -100,13 +100,51 @@ LABELS = {
 }
 
 
+SHARDS = 64
+
+
+def shard(txtid):
+    """The edition file of a text (js/analyse.js computes the same: sum of UTF-16 code units)."""
+    units = txtid.encode("utf-16-le")
+    return sum(int.from_bytes(units[k:k + 2], "little") for k in range(0, len(units), 2)) % SHARDS
+
+
+def edition(a, ids):
+    """For token tables with sign status (qtm.tlhdig, versions B/C): the editors' transliteration
+    of every word with the status of each sign and whether the word counts, for the text windows.
+    Written as data/<version>/edition/NN.json, NN = shard(txtid), loaded one shard at a time.
+    The counted words are, in order, the words of texts*.json and forms.json."""
+    cols = pd.read_csv(a.tokens, nrows=0).columns
+    if "status" not in cols:
+        return
+    ed = "translit_ed" if "translit_ed" in cols else "translit"
+    df = pd.read_csv(a.tokens, usecols=["txtid", "word", "translit", ed, "status"] if ed != "translit" else
+                     ["txtid", "word", "translit", "status"], dtype=str, low_memory=False)
+    df = df[df.txtid.isin(ids) & (df.word.notna() | df.status.notna())]
+    out = [dict() for _ in range(SHARDS)]
+    for tid, g in df.groupby("txtid", sort=False):
+        rows = []
+        for w, t, e, st in zip(g.word, g.translit, g[ed], g.status):
+            counted = isinstance(w, str) and bool(canon(t))
+            if not counted and (not isinstance(st, str)):
+                continue
+            rows.append([e if isinstance(e, str) else "", st if isinstance(st, str) else "", int(counted)])
+        out[shard(tid)][tid] = rows
+    os.makedirs(f"{a.out}/edition", exist_ok=True)
+    for i, o in enumerate(out):
+        with open(f"{a.out}/edition/{i:02d}.json", "w") as f:
+            json.dump(o, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"edition: {len(df)} words in {SHARDS} files")
+
+
 def register_version(a):
     """Add or update the version in data/versions.json, the list js/data.js reads."""
     p = os.path.join(APP, "data", "versions.json")
     info = json.load(open(p)) if os.path.exists(p) else {"default": a.version, "versions": {}}
     label, long = LABELS.get(a.version, (a.version, ""))
     info["versions"][a.version] = {"label": a.label or label, "long": a.long or long,
-                                    "built": __import__("datetime").date.today().isoformat()}
+                                    "built": __import__("datetime").date.today().isoformat(),
+                                    "edition": "status" in pd.read_csv(a.tokens, nrows=0).columns}
     if a.default:
         info["default"] = a.version
     with open(p, "w") as f:
@@ -314,6 +352,8 @@ def main():
     dump({"forms": forms,
           "texts": {d.txtid: [fidx[w] for w, t in zip(d.words, d.translits) if canon(t)]
                     for _, d in alltexts.iterrows()}}, f"{a.out}/forms.json")
+
+    edition(a, set(alltexts.txtid))
 
     # --- word-level tf-idf per manuscript (words space), for the comparison view ---
     wvec = vectorizer()

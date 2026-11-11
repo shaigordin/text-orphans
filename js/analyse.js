@@ -77,6 +77,39 @@ export async function analyse(q, set, { joins = 20 } = {}) {
 
 // Two transliterations side by side, shared words marked: same word and spelling (solid), same
 // word in another spelling (outlined). Returns [htmlA, htmlB].
+// The editors' text of one TLHdig text with the status of each sign (data versions with
+// edition/ files, i.e. built from a token table with sign status): [[translit, status, counted]].
+const SHARDS = 64, shards = new Map();
+export async function edition(id) {
+  if (!id || !V.INFO.versions[V.KEY].edition) return null;
+  let k = 0;
+  for (let i = 0; i < id.length; i++) k += id.charCodeAt(i);
+  k %= SHARDS;
+  if (!shards.has(k)) shards.set(k, fetch(V.url(`edition/${String(k).padStart(2, "0")}.json`)).then(r => r.json()).catch(() => ({})));
+  return (await shards.get(k))[id] ?? null;
+}
+
+const esc = t => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+// One word of the edition, each sign styled by its status (qtm.tlhdig: P preserved, D damaged,
+// R restored, L lost, O omitted by the scribe); as qtm.variants.model_translit splits it.
+const SPLIT = /([-.\s{}+˽]+)/;
+function signsHTML(t, st) {
+  if (!st || st.length !== Q.signs(t).length) return esc(t);
+  let i = 0;
+  return t.split(SPLIT).map((part, j) => {
+    if (j % 2 || !part) return esc(part);  // separators sit at the odd places
+    const n = Q.signs(part).length, s = st.slice(i, i + n);
+    i += n;
+    if (!n || /^P*$/.test(s)) return esc(part);
+    const cls = /[RLO]/.test(s) ? (/[PD]/.test(s) ? "part" : "rest") : "dmg";
+    const what = { part: "partly restored", rest: "restored by the editor", dmg: "damaged" }[cls];
+    return `<span class="sg-${cls}" title="${what}">${esc(part)}</span>`;
+  }).join("");
+}
+
+// The two texts of a window, shared words marked. With `ed` (from edition()), the editors' full
+// text is shown: restored signs in grey, damaged signs underlined, words that do not count
+// (mostly restored) struck through; the marks come from the counted words, as before.
 export function sharedHTML(a, b) {
   const spell = (words, tr) => {
     const m = new Map();
@@ -85,13 +118,22 @@ export function sharedHTML(a, b) {
   };
   const SKIP = /^(\d+|~.*|x)$/;
   const sa = spell(a.words, a.translits), sb = spell(b.words, b.translits);
-  const mark = (words, tr, other) => words.map((w, i) => {
-    const t = L.normSp(tr[i]), esc = tr[i].replace(/&/g, "&amp;").replace(/</g, "&lt;");
-    if (SKIP.test(w) || !other.has(w)) return `<span>${esc}</span>`;
-    return other.get(w).has(t) ? `<mark class="same" title="${w}: same word, same spelling">${esc}</mark>`
-      : `<mark class="other" title="${w}: same word, spelled ${[...other.get(w)].join(", ")} in the other text">${esc}</mark>`;
-  }).join(" ");
-  return [mark(a.words, a.translits, sb), mark(b.words, b.translits, sa)];
+  const markOne = (w, t, other, html) => {
+    if (SKIP.test(w) || !other.has(w)) return `<span>${html}</span>`;
+    return other.get(w).has(L.normSp(t)) ? `<mark class="same" title="${w}: same word, same spelling">${html}</mark>`
+      : `<mark class="other" title="${w}: same word, spelled ${[...other.get(w)].join(", ")} in the other text">${html}</mark>`;
+  };
+  const mark = (x, other) => {
+    const n = x.words.length;
+    if (x.ed && x.ed.filter(e => e[2]).length === n) {
+      let i = 0;
+      return x.ed.map(([t, st, counted]) => counted
+        ? markOne(x.words[i], x.translits[i++], other, signsHTML(t, st))
+        : `<span class="uncounted" title="not counted: mostly restored, and not preserved elsewhere in this text">${signsHTML(t, st)}</span>`).join(" ");
+    }
+    return x.words.map((w, i) => markOne(w, x.translits[i], other, esc(x.translits[i]))).join(" ");
+  };
+  return [mark(a, sb), mark(b, sa)];
 }
 
 // Rows for the export buttons.
