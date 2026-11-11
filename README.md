@@ -90,7 +90,7 @@ ranking).
 
 ## Rights
 
-Code: MIT licence (`LICENSE`). The fonts in `fonts/` (Cormorant Garamond, a subset of Noto Sans Cuneiform) are under the SIL Open Font License (`fonts/OFL.txt`). The files in `data/` are derived from TLHdig and shared, like it, under CC BY 4.0. The photographs in the carousel are
+Code: MIT licence (`LICENSE`). The fonts in `fonts/` (Cormorant Garamond) are under the SIL Open Font License (`fonts/OFL.txt`). The files in `data/` are derived from TLHdig and shared, like it, under CC BY 4.0. The photographs in the carousel are
 from the Hethitologie-Archiv Mainz (hethiter.net/: fotarch, numbers on each image; HT 49 ©
 The Trustees of the British Museum) and are shown, credited, to illustrate results; the rights
 stay with their holders.

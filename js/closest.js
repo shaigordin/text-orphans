@@ -59,7 +59,7 @@ async function win(k) {
   $("winCard").hidden = false;
   const [ea, eb] = await Promise.all([A.edition(res.q.id), A.edition(x.doc.id)]);
   if (res.manuscripts[k] !== x) return;
-  const legend = ea || eb ? `<span class="small muted edlegend"><span class="sg-rest">grey: restored by the editor</span> · <span class="sg-dmg">wavy: damaged</span> · <span class="uncounted">pale italic: not counted (mostly restored, not preserved elsewhere in the text)</span></span>` : "";
+  const legend = ea || eb ? `<span class="small muted edlegend"><span class="translit">[ ]</span> restored by the editor (grey), <span class="translit">⸢ ⸣</span> damaged, <span class="translit">?</span> uncertain, <span class="translit">!</span> emended · <span class="uncounted">pale: not counted (mostly restored, or without a word form in TLHdig)</span> · <i>italic</i>: Hittite and Akkadian, upright: Sumerograms</span>` : "";
   const [a, b] = A.sharedHTML({ words: res.words, translits: res.translits, ed: ea }, { words: x.doc.words, translits: x.doc.translits, ed: eb });
   $("winTitle").innerHTML = `${res.q.id ?? "Your text"} and ${x.doc.id} <span class="muted">(rank ${x.rank})</span>${legend}`;
   $("win").innerHTML = `<div><h4>${res.q.id ?? "Your text"}</h4><p class="translit">${a}</p></div><div><h4>${x.doc.id} <span class="muted small">CTH ${x.doc.cth}</span></h4><p class="translit">${b}</p></div>`;

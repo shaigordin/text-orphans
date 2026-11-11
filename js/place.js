@@ -1,4 +1,5 @@
 // Place a fragment: score pasted text, explain the placement, draw the wheel, rose and butterfly.
+import * as TL from "./translit.js";
 import * as V from "./data.js";
 import * as Q from "./model.js";
 import * as D from "./draw.js";
@@ -93,7 +94,7 @@ const CLS_ABBR = Object.fromEntries(model.categories.map(c => [c, {
 const drop = { classes: new Set(), layers: new Set() };
 $("restLegend").innerHTML = model.layers.map((l, i) => `<span><span class="swatch sq" style="background:var(--layer-${i + 1})"></span>${l}</span>`).join("") +
   `<span><span class="tick-swatch"></span>same share in the tradition's manuscripts</span>` +
-  `<span class="muted">Word tags: ${Object.entries(CLS_ABBR).map(([k, v]) => v + " " + k.toLowerCase()).join(", ")}; a dashed tag marks a class of low confidence (the TLHdig analyses disagree or are missing).</span>`;
+  `<span class="muted">Word tags: ${Object.entries(CLS_ABBR).map(([k, v]) => v + " " + k.toLowerCase()).join(", ")}; a dashed tag marks a class of low confidence (TLHdig's automatic analyses disagree or are missing).</span>`;
 $("dropRow").innerHTML = `<span class="muted">Leave out and rescore:</span>` +
   model.categories.map(c => `<label><input type="checkbox" data-c="${c}"> ${c.toLowerCase()}</label>`).join("") +
   model.layers.map((l, i) => `<label><input type="checkbox" data-l="${i}"> ${l.toLowerCase()}</label>`).join("");
@@ -106,7 +107,7 @@ let currentId;
 let mode = "decision";
 for (const rb of document.querySelectorAll("input[name=mode]")) rb.onchange = () => { mode = rb.value; run(currentId); };
 const SUB = {
-  decision: "Which words decide between the nearest tradition and the runner-up: the margin between the two scores, split by word class (after StBoT 73 Table 4, with realia split by meaning; from TLHdig's morphological analyses) and by layer: the word form itself, its syllabic spelling, or its logographic writing. Bars to the left pull toward the runner-up. Material every tradition shares, like nu, cancels out here. The tick marks the same share in that tradition's own correctly placed manuscripts. The words above are coloured by the tradition they pull toward.",
+  decision: "Which words decide between the nearest tradition and the runner-up: the margin between the two scores, split by word class (after StBoT 73 Table 4, with realia split by meaning; from TLHdig's automatic morphological annotation, which TLHdig notes is not validated manually) and by layer: the word form itself, its syllabic spelling, or its logographic writing. Bars to the left pull toward the runner-up. Material every tradition shares, like nu, cancels out here. The tick marks the same share in that tradition's own correctly placed manuscripts. The words above are coloured by the tradition they pull toward.",
   similarity: "Each word's share of the similarity to the nearest tradition, by word class and layer. Much of any similarity is material all traditions share (nu, the signs a and i), so frequent function words look heavy here even when they decide nothing; switch to the first view to see what decides. The tick marks the same share in that tradition's own correctly placed manuscripts. The words above are shaded by their share.",
 };
 const E = model.e11, percent = x => Math.round(100 * x) + "%", range = ([a, b]) => `${Math.round(100 * a)}–${percent(b)}`;
@@ -165,13 +166,13 @@ function run(fromId) {
   const what = mode === "decision" ? "of the margin" : "of the score";
   $("chips").innerHTML = r.all.words.map(w => {
     const p = share.get(w), cls = Q.wordClass(w, model), [conf, rule] = Q.classConfidence(w, model);
-    if (!p) return `<span class="chip translit drop" title="${cls}: left out">${w.translit}</span>`;
+    if (!p) return `<span class="chip translit drop" title="${cls}: left out">${TL.word(w.translit)}</span>`;
     const pct = (100 * p.total) / denom, f = v => `${((100 * v) / denom).toFixed(0)}%`;
     const toward = mode === "decision" ? (p.total >= 0 ? ` · pulls toward ${D.SHORT[r.top]}` : ` · pulls toward ${D.SHORT[r.runnerUp]}`) : "";
     const tip = `${cls} (class confidence ${conf}, ${rule.replaceAll("_", " ")})${w.word ? " · word form " + w.word : " · not in vocabulary"} · ${pct.toFixed(0)}% ${what}${toward}` +
       ` (form ${f(p.parts[0])}, syllabic ${f(p.parts[1])}, logographic ${f(p.parts[2])})`;
     const col = mode === "decision" ? D.colorVar(p.total >= 0 ? r.top : r.runnerUp) : "var(--accent)";
-    return `<span class="chip translit ${w.word ? "" : "unk"}" title="${tip}" style="background:color-mix(in srgb, ${col} ${Math.round(70 * Math.abs(p.total) / wmax)}%, var(--surface-0))"><span class="cls ${conf === "low" ? "low" : ""}">${CLS_ABBR[cls]}</span>${w.translit}</span>`;
+    return `<span class="chip translit ${w.word ? "" : "unk"}" title="${tip}" style="background:color-mix(in srgb, ${col} ${Math.round(70 * Math.abs(p.total) / wmax)}%, var(--surface-0))"><span class="cls ${conf === "low" ? "low" : ""}">${CLS_ABBR[cls]}</span>${TL.word(w.translit)}</span>`;
   }).join("") +
     r.parsed.dropped.map(w => `<span class="chip translit drop" title="ignored">${w}</span>`).join("");
 

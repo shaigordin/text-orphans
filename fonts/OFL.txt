@@ -1,4 +1,3 @@
-Cormorant Garamond (Christian Thalmann) and Noto Sans Cuneiform (Google) are licensed under the
+Cormorant Garamond (Christian Thalmann) is licensed under the
 SIL Open Font License, Version 1.1: https://openfontlicense.org
-Files: cg-*.woff2 (Cormorant Garamond, Latin and Latin Extended subsets from Google Fonts),
-noto-cuneiform-subset.woff2 (Noto Sans Cuneiform, only the signs of the site's header).
+Files: cg-*.woff2 (Cormorant Garamond, Latin and Latin Extended subsets from Google Fonts).

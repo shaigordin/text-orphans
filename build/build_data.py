@@ -111,7 +111,9 @@ def shard(txtid):
 
 def edition(a, ids):
     """For token tables with sign status (qtm.tlhdig, versions B/C): the editors' transliteration
-    of every word with the status of each sign and whether the word counts, for the text windows.
+    of every word with the status of each sign, whether the word counts, the layer of each sign
+    (H phonetic, A Akkadogram, S Sumerogram, d determinative) and, if any, the editorial flags of
+    each sign, for the text windows: [translit, status, counted, layer(, flags)].
     Written as data/<version>/edition/NN.json, NN = shard(txtid), loaded one shard at a time.
     The counted words are, in order, the words of texts*.json and forms.json."""
     src = a.edition or a.tokens
@@ -119,17 +121,21 @@ def edition(a, ids):
     if "status" not in cols:
         return
     ed = "translit_ed" if "translit_ed" in cols else "translit"
-    df = pd.read_csv(src, usecols=["txtid", "word", "translit", ed, "status"] if ed != "translit" else
-                     ["txtid", "word", "translit", "status"], dtype=str, low_memory=False)
+    use = ["txtid", "word", "translit", "status", "layer", "flags"] + ([ed] if ed != "translit" else [])
+    df = pd.read_csv(src, usecols=use, dtype=str, low_memory=False)
     df = df[df.txtid.isin(ids) & (df.word.notna() | df.status.notna())]
     out = [dict() for _ in range(SHARDS)]
     for tid, g in df.groupby("txtid", sort=False):
         rows = []
-        for w, t, e, st in zip(g.word, g.translit, g[ed], g.status):
+        for w, t, e, st, ly, fl in zip(g.word, g.translit, g[ed], g["status"], g["layer"], g["flags"]):
             counted = isinstance(w, str) and bool(canon(t))
             if not counted and (not isinstance(st, str)):
                 continue
-            rows.append([e if isinstance(e, str) else "", st if isinstance(st, str) else "", int(counted)])
+            s_ = lambda v: v if isinstance(v, str) else ""
+            row = [s_(e), s_(st), int(counted), s_(ly)]
+            if s_(fl).strip("."):  # per-sign flags joined by "." (u uncertain, e emended, r erasure, a added, s superfluous)
+                row.append(fl)
+            rows.append(row)
         out[shard(tid)][tid] = rows
     os.makedirs(f"{a.out}/edition", exist_ok=True)
     for i, o in enumerate(out):

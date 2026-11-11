@@ -58,7 +58,7 @@ async function win(k) {
   if (!x) return;
   const [ea, eb] = await Promise.all([A.edition(res.q.id), A.edition(x.doc.id)]);
   if (res.manuscripts[k] !== x) return;
-  const legend = ea || eb ? `<span class="small muted edlegend"><span class="sg-rest">grey: restored by the editor</span> · <span class="sg-dmg">wavy: damaged</span> · <span class="uncounted">pale italic: not counted (mostly restored, not preserved elsewhere in the text)</span></span>` : "";
+  const legend = ea || eb ? `<span class="small muted edlegend"><span class="translit">[ ]</span> restored by the editor (grey), <span class="translit">⸢ ⸣</span> damaged, <span class="translit">?</span> uncertain, <span class="translit">!</span> emended · <span class="uncounted">pale: not counted (mostly restored, or without a word form in TLHdig)</span> · <i>italic</i>: Hittite and Akkadian, upright: Sumerograms</span>` : "";
   const [a, b] = A.sharedHTML({ words: res.words, translits: res.translits, ed: ea }, { words: x.doc.words, translits: x.doc.translits, ed: eb });
   $("qWinTitle").innerHTML = `${res.q.id ?? "Your text"} and ${x.doc.id} (rank ${x.rank}, similarity ${fmt(x.sim)})${legend}`;
   $("qWin").innerHTML = `<div><h4>${res.q.id ?? "Your text"}</h4><p class="translit">${a}</p></div>

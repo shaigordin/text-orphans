@@ -3,6 +3,7 @@
 // "Closest texts and joins".
 import * as V from "./data.js";
 import * as Q from "./model.js";
+import * as T from "./translit.js";
 import * as L from "./library.js";
 import * as P from "./portal.js";
 import { verdictOf } from "./verdict.js";
@@ -90,22 +91,12 @@ export async function edition(id) {
 }
 
 const esc = t => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-// One word of the edition, each sign styled by its status (qtm.tlhdig: P preserved, D damaged,
-// R restored, L lost, O omitted by the scribe); as qtm.variants.model_translit splits it.
-const SPLIT = /([-.\s{}+˽]+)/;
-function signsHTML(t, st) {
-  if (!st || st.length !== Q.signs(t).length) return esc(t);
-  let i = 0;
-  return t.split(SPLIT).map((part, j) => {
-    if (j % 2 || !part) return esc(part);  // separators sit at the odd places
-    const n = Q.signs(part).length, s = st.slice(i, i + n);
-    i += n;
-    if (!n || /^P*$/.test(s)) return esc(part);
-    const cls = /[RLO]/.test(s) ? (/[PD]/.test(s) ? "part" : "rest") : "dmg";
-    const what = { part: "partly restored", rest: "restored by the editor", dmg: "damaged" }[cls];
-    return `<span class="sg-${cls}" title="${what}">${esc(part)}</span>`;
-  }).join("");
-}
+
+// Why a word of the edition does not count: most of it is not on the tablet (version C), or
+// TLHdig gives it no word form (both versions).
+const whyNot = st => st && [...st].filter(c => c === "P" || c === "D").length / st.length < 0.5
+  ? "not counted: mostly restored, and not preserved elsewhere in this text"
+  : "not counted: TLHdig gives no word form for it";
 
 // The two texts of a window, shared words marked. With `ed` (from edition()), the editors' full
 // text is shown: restored signs in grey, damaged signs underlined, words that do not count
@@ -127,11 +118,11 @@ export function sharedHTML(a, b) {
     const n = x.words.length;
     if (x.ed && x.ed.filter(e => e[2]).length === n) {
       let i = 0;
-      return x.ed.map(([t, st, counted]) => counted
-        ? markOne(x.words[i], x.translits[i++], other, signsHTML(t, st))
-        : `<span class="uncounted" title="not counted: mostly restored, and not preserved elsewhere in this text">${signsHTML(t, st)}</span>`).join(" ");
+      return x.ed.map(([t, st, counted, ly, fl]) => counted
+        ? markOne(x.words[i], x.translits[i++], other, T.word(t, st, ly, fl))
+        : `<span class="uncounted" title="${whyNot(st)}">${T.word(t, st, ly, fl)}</span>`).join(" ");
     }
-    return x.words.map((w, i) => markOne(w, x.translits[i], other, esc(x.translits[i]))).join(" ");
+    return x.words.map((w, i) => markOne(w, x.translits[i], other, T.word(x.translits[i]))).join(" ");
   };
   return [mark(a, sb), mark(b, sa)];
 }

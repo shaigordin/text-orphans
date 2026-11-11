@@ -3,10 +3,10 @@
 ## 1.1.0 (2026-11-10)
 
 - Data versions: `data/` is now `data/<version>/` with `data/versions.json`; a "Broken and restored signs" setting chooses the version (C: preserved signs and supported restorations, the main results; A: the editor's full text). C is built from the damage-aware token table (measuring-scribal-literacy c9a1cfa) and is the default; A has the same numbers as 1.0. Footer and exports name the version.
-- Text windows show restored signs in grey, damaged signs underlined and words that do not count in pale italic. Join checks treat signs off the tablet as matching anything (as run_join_candidates.py).
+- Transliterations follow the conventions of the paper: phonetic Hittite in italics, Akkadograms in italics and larger, Sumerograms upright, determinatives in { }; [ ] (restored, grey), ⸢ ⸣ (damaged), ⟨ ⟩, ? and ! are rebuilt from TLHdig's sign status and flags and never italic. Words that do not count are pale. Join checks treat signs off the tablet as matching anything (as run_join_candidates.py).
 - Carousel: collages ranked from the signs on the tablet (C); the KBo 59.124 join slide is dropped (rank 18 in C); new slide on KBo 41.22, placed only through restored words. About gives the C figures, with A for comparison.
 
-- New title design on the opening page: the name set in Cormorant Garamond on a clay-coloured band, with a line of cuneiform from KBo 44.52 (preserved on the tablet) and the tagline "Finding a home for every Hittite fragment"; the other pages carry the name above their title.
+- New title design on the opening page: the name set in Cormorant Garamond on a clay-coloured band and the tagline "Finding a home for every Hittite fragment"; the other pages carry the name above their title.
 - Carousel: the "Method pipeline" slide (five steps with KBo 44.52, written for the screen) replaces the paper's pipeline and worked-example figures; the Browse screenshot is removed.
 - Opening text: "the entire digitised Hittite corpus" instead of "the whole of TLHdig".
 - Fonts are self-hosted (`fonts/`, SIL Open Font License).

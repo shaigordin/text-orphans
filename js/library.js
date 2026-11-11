@@ -2,7 +2,7 @@
 // manuscripts, the closest compositions (CTH numbers) and the join checks.
 // Mirrors orphans/run_join_candidates.py: the pool is every text with at least 5 words except the
 // query itself, in the main model's space (word forms + sign n-grams, vocabulary and idf fitted
-// on the reference), compared by cosine. Word forms come from TLHdig's own analyses
+// on the reference), compared by cosine. Word forms come from TLHdig's (automatic) analyses
 // (data/forms.json), so the vectors are those of the Python pipeline, not a re-parse.
 import * as V from "./data.js";
 import * as Q from "./model.js";
