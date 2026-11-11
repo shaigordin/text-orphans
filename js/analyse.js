@@ -120,7 +120,7 @@ export function sharedHTML(a, b) {
   const sa = spell(a.words, a.translits), sb = spell(b.words, b.translits);
   const markOne = (w, t, other, html) => {
     if (SKIP.test(w) || !other.has(w)) return `<span>${html}</span>`;
-    return other.get(w).has(L.normSp(t)) ? `<mark class="same" title="${w}: same word, same spelling">${html}</mark>`
+    return [...other.get(w)].some(u => L.sameSpelling(L.normSp(t), u)) ? `<mark class="same" title="${w}: same word, same spelling">${html}</mark>`
       : `<mark class="other" title="${w}: same word, spelled ${[...other.get(w)].join(", ")} in the other text">${html}</mark>`;
   };
   const mark = (x, other) => {

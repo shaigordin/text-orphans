@@ -114,11 +114,12 @@ def edition(a, ids):
     of every word with the status of each sign and whether the word counts, for the text windows.
     Written as data/<version>/edition/NN.json, NN = shard(txtid), loaded one shard at a time.
     The counted words are, in order, the words of texts*.json and forms.json."""
-    cols = pd.read_csv(a.tokens, nrows=0).columns
+    src = a.edition or a.tokens
+    cols = pd.read_csv(src, nrows=0).columns
     if "status" not in cols:
         return
     ed = "translit_ed" if "translit_ed" in cols else "translit"
-    df = pd.read_csv(a.tokens, usecols=["txtid", "word", "translit", ed, "status"] if ed != "translit" else
+    df = pd.read_csv(src, usecols=["txtid", "word", "translit", ed, "status"] if ed != "translit" else
                      ["txtid", "word", "translit", "status"], dtype=str, low_memory=False)
     df = df[df.txtid.isin(ids) & (df.word.notna() | df.status.notna())]
     out = [dict() for _ in range(SHARDS)]
@@ -144,7 +145,7 @@ def register_version(a):
     label, long = LABELS.get(a.version, (a.version, ""))
     info["versions"][a.version] = {"label": a.label or label, "long": a.long or long,
                                     "built": __import__("datetime").date.today().isoformat(),
-                                    "edition": "status" in pd.read_csv(a.tokens, nrows=0).columns}
+                                    "edition": "status" in pd.read_csv(a.edition or a.tokens, nrows=0).columns}
     if a.default:
         info["default"] = a.version
     with open(p, "w") as f:
@@ -160,6 +161,8 @@ def main():
     ap.add_argument("--long", default=None, help="one sentence on what the version counts")
     ap.add_argument("--default", action="store_true", help="make this the version the site opens with")
     ap.add_argument("--out", default=None, help="folder to write (default data/<version>)")
+    ap.add_argument("--edition", default=None, help="token table with sign status for the text windows "
+                    "(default: the token table itself, if it has a status column; for A give tokens_marks.csv)")
     a = ap.parse_args()
     a.out = a.out or os.path.join(APP, "data", a.version)
     register_version(a)
