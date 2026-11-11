@@ -1,4 +1,5 @@
 // Browse every TLHdig text by its original CTH bin, or by the model's new classification.
+import * as V from "./data.js";
 import { loadModel } from "./model.js";
 import { SHORT } from "./draw.js";
 import { CATEGORIES, UNPLACED, KINDS, verdictOf, verdictColor } from "./verdict.js";
@@ -9,11 +10,11 @@ import * as X from "./export.js";
 const $ = id => document.getElementById(id);
 const [model, corpus, titles] = await Promise.all([
   loadModel(),
-  fetch("data/corpus.json").then(r => r.json()),
-  fetch("data/cth_titles.json").then(r => r.json()),
+  fetch(V.url("corpus.json")).then(r => r.json()),
+  fetch(V.url("cth_titles.json")).then(r => r.json()),
 ]);
 // "Treat as unplaced" (settings): a placement resting mostly on common words counts as too close to call
-let set = T.bar($("settings"), ["common"], s => { set = s; judge(); tiles(); draw(); });
+let set = T.bar($("settings"), ["reading", "common"], s => { set = s; judge(); tiles(); draw(); });
 function judge() {
   for (const c of corpus) {
     c.verdict = verdictOf(c, model);

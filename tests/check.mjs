@@ -3,9 +3,14 @@
 // placement and the open-set flags with data/corpus.json (written by build/build_data.py), and it
 // checks that the word-class breakdown sums exactly to the score and to the decision margin.
 import fs from "fs";
-import * as M from "../js/model.js";
+// js/model.js reads data/versions.json through js/data.js when it loads, so fetch reads files here
+globalThis.fetch = async p => ({ json: async () => JSON.parse(fs.readFileSync(new URL(`../${p}`, import.meta.url))) });
+const M = await import("../js/model.js");
 
-const read = f => JSON.parse(fs.readFileSync(new URL(`../data/${f}`, import.meta.url)));
+const versions = JSON.parse(fs.readFileSync(new URL("../data/versions.json", import.meta.url)));
+const VER = process.env.VERSION || versions.default;
+console.log(`data version ${VER}`);
+const read = f => JSON.parse(fs.readFileSync(new URL(`../data/${VER}/${f}`, import.meta.url)));
 const model = read("model.json"), gate = read("gate.json");
 for (const m of [model, gate]) { m.index = new Map(m.vocab.map((t, i) => [t, i])); m.cents = M.denseCentroids(m); }
 model.gate = gate;

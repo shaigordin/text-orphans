@@ -1,4 +1,5 @@
 // Shared page frame: the navigation and the footer with the data citation, the same on every page.
+import * as V from "./data.js";
 export const VERSION = "1.1.0";
 export const DATA = {
   name: "TLHdig Beta 0.3",
@@ -24,7 +25,7 @@ export function frame() {
     `<a href="${href}"${href === here ? ' aria-current="page"' : ""}>${label}</a>`).join("");
   const foot = document.getElementById("foot");
   if (foot) foot.insertAdjacentHTML("beforeend",
-    `<p>All results are computed from <b>${DATA.name}</b> (${DATA.cite}; Zenodo <a href="https://doi.org/${DATA.doi}">doi:${DATA.doi}</a>). ` +
+    `<p>All results are computed from <b>${DATA.name}</b>, ${V.LABEL} (${DATA.cite}; Zenodo <a href="https://doi.org/${DATA.doi}">doi:${DATA.doi}</a>). ` +
     `The method is that of S. Gordin, <i>Orphans and Archetypes</i> (2026); see <a href="about.html">About, cite, rebuild</a> for how to cite this tool and how to rebuild it with newer data. ` +
     `CTH numbers and titles follow TLHdig and the Konkordanz der hethitischen Keilschrifttafeln (S. Košak, <a href="https://hethport.net">hethport.net</a>). ` +
     `Everything runs in your browser; nothing you paste is sent anywhere. Version ${VERSION}.</p>`);

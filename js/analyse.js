@@ -1,6 +1,7 @@
 // One text, every result: the placement among the ten traditions, the closest compositions and
 // manuscripts, and the join checks. Used by the quick check on the opening page and by
 // "Closest texts and joins".
+import * as V from "./data.js";
 import * as Q from "./model.js";
 import * as L from "./library.js";
 import * as P from "./portal.js";
@@ -10,8 +11,8 @@ let S = null;
 export async function setup() {
   if (S) return S;
   const model = await Q.loadModel();
-  const corpus = await (await fetch("data/corpus.json")).json();
-  const titles = await (await fetch("data/cth_titles.json")).json();
+  const corpus = await (await fetch(V.url("corpus.json"))).json();
+  const titles = await (await fetch(V.url("cth_titles.json"))).json();
   S = { model, corpus, titles, byId: new Map(corpus.map(c => [c.id, c])) };
   return S;
 }

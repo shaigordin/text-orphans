@@ -10,7 +10,7 @@ const $ = id => document.getElementById(id);
 const S = await A.setup();
 const fmt = x => x.toFixed(3);
 let res = null, query = null;
-let set = T.bar($("settings"), ["top", "features", "writing", "common"], s => { set = s; if (query) run(); });
+let set = T.bar($("settings"), ["reading", "top", "features", "writing", "common"], s => { set = s; if (query) run(); });
 
 async function run() {
   $("msg").textContent = "Reading the corpus (about 5 MB, once per visit)…";

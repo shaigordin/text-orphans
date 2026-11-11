@@ -26,6 +26,14 @@ on every page and in every export.
 
 Links: `place.html#id=KBo%2041.22`, `closest.html#id=HT%2049`, `browse.html#open=470`, `index.html#q=EBo%20133`.
 
+## Data versions
+
+`data/<version>/` holds one build per reading of the text, listed in `data/versions.json`
+(written by `build/build_data.py --version`). **C** counts preserved signs plus restorations
+supported by the same text (damaged and "?" signs count but are flagged): the main results.
+**A** is the editor's full text, restorations included, for comparison. The settings bar offers
+the versions built; the footer and every export name the one in use (`js/data.js`).
+
 ## Settings and exports
 
 Tool pages share a settings bar, kept in the browser between visits: number of results (5, 10,
@@ -64,7 +72,7 @@ cd measuring-scribal-literacy/orphans
 python3 -m pip install -r requirements.txt     # Python 3.13
 bash reproduce.sh                              # TLHdig 0.3 from Zenodo (checksum-verified), token table, experiments
 cd ../../text-orphans
-python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens.csv
+python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens.csv --version A   # writes data/A/
 node tests/check.mjs && node tests/check_library.mjs
 python3 -m http.server                         # open http://localhost:8000
 ```

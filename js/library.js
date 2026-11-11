@@ -4,6 +4,7 @@
 // query itself, in the main model's space (word forms + sign n-grams, vocabulary and idf fitted
 // on the reference), compared by cosine. Word forms come from TLHdig's own analyses
 // (data/forms.json), so the vectors are those of the Python pipeline, not a re-parse.
+import * as V from "./data.js";
 import * as Q from "./model.js";
 
 const MIN_WORDS = 5;
@@ -12,7 +13,7 @@ const normSp = t => t.replace(/[\[\]⸢⸣()?!<>«»#*]/g, "").trim(); // spelli
 const json = p => fetch(p).then(r => r.json());
 
 let LIB = null;
-export async function loadLibrary(model, corpus, base = "data") {
+export async function loadLibrary(model, corpus, base = V.DIR) {
   if (LIB) return LIB;
   const [t1, t2, F] = await Promise.all([json(`${base}/texts.json`), json(`${base}/texts_more.json`), json(`${base}/forms.json`)]);
   const texts = Object.assign({}, t1, t2);
@@ -152,7 +153,7 @@ export { normSp };
 
 // TLHdig's word forms of one text without loading the whole library (place.html).
 let FORMS = null;
-export async function parsedById(id, text, model, base = "data") {
+export async function parsedById(id, text, model, base = V.DIR) {
   FORMS ??= await json(`${base}/forms.json`);
   const fi = FORMS.texts[id];
   if (!fi) return null;

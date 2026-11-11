@@ -93,12 +93,38 @@ def text_of(d):
     return " ".join(canon(t) for t in d.translits)
 
 
+LABELS = {
+    "A": ("editor's full text", "Every sign of the edition counts, including the signs the editor restored in breaks."),
+    "C": ("preserved signs and supported restorations",
+          "Only signs preserved on the tablet count, plus restorations supported by the same text; damaged and uncertain signs count but are flagged."),
+}
+
+
+def register_version(a):
+    """Add or update the version in data/versions.json, the list js/data.js reads."""
+    p = os.path.join(APP, "data", "versions.json")
+    info = json.load(open(p)) if os.path.exists(p) else {"default": a.version, "versions": {}}
+    label, long = LABELS.get(a.version, (a.version, ""))
+    info["versions"][a.version] = {"label": a.label or label, "long": a.long or long,
+                                    "built": __import__("datetime").date.today().isoformat()}
+    if a.default:
+        info["default"] = a.version
+    with open(p, "w") as f:
+        json.dump(info, f, ensure_ascii=False, indent=1)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("tokens")
     ap.add_argument("--run", default=os.path.join(ORPHANS, "results", "tlhdig03_literature"))
-    ap.add_argument("--out", default=os.path.join(APP, "data"))
+    ap.add_argument("--version", default="A", help="data version key (C: preserved + supported restorations, A: editor's full text)")
+    ap.add_argument("--label", default=None, help="short name of the version, shown in the settings bar")
+    ap.add_argument("--long", default=None, help="one sentence on what the version counts")
+    ap.add_argument("--default", action="store_true", help="make this the version the site opens with")
+    ap.add_argument("--out", default=None, help="folder to write (default data/<version>)")
     a = ap.parse_args()
+    a.out = a.out or os.path.join(APP, "data", a.version)
+    register_version(a)
     os.makedirs(a.out, exist_ok=True)
     report = json.load(open(f"{a.run}/report.json"))
     e9 = json.load(open(f"{a.run}/E9_report.json"))

@@ -2,13 +2,14 @@
 // (measuring-scribal-literacy, orphans/run_join_candidates.py; copied to tests/fixtures/joins_EBo_133.json).
 // Run `node tests/check_library.mjs` in playground/.
 import fs from "fs";
-import * as Q from "../js/model.js";
-import * as L from "../js/library.js";
 
 const root = new URL("../", import.meta.url);
 globalThis.fetch = async p => ({ json: async () => JSON.parse(fs.readFileSync(new URL(p, root))) });
+const V = await import("../js/data.js");
+const Q = await import("../js/model.js");
+const L = await import("../js/library.js");
 const model = await Q.loadModel();
-const corpus = await (await fetch("data/corpus.json")).json();
+const corpus = await (await fetch(V.url("corpus.json"))).json();
 const lib = await L.loadLibrary(model, corpus);
 const py = JSON.parse(fs.readFileSync(new URL("tests/fixtures/joins_EBo_133.json", root)));
 

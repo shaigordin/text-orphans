@@ -2,6 +2,8 @@
 
 ## 1.1.0 (2026-11-10)
 
+- Data versions: `data/` is now `data/<version>/` with `data/versions.json`; a "Broken and restored signs" setting chooses the version (C: preserved signs and supported restorations, the main results; A: the editor's full text). The data built so far is A; C follows with the damage-aware parser. Footer and exports name the version.
+
 - New title design on the opening page: the name set in Cormorant Garamond on a clay-coloured band, with a line of cuneiform from KBo 41.22 and the tagline "Finding a home for every Hittite fragment"; the other pages carry the name above their title.
 - Carousel: the "Method pipeline" slide (five steps with KBo 41.22, written for the screen) replaces the paper's pipeline and worked-example figures; the Browse screenshot is removed.
 - Opening text: "the entire digitised Hittite corpus" instead of "the whole of TLHdig".

@@ -1,4 +1,5 @@
 // Place a fragment: score pasted text, explain the placement, draw the wheel, rose and butterfly.
+import * as V from "./data.js";
 import * as Q from "./model.js";
 import * as D from "./draw.js";
 import * as P from "./portal.js";
@@ -8,12 +9,12 @@ import * as X from "./export.js";
 
 const $ = id => document.getElementById(id);
 const model = await Q.loadModel();
-const corpus = await (await fetch("data/corpus.json")).json();
-let set = T.bar($("settings"), ["features", "writing", "common"], s => { set = s; run(currentId); });
+const corpus = await (await fetch(V.url("corpus.json"))).json();
+let set = T.bar($("settings"), ["reading", "features", "writing", "common"], s => { set = s; run(currentId); });
 let loaded = null;  // TLHdig's own word forms of the loaded text, while the box holds that text unchanged
 let W = null;
 const getWords = async () => {
-  if (!W) { W = await (await fetch("data/words.json")).json(); W.index = new Map(W.vocab.map((t, i) => [t, i])); }
+  if (!W) { W = await (await fetch(V.url("words.json"))).json(); W.index = new Map(W.vocab.map((t, i) => [t, i])); }
   return W;
 };
 const labs = model.traditions;

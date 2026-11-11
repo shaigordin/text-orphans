@@ -1,5 +1,6 @@
 // Client-side port of orphans/qtm: tokenisation, tf-idf, nearest-centroid scoring.
 // Mirrors qtm/corpus.py (signs), qtm/features.py ("both" space) and qtm/assign.py.
+import * as V from "./data.js";
 
 const EDIT = /[\[\]⸢⸣()?!~′'<>«»#*]/g;
 const LONE_X = /(?<![\p{L}\p{N}_])x(?![\p{L}\p{N}_])/gu;
@@ -107,7 +108,7 @@ export function assign(s, labs, margin) {
            assigned: gap >= margin ? labs[order[0]] : null };
 }
 
-export async function loadModel(base = "data") {
+export async function loadModel(base = V.DIR) {
   const model = await (await fetch(`${base}/model.json`)).json();
   model.index = new Map(model.vocab.map((t, i) => [t, i]));
   model.cents = denseCentroids(model);
