@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this tool or its results, please cite it as below, together with the TLHdig release it is built on."
 title: "Orphans and Archetypes: a tool for Hittite fragments"
-version: 1.1.0
-date-released: 2026-11-10
+version: 1.2.0
+date-released: 2026-11-13
 authors:
   - family-names: Gordin
     given-names: Shai

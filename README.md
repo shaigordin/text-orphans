@@ -22,6 +22,7 @@ on every page and in every export.
 | `place.html` | Placement among the ten literature-defined traditions, the open-set check, and which words decide it (word classes and layers); tradition wheel, archetype barcode, similarity rose, word butterfly. |
 | `closest.html` | Closest traditions, compositions and manuscripts in all of TLHdig, the duplicate/join checks, both texts side by side. |
 | `compare.html` | Word-by-word tf-idf comparison of two witnesses. |
+| `join.html` | Two photographs at true scale by their rulers: cut-outs, line spacing, drag and rotate to check a proposed join. Photos stay in the browser. |
 | `about.html` | The method in short, how far to trust it, data, how to cite, how to rebuild. |
 
 Links: `place.html#id=KBo%2044.52`, `closest.html#id=HT%2049`, `browse.html#open=470`, `index.html#q=EBo%20133`.
