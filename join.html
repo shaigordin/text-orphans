@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check a join from photos · Orphans and Archetypes</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>Check a join from photos</h1>
+  <p>Put two fragments side by side at their true size, each scaled by the ruler in its own photograph, and compare their line spacing. A visual aid for a proposed join or duplicate, not proof: the photos show neither the break surfaces nor the thickness of the pieces.</p>
+  <nav class="tabs" id="nav"></nav>
+</header>
+
+<main>
+<div class="grid">
+  <section class="card span2" id="steps">
+    <h2>How it works</h2>
+    <ol class="small">
+      <li><b>Load</b> a photograph of each piece (with a ruler in it). The photos stay on your computer; nothing is uploaded.</li>
+      <li><b>Scale:</b> click the start and end of a stretch of the ruler's black and white 1 cm blocks. The tool counts the blocks; if your ruler has no blocks, type how many cm the two clicks are apart.</li>
+      <li><b>Cut out</b> the fragment from the background (choose a dark or light background; drag a box first if the photo shows other objects).</li>
+      <li><b>Line spacing:</b> measured automatically, or click the first and last of several lines and give how many line intervals lie between them.</li>
+      <li><b>Arrange</b> the two pieces below: drag them, rotate them, align their edges or move one until they touch. Export the picture and the measurements.</li>
+    </ol>
+  </section>
+
+  <section class="card piece" id="pieceA" data-key="A"></section>
+  <section class="card piece" id="pieceB" data-key="B"></section>
+
+  <section class="card span2" id="table">
+    <div class="row" style="justify-content:space-between;margin:0;align-items:flex-start">
+      <div><h2 style="margin:0">Arrange</h2><p class="sub" id="tableMsg">Load and cut out both pieces first.</p></div>
+      <div id="export"></div>
+    </div>
+    <div class="settings joinbar" id="tools">
+      <fieldset><legend>Move</legend>
+        <label><input type="radio" name="sel" value="A" checked> piece A</label>
+        <label><input type="radio" name="sel" value="B"> piece B</label>
+      </fieldset>
+      <fieldset><legend>Rotate the piece (degrees)</legend>
+        <input type="range" id="rot" min="-180" max="180" step="0.5" value="0" style="width:16em"> <output id="rotOut">0°</output>
+      </fieldset>
+      <fieldset><legend>Place</legend>
+        <button type="button" id="alignR" title="Line up the right sides of the two pieces, as for a common right edge">Align right edges</button>
+        <button type="button" id="alignL" title="Line up the left sides of the two pieces">Align left edges</button>
+        <button type="button" id="touchBelow" title="Put piece B under piece A and move it up until the cut-outs touch">B below A, touching</button>
+        <button type="button" id="touchRight" title="Put piece B to the right of piece A and move it left until the cut-outs touch">B right of A, touching</button>
+      </fieldset>
+      <fieldset><legend>Show</legend>
+        <label><input type="checkbox" id="showLines" checked> line spacing</label>
+        <label><input type="checkbox" id="showGrid" checked> 1 cm grid</label>
+        <label>B opacity <input type="range" id="opB" min="0.2" max="1" step="0.05" value="1" style="width:7em"></label>
+      </fieldset>
+    </div>
+    <canvas id="ws" width="1100" height="760" tabindex="0" aria-label="Workspace: both pieces at true scale"></canvas>
+    <p class="small muted">Drag a piece to move it; arrow keys move the selected piece by 1 mm (with Shift by 1 cm). Both pieces are shown at <span id="wsScale"></span>.</p>
+    <div class="qgrid" id="compareOut"></div>
+  </section>
+
+  <section class="card span2 prose">
+    <h2>Before you trust a fit</h2>
+    <ul class="small">
+      <li>A photo is flat. A join is decided by the break surfaces, the thickness and the curvature of the tablet, which a photo does not show; matching text and spacing fit a duplicate just as well.</li>
+      <li>An "edge" in the photo may be a break. Aligning edges assumes they are the tablet's edges; check on the tablets or on photographs of the sides.</li>
+      <li>The gap is unknown. Pieces shown touching may in fact be lines apart.</li>
+      <li>Scale is only as good as the ruler: it must lie in the plane of the inscribed surface. Old prints and steep light make the automatic line spacing fail; then count lines by eye and give the range.</li>
+      <li>The cut-out is automatic; dark edges can be clipped. Check the outline against the photo.</li>
+    </ul>
+    <p class="small">The method follows <code>orphans/run_joinfit.py</code> in the experiments repository (measuring-scribal-literacy), used there for EBo 133 and KBo 44.140.</p>
+  </section>
+</div>
+</main>
+<footer id="foot"></footer>
+<script type="module" src="js/site.js"></script>
+<script type="module" src="js/join.js"></script>
+</body>
+</html>

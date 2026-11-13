@@ -363,3 +363,31 @@ header h1 { font-family: var(--display); font-weight: 600; font-size: 34px; }
 sup.br { font-size: .7em; }
 .uncounted { color: #b3a99f; }
 .uncounted .gap, .uncounted .br { color: inherit; }
+
+/* ---------- 1.2: Check a join from photos ---------- */
+.piece canvas.prev { display: block; max-width: 100%; margin: 8px 0; border-radius: 6px; cursor: crosshair; background: var(--surface-1, #eee); touch-action: none; }
+.joinbar { margin-top: 8px; }
+.joinbar fieldset { min-width: 0; }
+label.file { display: inline-block; padding: 6px 12px; border: 1px dashed var(--border); border-radius: 8px; cursor: pointer; }
+label.file input { display: none; }
+#ws { display: block; width: 100%; height: auto; border-radius: 8px; margin-top: 10px; cursor: grab; touch-action: none; outline: none; }
+#ws:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+
+/* 1.2: first-visit tour and "What does this do?" labels (js/tour.js) */
+header { position: relative; }
+.tour-bar { position: absolute; top: 14px; right: 16px; display: flex; gap: 8px; z-index: 5; }
+.tour-bar button { font-size: 14px; padding: 5px 12px; background: var(--surface-1); }
+.hero .tour-bar button { background: rgb(244 234 217 / .12); color: var(--clay-text); border-color: rgb(244 234 217 / .35); }
+#helpBtn[aria-pressed=true] { background: var(--accent); color: var(--surface-1); border-color: var(--accent); }
+.tour { position: fixed; inset: 0; z-index: 1000; }
+.tour-hole { position: fixed; border-radius: 10px; box-shadow: 0 0 0 9999px rgb(40 28 20 / .55); outline: 3px solid var(--accent); pointer-events: none; }
+.tour-box { position: fixed; width: min(380px, calc(100vw - 24px)); background: var(--surface-1); color: var(--text-primary); border-radius: 10px; padding: 14px 16px; box-shadow: 0 8px 30px rgb(0 0 0 / .3); }
+.tour-box h3 { margin: 0 0 6px; font-family: var(--display); font-size: 21px; }
+.tour-box p { margin: 0 0 10px; font-size: 16px; line-height: 1.45; }
+.tour-box .tour-n { font-size: 13px; color: var(--text-muted); margin: 0 0 2px; }
+.tour-btns { display: flex; gap: 8px; justify-content: flex-end; }
+.tour-btns [data-a=skip] { margin-right: auto; }
+.helping .help-target { outline: 2px dashed var(--accent); outline-offset: 3px; }
+.help-label { position: absolute; z-index: 900; background: var(--accent); color: var(--surface-1); font-size: 14px; line-height: 1.35; padding: 6px 9px; border-radius: 6px; box-shadow: 0 3px 10px rgb(0 0 0 / .25); pointer-events: none; }
+.help-label b { display: block; font-size: 15px; }
+@media (max-width: 700px) { .tour-bar { position: static; margin: 8px 0; } }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0 (2026-11-13)
+
+- New page, Check a join from photos (`join.html`, `js/join.js`, `js/joinfit.js`): load two photographs, scale each by the ruler's 1 cm blocks (or a typed distance), cut the pieces out of the background, measure line spacing (marked by hand, or an automatic estimate shown as check lines), then arrange both at true scale: drag, rotate, align edges, move until they touch. Exports a PNG with legend and caveat and the measurements as JSON. A port of the measuring steps of `orphans/run_joinfit.py` (measuring-scribal-literacy); on the KBo 44.140 and EBo 133 photographs it gives the same px per cm. Photos stay in the browser.
+- A short tour of each page on the first visit (kept per page in the browser), a Tour button to see it again, and a "What does this do?" button that labels the parts of the page.
+
 ## 1.1.0 (2026-11-10)
 
 - Data versions: `data/` is now `data/<version>/` with `data/versions.json`; a "Broken and restored signs" setting chooses the version (C: preserved signs and supported restorations, the main results; A: the editor's full text). C is built from the damage-aware token table (measuring-scribal-literacy c9a1cfa) and is the default; A has the same numbers as 1.0. Footer and exports name the version.
