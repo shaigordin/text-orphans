@@ -96,37 +96,5 @@
    "fit": "contain"
   },
   "konkordanz": "Konkordanz: “Par./Dupl. KBo 30.93 Vs.? 4′ff.” (J. Lorenz, 22.02.2024)"
- },
- {
-  "out": "collage_KBo59.124.jpg",
-  "title": "Two pieces of one tablet?",
-  "relation": "Proposed indirect join",
-  "a": {
-   "siglum": "KBo 59.124",
-   "cth": "670",
-   "note": "filed under CTH 670 (festival fragments)",
-   "photo": "KBo_59_124_B1320e.jpg",
-   "fotarch": "B1320e",
-   "crop": [
-    0,
-    0.04,
-    1,
-    1
-   ]
-  },
-  "b": {
-   "siglum": "KBo 59.104",
-   "cth": "670",
-   "note": "filed under CTH 670 (festival fragments)",
-   "photo": "KBo_59_104_B1323a.jpg",
-   "fotarch": "B1323a",
-   "crop": [
-    0,
-    0.04,
-    1,
-    1
-   ]
-  },
-  "konkordanz": "Konkordanz: J. Miller (21.04.2024) “schlägt einen indirekten Join mit KBo 59.104 vor”"
  }
 ]

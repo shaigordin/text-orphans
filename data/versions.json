@@ -1,0 +1,17 @@
+{
+ "default": "C",
+ "versions": {
+  "A": {
+   "label": "editor's full text",
+   "long": "Every sign of the edition counts, including the signs the editor restored in breaks.",
+   "built": "2026-11-11",
+   "edition": true
+  },
+  "C": {
+   "label": "preserved signs and supported restorations",
+   "long": "Only signs preserved on the tablet count, plus restorations supported by the same text; damaged and uncertain signs count but are flagged.",
+   "built": "2026-11-11",
+   "edition": true
+  }
+ }
+}

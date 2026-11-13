@@ -1,4 +1,5 @@
 // The quick check of the opening page: one box, the main results at once, links to the full tools.
+import * as V from "./data.js";
 import * as A from "./analyse.js";
 import * as D from "./draw.js";
 import * as P from "./portal.js";
@@ -15,7 +16,7 @@ async function check(input) {
   if (!q) return;
   if (q.cth) { location.href = `browse.html#open=${q.cth}`; return; }
   if (q.text && q.text.split(/\s+/).length < 3 && /^[A-Za-z]+\s*\d/.test(q.text)) {
-    $("qMsg").textContent = `"${q.text}" is not a text of TLHdig Beta 0.3. Try a siglum like KBo 41.22, or paste a transliteration.`;
+    $("qMsg").textContent = `"${q.text}" is not a text of TLHdig Beta 0.3. Try a siglum like KBo 44.52, or paste a transliteration.`;
     return;
   }
   $("qMsg").textContent = "Reading the corpus (about 5 MB, once per visit)…";
@@ -52,11 +53,14 @@ function draw(set) {
       : `<a href="closest.html">Open the full tools</a> and paste the text there.`);
 }
 
-function win(k) {
+async function win(k) {
   const x = res.manuscripts[k];
   if (!x) return;
-  const [a, b] = A.sharedHTML({ words: res.words, translits: res.translits }, { words: x.doc.words, translits: x.doc.translits });
-  $("qWinTitle").innerHTML = `${res.q.id ?? "Your text"} and ${x.doc.id} (rank ${x.rank}, similarity ${fmt(x.sim)})`;
+  const [ea, eb] = await Promise.all([A.edition(res.q.id), A.edition(x.doc.id)]);
+  if (res.manuscripts[k] !== x) return;
+  const legend = ea || eb ? `<span class="small muted edlegend"><span class="translit">[ ]</span> restored by the editor (grey), <span class="translit">⸢ ⸣</span> damaged, <span class="translit">?</span> uncertain, <span class="translit">!</span> emended · <span class="uncounted">pale: not counted (mostly restored, or without a word form in TLHdig)</span> · <i>italic</i>: Hittite and Akkadian, upright: Sumerograms</span>` : "";
+  const [a, b] = A.sharedHTML({ words: res.words, translits: res.translits, ed: ea }, { words: x.doc.words, translits: x.doc.translits, ed: eb });
+  $("qWinTitle").innerHTML = `${res.q.id ?? "Your text"} and ${x.doc.id} (rank ${x.rank}, similarity ${fmt(x.sim)})${legend}`;
   $("qWin").innerHTML = `<div><h4>${res.q.id ?? "Your text"}</h4><p class="translit">${a}</p></div>
     <div><h4>${x.doc.id} <span class="muted small">CTH ${x.doc.cth} · ${P.portalLinks(x.doc.id, x.doc.cth)}</span></h4><p class="translit">${b}</p></div>`;
   for (const btn of $("qMs").querySelectorAll("button")) btn.classList.toggle("sel", +btn.dataset.k === k);
@@ -67,3 +71,5 @@ $("qIn").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey
 for (const a of document.querySelectorAll("[data-try]")) a.onclick = e => { e.preventDefault(); $("qIn").value = a.dataset.try; check(a.dataset.try); };
 const asked = new URLSearchParams(location.hash.slice(1)).get("q");
 if (asked) { $("qIn").value = asked; check(asked); }
+
+document.getElementById("qVer").innerHTML = `Data: ${V.LABEL}. Switch versions in the settings bar of the tool pages; <a href="about.html">About</a> explains the difference.`;

@@ -3,15 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orphans and Archetypes: Hittite fragments and their traditions</title>
+<title>Orphans & Archetypes: finding a home for every Hittite fragment</title>
 <meta name="description" content="Find the textual tradition, the closest compositions and manuscripts, and possible joins of any Hittite fragment in TLHdig. Runs in your browser.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="home">
-<header>
-  <h1>Orphans and Archetypes</h1>
-  <p>Where does a Hittite fragment belong? This tool compares any fragment with the whole of TLHdig, word by word and sign by sign, and shows the textual tradition, the compositions and the manuscripts it is closest to, with the evidence for each.</p>
-  <nav class="tabs" id="nav"></nav>
+<header class="hero">
+  <div class="hero-in">
+    <h1 class="wordmark">Orphans <span class="amp">&amp;</span> Archetypes</h1>
+    <p class="tagline">Finding a home for every Hittite fragment</p>
+    <p class="lede">Where does a Hittite fragment belong? This tool compares any fragment with the entire digitised Hittite corpus, word by word and sign by sign, and shows the textual tradition, the compositions and the manuscripts it is closest to, with the evidence for each.</p>
+    <nav class="tabs" id="nav"></nav>
+  </div>
 </header>
 
 <main>
@@ -19,12 +22,13 @@
 
   <section class="card quick" aria-labelledby="qTitle">
     <h2 id="qTitle">Check a text</h2>
-    <p class="sub">Type a text number (<a href="#" data-try="KBo 41.22">KBo 41.22</a>, <a href="#" data-try="HT 49">HT 49</a>, <a href="#" data-try="EBo 133">EBo 133</a>), paste a TLHdig or Konkordanz link, or paste a transliteration.</p>
+    <p class="sub">Type a text number (<a href="#" data-try="KBo 44.52">KBo 44.52</a>, <a href="#" data-try="HT 49">HT 49</a>, or <a href="#" data-try="KBo 41.22">KBo 41.22</a>, whose placement rests on restored words), paste a TLHdig or Konkordanz link, or paste a transliteration.</p>
     <form id="qForm" class="qrow">
-      <textarea id="qIn" rows="2" spellcheck="false" placeholder="KBo 41.22, or {NINDA}ta-kar-mu-un pár-ši-ia 1-ŠU e-ku-zi …" aria-label="Text number or transliteration"></textarea>
+      <textarea id="qIn" rows="2" spellcheck="false" placeholder="KBo 44.52, or {NINDA}ta-kar-mu-un pár-ši-ia 1-ŠU e-ku-zi …" aria-label="Text number or transliteration"></textarea>
       <button type="submit" class="primary">Check</button>
     </form>
     <p class="small muted" id="qMsg"></p>
+    <p class="small muted" id="qVer"></p>
     <div id="qOut" hidden>
       <div class="qhead">
         <div>

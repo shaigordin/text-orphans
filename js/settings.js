@@ -3,6 +3,8 @@
 //   features  words and spellings (the paper's model), words only, or spellings (signs) only
 //   writing   all, logograms (Sumero-/Akkadograms) only, or phonetic (syllabic) renderings only
 //   common    show or treat as unplaced the placements that rest mostly on words every tradition shares
+//   reading   which version of the data (how broken and restored signs count); its options are those
+//             listed in data/versions.json, added by js/data.js. Changing it reloads the page.
 const KEY = "text-orphans-settings";
 export const DEFAULTS = { top: 10, features: "both", writing: "all", common: "show" };
 const GROUPS = {
@@ -15,6 +17,13 @@ const HELP = {
   features: "Words are TLHdig's word forms; spellings are the signs of each word and their sequences of two and three.",
   writing: "Logograms are words and signs written in Sumerian or Akkadian (upper case, e.g. NINDA, DINGIR); phonetic renderings are written syllable by syllable.",
 };
+
+// Add a group whose options are only known at run time (js/data.js adds "reading").
+export function addGroup(key, label, opts, help, dflt) {
+  GROUPS[key] = [label, opts];
+  if (help) HELP[key] = help;
+  DEFAULTS[key] ??= dflt;
+}
 
 export function load() {
   let s = {};
@@ -30,6 +39,7 @@ export const calibrated = s => s.features === "both" && s.writing === "all";
 export function bar(el, keys, onChange) {
   const s = load();
   el.classList.add("settings");
+  keys = keys.filter(k => GROUPS[k] && !(k === "reading" && GROUPS[k][1].length < 2));
   el.innerHTML = keys.map(k => {
     const [label, opts] = GROUPS[k];
     return `<fieldset><legend>${label}${HELP[k] ? ` <span class="help" title="${HELP[k]}">?</span>` : ""}</legend>` +
@@ -47,6 +57,7 @@ export function bar(el, keys, onChange) {
     const st = load();
     st[inp.name.slice(4)] = inp.name === "set-top" ? +inp.value : inp.value;
     save(st);
+    if (inp.name === "set-reading") { location.reload(); return; }
     show(st);
     onChange(st);
   };

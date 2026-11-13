@@ -1,10 +1,11 @@
 // Word-by-word tf-idf comparison of two witnesses (fragment, manuscript or tradition).
+import * as V from "./data.js";
 import * as Q from "./model.js";
 import * as D from "./draw.js";
 import * as X from "./export.js";
 const $ = id => document.getElementById(id);
 const [model, W, corpus] = await Promise.all([
-  Q.loadModel(), fetch("data/words.json").then(r => r.json()), fetch("data/corpus.json").then(r => r.json())]);
+  Q.loadModel(), fetch(V.url("words.json")).then(r => r.json()), fetch(V.url("corpus.json")).then(r => r.json())]);
 const labs = model.traditions;
 const windex = new Map(W.vocab.map((t, i) => [t, i]));
 const rowOf = new Map(W.ids.map((id, i) => [id, i]));

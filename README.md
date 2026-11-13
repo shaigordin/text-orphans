@@ -1,7 +1,7 @@
-# Orphans and Archetypes: a tool for Hittite fragments
+# Orphans & Archetypes: finding a home for every Hittite fragment
 
-Where does a Hittite fragment belong? This static website compares any fragment with the whole
-of TLHdig, word by word and sign by sign, and shows the textual tradition, the compositions and
+Where does a Hittite fragment belong? This static website compares any fragment with the entire
+digitised Hittite corpus (TLHdig), word by word and sign by sign, and shows the textual tradition, the compositions and
 the manuscripts it is closest to, with a duplicate/join check for each manuscript. It
 accompanies S. Gordin, *Orphans and Archetypes* (2026). Everything runs in the browser.
 
@@ -24,7 +24,15 @@ on every page and in every export.
 | `compare.html` | Word-by-word tf-idf comparison of two witnesses. |
 | `about.html` | The method in short, how far to trust it, data, how to cite, how to rebuild. |
 
-Links: `place.html#id=KBo%2041.22`, `closest.html#id=HT%2049`, `browse.html#open=470`, `index.html#q=EBo%20133`.
+Links: `place.html#id=KBo%2044.52`, `closest.html#id=HT%2049`, `browse.html#open=470`, `index.html#q=EBo%20133`.
+
+## Data versions
+
+`data/<version>/` holds one build per reading of the text, listed in `data/versions.json`
+(written by `build/build_data.py --version`). **C** counts preserved signs plus restorations
+supported by the same text (damaged and "?" signs count but are flagged): the main results.
+**A** is the editor's full text, restorations included, for comparison. The settings bar offers
+the versions built; the footer and every export name the one in use (`js/data.js`).
 
 ## Settings and exports
 
@@ -48,6 +56,8 @@ verdict. Every table can be exported as CSV or JSON, the wheel and the rose as S
 | `build/build_data.py` | Writes `data/` from the TLHdig token table, using the experiments' model code. |
 | `build/make_collages.mjs`, `build/collages.json` | The photograph collages of the carousel. |
 | `build/make_screens.mjs` | The screenshots of the carousel. |
+| `build/make_pipeline.mjs` | The "Method pipeline" slide of the carousel (KBo 44.52, step by step). |
+| `build/make_restorations.mjs` | The KBo 41.22 slide: placed with the editors' restorations (A), too close to call from the tablet alone (C). |
 | `tests/check.mjs`, `tests/check_library.mjs` | Browser model against the Python export, and closest manuscripts and join checks against the Python case study (EBo 133). |
 
 ## Rebuild
@@ -63,7 +73,7 @@ cd measuring-scribal-literacy/orphans
 python3 -m pip install -r requirements.txt     # Python 3.13
 bash reproduce.sh                              # TLHdig 0.3 from Zenodo (checksum-verified), token table, experiments
 cd ../../text-orphans
-python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens.csv
+python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens.csv --version A   # writes data/A/
 node tests/check.mjs && node tests/check_library.mjs
 python3 -m http.server                         # open http://localhost:8000
 ```
@@ -80,7 +90,7 @@ ranking).
 
 ## Rights
 
-Code: MIT licence (`LICENSE`). The files in `data/` are derived from TLHdig and shared, like it, under CC BY 4.0. The photographs in the carousel are
+Code: MIT licence (`LICENSE`). The fonts in `fonts/` (Cormorant Garamond) are under the SIL Open Font License (`fonts/OFL.txt`). The files in `data/` are derived from TLHdig and shared, like it, under CC BY 4.0. The photographs in the carousel are
 from the Hethitologie-Archiv Mainz (hethiter.net/: fotarch, numbers on each image; HT 49 ©
 The Trustees of the British Museum) and are shown, credited, to illustrate results; the rights
 stay with their holders.

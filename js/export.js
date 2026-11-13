@@ -1,5 +1,6 @@
 // Export buttons: tables as CSV or JSON, figures (SVG elements) as SVG or PNG.
 // Every file says where its numbers come from (TLHdig Beta 0.3, this site's version).
+import * as V from "./data.js";
 const SOURCE = "Orphans and Archetypes tool (github.com/shaigordin/text-orphans); data TLHdig Beta 0.3, doi:10.5281/zenodo.20328284";
 
 function save(blob, name) {
@@ -10,7 +11,7 @@ function save(blob, name) {
   a.click();
   setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
 }
-const slug = s => String(s).replace(/[^\p{L}\p{N}]+/gu, "_").replace(/^_|_$/g, "");
+const slug = s => String(s).replace(/[^\p{L}\p{N}]+/gu, "_").replace(/^_|_$/g, "") + `_version${V.KEY}`;
 
 export function csv(rows) {
   if (!rows.length) return "";
@@ -20,7 +21,7 @@ export function csv(rows) {
 }
 export function downloadCSV(rows, name) { save(new Blob(["﻿" + csv(rows)], { type: "text/csv;charset=utf-8" }), slug(name) + ".csv"); }
 export function downloadJSON(obj, name) {
-  save(new Blob([JSON.stringify({ source: SOURCE, exported: new Date().toISOString(), ...obj }, null, 1)], { type: "application/json" }), slug(name) + ".json");
+  save(new Blob([JSON.stringify({ source: SOURCE, data_version: V.LABEL, exported: new Date().toISOString(), ...obj }, null, 1)], { type: "application/json" }), slug(name) + ".json");
 }
 
 // Inline the page's colours (CSS variables) so the file looks the same outside the page.

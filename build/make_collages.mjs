@@ -4,7 +4,7 @@
 //
 // The photographs are not part of this repository. Fetch them with fotarch/fetch_photos.js of the
 // experiments repository (github.com/shaigordin/measuring-scribal-literacy, folder orphans/), then:
-//   PHOTOS=<folder with the photos> KNOWN=<orphans/results/tlhdig03_literature/known_joins/known_joins.csv> \
+//   PHOTOS=<folder with the photos> KNOWN=<orphans/results/tlhdig03_literature_C/known_joins/known_joins.csv> \
 //     node build/make_collages.mjs
 // Writes img/carousel/collage_*.jpg as listed in build/collages.json.
 import fs from "fs";
@@ -15,7 +15,7 @@ const { chromium } = createRequire(import.meta.url)("playwright");  // npm i pla
 const here = path.dirname(new URL(import.meta.url).pathname);
 const root = path.join(here, "..");
 const PHOTOS = process.env.PHOTOS ?? path.join(root, "..", "measuring-scribal-literacy", "orphans", "data", "collage");
-const KNOWN = process.env.KNOWN ?? path.join(root, "..", "measuring-scribal-literacy", "orphans", "results", "tlhdig03_literature", "known_joins", "known_joins.csv");
+const KNOWN = process.env.KNOWN ?? path.join(root, "..", "measuring-scribal-literacy", "orphans", "results", "tlhdig03_literature_C", "known_joins", "known_joins.csv");
 const pairs = JSON.parse(fs.readFileSync(path.join(here, "collages.json"), "utf8"));
 
 // known_joins.csv (one quoted field at most per line is enough for this file's simple quoting)
@@ -63,8 +63,8 @@ function page(p, k) {
   <h1>${esc(p.title)}</h1><div class="rel">${esc(p.relation)}</div>
   ${["a", "b"].map(s => `<div class="frag ${s}"><div class="print">${img(p[s].photo, p[s].crop, p[s].fit)}
      <div class="lab">${esc(p[s].siglum)}<small>${esc(p[s].note)}</small></div></div></div>`).join("")}
-  <div class="mid"><div class="rank">${k.rank === "1" ? "1<small>st</small>" : k.rank === "2" ? "2<small>nd</small>" : k.rank + "<small>th</small>"}</div>
-    <p>closest of ${pool} TLHdig texts to ${esc(p.a.siglum)}, found by the method alone</p>
+  <div class="mid"><div class="rank">${k.rank === "1" ? "1<small>st</small>" : k.rank === "2" ? "2<small>nd</small>" : k.rank === "3" ? "3<small>rd</small>" : k.rank + "<small>th</small>"}</div>
+    <p>closest of ${pool} TLHdig texts to ${esc(p.a.siglum)}, found by the method alone from the signs on the tablet</p>
     <div class="bar">${cells}</div><p>${esc(p.a.siglum)}'s words in ${esc(p.b.siglum)}: ■ same spelling □ other spelling</p></div>
   <div class="konk">${esc(p.konkordanz)}</div>
   <div class="credit">Photographs: Hethitologie-Archiv Mainz, hethiter.net/: fotarch ${["a", "b"].map(s => `${esc(p[s].fotarch)} (${esc(p[s].siglum)}${p[s].rights ? ", " + esc(p[s].rights) : ""})`).join(", ")}. Text: TLHdig Beta 0.3.</div>

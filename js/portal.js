@@ -1,6 +1,7 @@
 // The Mainz portal (hethport.net): links to TLHdig and the Konkordanz, and loading TLHdig texts.
 // The portal does not allow other sites to read its pages, so texts come from the TLHdig release
 // bundled in data/ (texts.json for the model's texts, texts_more.json for the rest of TLHdig).
+import * as V from "./data.js";
 
 const PORTAL = "https://hethport.net";
 const q = encodeURIComponent;
@@ -21,9 +22,9 @@ const json = path => fetch(path).then(r => r.json());
 
 // Transliteration of one TLHdig text, or undefined.
 export async function getText(id) {
-  main ??= await json("data/texts.json");
+  main ??= await json(V.url("texts.json"));
   if (id in main) return main[id];
-  more ??= await json("data/texts_more.json");
+  more ??= await json(V.url("texts_more.json"));
   return more[id];
 }
 

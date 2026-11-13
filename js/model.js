@@ -1,5 +1,6 @@
 // Client-side port of orphans/qtm: tokenisation, tf-idf, nearest-centroid scoring.
 // Mirrors qtm/corpus.py (signs), qtm/features.py ("both" space) and qtm/assign.py.
+import * as V from "./data.js";
 
 const EDIT = /[\[\]⸢⸣()?!~′'<>«»#*]/g;
 const LONE_X = /(?<![\p{L}\p{N}_])x(?![\p{L}\p{N}_])/gu;
@@ -28,6 +29,10 @@ export function normaliseAscii(word) {
   // keep separators, convert each sign
   return word.split(/([-.{}+])/).map((p, i) => (i % 2 ? p : asciiSign(p))).join("");
 }
+
+// A sign written ∅ is not on the tablet (data version C, qtm.variants): it keeps its place in the
+// word but is never part of a sign n-gram (qtm.features.sign_ngrams).
+export const LOST = "∅";
 
 export function signs(translit) {
   const t = translit.replace(EDIT, "").replace(LONE_X, "");
@@ -64,7 +69,7 @@ export function features(parsed) {
   for (const w of parsed.words) {
     const sg = w.signs;
     for (let k = 1; k <= 3; k++)
-      for (let i = 0; i + k <= sg.length; i++) toks.push("§" + sg.slice(i, i + k).join("·"));
+      for (let i = 0; i + k <= sg.length; i++) if (!sg.slice(i, i + k).includes(LOST)) toks.push("§" + sg.slice(i, i + k).join("·"));
   }
   return toks;
 }
@@ -107,7 +112,7 @@ export function assign(s, labs, margin) {
            assigned: gap >= margin ? labs[order[0]] : null };
 }
 
-export async function loadModel(base = "data") {
+export async function loadModel(base = V.DIR) {
   const model = await (await fetch(`${base}/model.json`)).json();
   model.index = new Map(model.vocab.map((t, i) => [t, i]));
   model.cents = denseCentroids(model);
@@ -151,6 +156,7 @@ function wordFeatures(w) {
   const sg = w.signs;
   for (let k = 1; k <= 3; k++)
     for (let i = 0; i + k <= sg.length; i++) {
+      if (sg.slice(i, i + k).includes(LOST)) continue;
       const g = "§" + sg.slice(i, i + k).join("·");
       out.push([g, isLogo(g) ? 2 : 1]);
     }

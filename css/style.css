@@ -311,3 +311,55 @@ ol.rank li .val { float: right; }
 .prose code, .prose pre { font-size: 13px; }
 .prose pre { background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px; padding: 10px; overflow: auto; }
 .side select, .side input { width: 100%; }
+
+/* ---------- 1.1: title design ---------- */
+@font-face { font-family: "Cormorant Garamond"; font-weight: 600; font-display: swap; src: url(../fonts/cg-600-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Cormorant Garamond"; font-weight: 600; font-display: swap; src: url(../fonts/cg-600-latinext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+A720-A7FF; }
+@font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 500; font-display: swap; src: url(../fonts/cg-500i-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F; }
+@font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 500; font-display: swap; src: url(../fonts/cg-500i-latinext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+1E00-1EFF; }
+:root { --display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif; --clay-1: #2a211b; --clay-2: #4b3527; --clay-text: #f4ead9; --clay-muted: #cdb9a0; --clay-accent: #e7a76f; }
+
+header.hero { max-width: none; padding: 0; background:
+  radial-gradient(ellipse at 85% 0%, rgb(231 167 111 / .22), transparent 55%),
+  radial-gradient(ellipse at 0% 100%, rgb(0 0 0 / .35), transparent 60%),
+  linear-gradient(135deg, var(--clay-1), var(--clay-2)); color: var(--clay-text); }
+.hero-in { max-width: 1180px; margin: 0 auto; padding: 40px 16px 14px; position: relative; overflow: hidden; }
+
+.hero .wordmark { font-family: var(--display); font-weight: 600; font-size: clamp(44px, 7vw, 76px); line-height: .95; letter-spacing: -0.01em; margin: 0; color: var(--clay-text); }
+.hero .amp { font-style: italic; font-weight: 500; color: var(--clay-accent); padding: 0 .04em; }
+.hero .tagline { font-family: var(--display); font-style: italic; font-weight: 500; font-size: clamp(20px, 2.6vw, 28px); color: var(--clay-muted); margin: 6px 0 14px; }
+.hero .lede { color: var(--clay-text); opacity: .9; max-width: 68ch; margin: 0; font-size: 16px; }
+.hero nav.tabs { margin-top: 22px; border-top: 1px solid rgb(244 234 217 / .15); padding-top: 10px; }
+.hero nav.tabs a { color: var(--clay-muted); }
+.hero nav.tabs a[aria-current] { color: var(--clay-text); border-color: var(--clay-accent); }
+.hero nav.tabs a:hover { color: var(--clay-text); }
+
+/* other pages: the name of the site above the page title */
+.brand { display: inline-block; font-family: var(--display); font-weight: 600; font-size: 22px; color: var(--accent); text-decoration: none; margin-bottom: 4px; }
+.brand .amp { font-style: italic; font-weight: 500; }
+header h1 { font-family: var(--display); font-weight: 600; font-size: 34px; }
+
+@media (max-width: 600px) { .hero-in { padding-top: 26px; } }
+
+/* ---------- 1.1: broken and restored signs in the text windows (data versions with an edition) ---------- */
+.sg-rest { color: #9a8f84; }
+.sg-part { color: #7d6f62; text-decoration: underline dotted #9a8f84; }
+.sg-dmg { text-decoration: underline wavy #c08a5a; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.uncounted { color: #b3a99f; font-style: italic; }
+.uncounted .sg-rest, .uncounted .sg-part { color: inherit; }
+.edlegend { display: block; font-weight: 400; margin: 2px 0 0; font-size: 13px; }
+
+/* ---------- 1.1: transliteration conventions (js/translit.js) ---------- */
+.window .translit, .chip.translit, .term.translit { font-family: "Charis SIL", "Gentium Plus", "Noto Serif", "Source Serif 4", Georgia, "Times New Roman", serif; font-size: 17px; line-height: 1.75; }
+.L-H { font-style: italic; }
+.L-A { font-style: italic; font-size: 1.12em; }
+.L-S, .L-d, .L-x, .br { font-style: normal; }
+.gap { color: #9a8f84; }
+.br { color: #7d6f62; }
+sup.br { font-size: .7em; }
+.uncounted { color: #b3a99f; }
+.uncounted .gap, .uncounted .br { color: inherit; }
