@@ -150,7 +150,7 @@ add("step_1_read.jpg", "1 · Read", `${ID}: the photograph and its transliterati
 // 3. Compare
 {
   const max = D.trad[0].s;
-  add("step_3_compare.jpg", "3 · Compare", "Similarity of KBo 44.52 to the ten traditions; Syro-Mesopotamia (Hurrian) is nearest",
+  add("step_3_compare.jpg", "3 · Compare", "Similarity of KBo 44.52 to the ten traditions; Syro-Mesopotamian (Hurrian) is nearest",
     "Each tradition is the average profile of its manuscripts. The fragment is compared with each of the ten: 1 means identical, 0 nothing shared.", `
   <div class="left"><p class="step">Step 3</p><h1>Compare</h1><p class="lede">Measure the fragment against the ten traditions defined in the literature.</p>
     <div style="margin-top:34px">${frag(380)}</div></div>
@@ -166,7 +166,7 @@ add("step_1_read.jpg", "1 · Read", `${ID}: the photograph and its transliterati
 // 4. Decide
 {
   const W = 760, sc = W / D.trad[0].s;
-  add("step_4_decide.jpg", "4 · Decide", `The lead of Syro-Mesopotamia (Hurrian) over the Kizzuwatna rituals, ${fmt(D.gap)}, against the ${D.margin} needed`,
+  add("step_4_decide.jpg", "4 · Decide", `The lead of Syro-Mesopotamian (Hurrian) over the Kizzuwatna rituals, ${fmt(D.gap)}, against the ${D.margin} needed`,
     `A fragment is placed only when the nearest tradition leads the runner-up by at least ${D.margin}, the margin at which 8 of 10 test fragments of known tradition land correctly. Below it the answer is "undecided".`, `
   <div class="left"><p class="step">Step 4</p><h1>Decide</h1><p class="lede">Place the fragment only when the nearest tradition leads clearly. Otherwise: undecided.</p></div>
   <div class="right" style="left:110px;top:400px">

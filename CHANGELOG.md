@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1 (2026-11-15)
+
+- The tradition is called "Syro-Mesopotamian (Hurrian)" everywhere (data, labels, carousel). `build/build_data.py` renames it on export (`RENAME`), so a rebuild keeps the name.
+
 ## 1.3.0 (2026-11-15)
 
 - Carousel: only the method now. One picture of the five steps (read, count, compare, decide, explain), then one slide per step on the orphan KBo 44.52 with its photograph, ending with its closest manuscript KBo 59.165 (CTH 701). The numbers are computed by the site's own code (`build/make_steps.mjs`). Slides change every 15 seconds. The earlier collages, screenshots and their builders are removed.

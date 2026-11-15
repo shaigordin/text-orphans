@@ -25,7 +25,7 @@
  },
  {
   "src": "step_3_compare.jpg",
-  "alt": "Similarity of KBo 44.52 to the ten traditions; Syro-Mesopotamia (Hurrian) is nearest",
+  "alt": "Similarity of KBo 44.52 to the ten traditions; Syro-Mesopotamian (Hurrian) is nearest",
   "title": "3 · Compare",
   "caption": "Each tradition is the average profile of its manuscripts. The fragment is compared with each of the ten: 1 means identical, 0 nothing shared.",
   "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.3.",
@@ -33,7 +33,7 @@
  },
  {
   "src": "step_4_decide.jpg",
-  "alt": "The lead of Syro-Mesopotamia (Hurrian) over the Kizzuwatna rituals, 0.115, against the 0.028 needed",
+  "alt": "The lead of Syro-Mesopotamian (Hurrian) over the Kizzuwatna rituals, 0.115, against the 0.028 needed",
   "title": "4 · Decide",
   "caption": "A fragment is placed only when the nearest tradition leads the runner-up by at least 0.028, the margin at which 8 of 10 test fragments of known tradition land correctly. Below it the answer is \"undecided\".",
   "credit": "Text: TLHdig Beta 0.3.",
