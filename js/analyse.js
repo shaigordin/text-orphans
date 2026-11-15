@@ -40,12 +40,12 @@ export function verdict(r, model, { hideCommon = false } = {}) {
     `With other genres added as classes, the nearest class is ${o.outside}.`, false];
   if (o.lowFit) return [`Fits no known tradition <span class="muted">(nearest: ${r.top})</span>`,
     `Its best similarity, ${fmt(r.topScore)}, is below ${fmt(o.floor)}, which 95% of reference fragments of this size reach.`, false];
-  if (!r.assigned) return [`Too close to call <span class="muted">(nearest: ${r.top})</span>`,
-    `${r.top} beats ${r.runnerUp} by ${fmt(r.gap)}, less than the ${model.margin} needed to place a fragment.`, false];
+  if (!r.assigned) return [`Undecided <span class="muted">(nearest: ${r.top})</span>`,
+    `${r.top} leads ${r.runnerUp} by ${fmt(r.gap)}, less than the ${model.margin} needed to place a fragment.`, false];
   const at = Q.attribute(r, Q.decisionWeights(r, model), model), common = at.sum > 0 ? at.common / at.sum : 0;
   if (common > 0.5 && hideCommon) return [`Not placed: rests mostly on common words <span class="muted">(nearest: ${r.top})</span>`,
     `${Math.round(100 * common)}% of the margin comes from features every tradition shares, such as nu. You chose to treat such placements as unplaced.`, false];
-  return [`Placed in <b>${r.assigned}</b>`, `It beats ${r.runnerUp} by ${fmt(r.gap)} (needed: ${model.margin}).` +
+  return [`Placed in <b>${r.assigned}</b>`, `It leads ${r.runnerUp} by ${fmt(r.gap)} (needed: ${model.margin}).` +
     (common > 0.5 ? ` Caution: ${Math.round(100 * common)}% of that margin comes from common words such as nu; such placements are right much less often.` : ""), true];
 }
 export const describe = f => ({ both: "words and spellings", words: "words only", signs: "spellings only" }[f.features]) +

@@ -77,7 +77,7 @@ const group = (label, items) => {
   ex.append(og);
 };
 group("Orphans the model places confidently", placed.filter(c => !c.outside && !c.low_fit).slice(0, 8));
-group("Orphans too close to call", orphans.filter(c => !c.assigned && !c.outside && !c.low_fit && c.n >= 20).slice(0, 6));
+group("Undecided orphans", orphans.filter(c => !c.assigned && !c.outside && !c.low_fit && c.n >= 20).slice(0, 6));
 group("Orphans that fit no known tradition", orphans.filter(c => c.outside && c.n >= 15).slice(0, 6));
 group("Reference manuscripts", D.RING.map(l => corpus.find(c => c.kind === "ref" && c.label === l && c.n > 60 && c.n < 200)).filter(Boolean));
 ex.onchange = () => ex.value && load(ex.value);
@@ -194,11 +194,11 @@ function run(fromId) {
       ? `Fits no known tradition <span class="muted">(nearest: ${r.top})</span>`
       : r.assigned
         ? `Placed in <b>${r.assigned}</b>`
-        : `Too close to call <span class="muted">(nearest: ${r.top})</span>`;
+        : `Undecided <span class="muted">(nearest: ${r.top})</span>`;
   $("verdictSub").textContent = (exploratory ? "The thresholds for placing a fragment were calibrated on the full model (words and spellings), so no verdict is given here. " : "") + (o.outside
       ? `With other genres added as classes, the nearest class is ${o.outside}, by a margin of ${fmt(o.gateGap)}. `
       : o.lowFit ? `Its best similarity, ${fmt(r.topScore)}, is below ${fmt(o.floor)}, which 95% of reference fragments of this size reach. ` : "") +
-    `Nearest tradition ${fmt(r.topScore)}, runner-up ${r.runnerUp} ${fmt(r.topScore - r.gap)}. Margin ${fmt(r.gap)}${exploratory ? "." : ` ${r.gap >= model.margin ? "clears" : "is below"} the abstention threshold of ${model.margin}.`}` +
+    `Nearest tradition ${fmt(r.topScore)}, runner-up ${r.runnerUp} ${fmt(r.topScore - r.gap)}. Lead ${fmt(r.gap)}${exploratory ? "." : `; ${model.margin} is needed to place it.`}` +
     (r.parsed.words.length < 8 ? " Fragments under about 8 words are rarely placed reliably." : "") +
     (drop.classes.size || drop.layers.size ? ` Scored without: ${[...[...drop.classes].map(c => c.toLowerCase()), ...[...drop.layers].map(l => model.layers[l].toLowerCase())].join(", ")}.` : "");
 
@@ -243,7 +243,7 @@ function run(fromId) {
   const state = { text, label: fromId || "your fragment", b: "T:" + r.top };
   $("toCompare").href = "compare.html#" + encodeURIComponent(JSON.stringify(state));
   $("toClosest").href = fromId ? "closest.html#id=" + encodeURIComponent(fromId) : "closest.html#text=" + encodeURIComponent(text);
-  last = { r, label: fromId || "pasted text" };
+  last = { r, label: fromId || "pasted text", id: fromId };
 }
 
 // ---------- export ----------
@@ -262,6 +262,11 @@ X.menu($("export"), [
   ["Tradition wheel (PNG)", () => X.downloadPNG($("hex"), `${last?.label ?? "wheel"}_wheel`)],
   ["Similarity rose (SVG)", () => { const s = $("rose").querySelector("svg"); s && X.downloadSVG(s, `${last.label}_rose`); }],
 ]);
+X.cite($("export"), () => last && {
+  title: `${last.id ?? "A pasted fragment"}: placement among the reference traditions`,
+  result: `${$("verdict").textContent.trim().replace(/\s*\(nearest:.*\)$/, "")}; nearest tradition ${last.r.top}, leading ${last.r.runnerUp} by ${last.r.gap.toFixed(3)} (${model.margin} needed to place)`,
+  path: last.id ? "place.html#id=" + encodeURIComponent(last.id) : "place.html",
+});
 
 // ---------- word butterfly ----------
 async function drawFly(r) {

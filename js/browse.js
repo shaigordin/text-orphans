@@ -13,12 +13,12 @@ const [model, corpus, titles] = await Promise.all([
   fetch(V.url("corpus.json")).then(r => r.json()),
   fetch(V.url("cth_titles.json")).then(r => r.json()),
 ]);
-// "Treat as unplaced" (settings): a placement resting mostly on common words counts as too close to call
+// "Treat as unplaced" (settings): a placement resting mostly on common words counts as undecided
 let set = T.bar($("settings"), ["reading", "common"], s => { set = s; judge(); tiles(); draw(); });
 function judge() {
   for (const c of corpus) {
     c.verdict = verdictOf(c, model);
-    if (set.common === "hide" && c.kind !== "ref" && c.common > 0.5 && !UNPLACED.includes(c.verdict)) c.verdict = "Too close to call";
+    if (set.common === "hide" && c.kind !== "ref" && c.common > 0.5 && !UNPLACED.includes(c.verdict)) c.verdict = "Undecided";
   }
 }
 judge();

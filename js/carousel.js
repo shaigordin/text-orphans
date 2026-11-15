@@ -18,7 +18,7 @@ function show(k) {
   figs.forEach((f, n) => (f.hidden = n !== i));
   dots.forEach((d, n) => d.setAttribute("aria-current", n === i));
 }
-const play = () => { clearInterval(timer); if (!matchMedia("(prefers-reduced-motion: reduce)").matches) timer = setInterval(() => show(i + 1), 8000); };
+const play = () => { clearInterval(timer); if (!matchMedia("(prefers-reduced-motion: reduce)").matches) timer = setInterval(() => show(i + 1), 15000); };
 el.querySelector(".prev").onclick = () => { show(i - 1); play(); };
 el.querySelector(".next").onclick = () => { show(i + 1); play(); };
 dots.forEach((d, n) => (d.onclick = () => { show(n); play(); }));

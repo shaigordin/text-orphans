@@ -9,7 +9,7 @@
 <body>
 <header>
   <h1>Browse the CTH bins</h1>
-  <p>Every text of TLHdig in its CTH number, as TLHdig and the Konkordanz file it, set against where the method of <i>Orphans and Archetypes</i> places it. Open a CTH number to see its fragments, then load any of them to see why it lands where it does.</p>
+  <p>Every TLHdig manuscript in its CTH number, and where the method places it. Open a CTH number to see its manuscripts.</p>
   <nav class="tabs" id="nav"></nav>
 </header>
 
@@ -17,8 +17,8 @@
 <div class="grid">
   <section class="card span2"><div id="settings"></div></section>
   <section class="card span2">
-    <div class="row" style="justify-content:space-between;margin:0"><h2>How far the method gets</h2><div id="export"></div></div>
-    <p class="sub">Texts of five or more legible words are judged; shorter ones are counted but not judged. "Placed" means the nearest tradition wins by the abstention margin and the open-set check finds nothing against it. Reference manuscripts are judged held out, without themselves in their tradition.</p>
+    <div class="row" style="justify-content:space-between;margin:0"><h2>How many orphans are placed</h2><div id="export"></div></div>
+    <p class="sub">Manuscripts with at least five words visible on the tablet are tested; shorter ones are listed but not tested. Placed: the nearest tradition leads by the margin, and the fragment does not fall outside the ten traditions. Reference manuscripts are tested held out.</p>
     <div class="tiles" id="tiles"></div>
     <div class="legend" id="legend"></div>
   </section>
@@ -28,7 +28,7 @@
       <label class="small" for="group">Group by</label>
       <select id="group">
         <option value="cth">original CTH bin</option>
-        <option value="verdict">new classification</option>
+        <option value="verdict">placement</option>
       </select>
       <label class="small" for="kind">Texts</label>
       <select id="kind">

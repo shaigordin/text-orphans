@@ -97,4 +97,9 @@ X.menu($("export"), [["All words of A and B (CSV)", () => {
   X.downloadJSON({ A: A.name, B: B.name, order: $("sort").value, rows: D.butterflyRows(A.vec, B.vec, $("sort").value, +$("nrows").value)
     .map(r => ({ word: W.vocab[r.j], a: +r.a.toFixed(4), b: +r.b.toFixed(4) })) }, `${A.name}_vs_${B.name}_butterfly`);
 }]]);
+X.cite($("export"), () => {
+  const A = source($("a").value), B = source($("b").value), fixed = k => !k.startsWith("F");
+  return { title: `${A.name} and ${B.name}: word-by-word comparison`, result: `Cosine similarity of the word profiles ${$("cos").textContent}`,
+    path: fixed($("a").value) && fixed($("b").value) ? "compare.html#" + encodeURIComponent(JSON.stringify({ a: $("a").value, b: $("b").value })) : "compare.html" };
+});
 draw();

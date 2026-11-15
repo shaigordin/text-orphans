@@ -1,6 +1,7 @@
 // Export buttons: tables as CSV or JSON, figures (SVG elements) as SVG or PNG.
 // Every file says where its numbers come from (TLHdig Beta 0.3, this site's version).
 import * as V from "./data.js";
+import { VERSION, DATA } from "./site.js";
 const SOURCE = "Orphans and Archetypes tool (github.com/shaigordin/text-orphans); data TLHdig Beta 0.3, doi:10.5281/zenodo.20328284";
 
 function save(blob, name) {
@@ -57,4 +58,45 @@ export function menu(el, items) {
   el.classList.add("export");
   el.innerHTML = `<details><summary>Export</summary><div>${items.map(([l], i) => `<button type="button" data-i="${i}">${l}</button>`).join("")}</div></details>`;
   for (const b of el.querySelectorAll("button")) b.onclick = () => { items[+b.dataset.i][1](); b.closest("details").open = false; };
+}
+
+// "Cite" button: a citation of one result, in plain text and BibTeX, with a link that reopens
+// the same result with the same data version (?data=…). `get()` returns { title, result, path },
+// or null while nothing is shown. path: the page and its #fragment, e.g. "place.html#id=KBo%2044.52".
+const SITE = "https://shaigordin.github.io/text-orphans/";
+export function citation({ title, result, path }) {
+  const today = new Date(), iso = today.toISOString().slice(0, 10);
+  const day = today.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  const link = path ? SITE + path.replace(/^([^#?]*)/, `$1?data=${V.KEY}`) : SITE;
+  const tool = `Orphans and Archetypes: A Tool for Hittite Fragments, version ${VERSION}, data version ${V.KEY} (${DATA.name}, doi:${DATA.doi})`;
+  const plain = `Gordin, Shai. 2026. “${title}.” In ${tool}. ${result ? result.replace(/\.?$/, ".") + " " : ""}${link}. Accessed ${day}.`;
+  const key = ("gordin2026" + title).replace(/[^A-Za-z0-9]+/g, "").slice(0, 40);
+  const bib = `@misc{${key},
+  author = {Gordin, Shai},
+  title = {{${title}}},
+  howpublished = {${tool}},
+  year = {2026},
+  url = {${link}},
+  note = {${result ? result.replace(/\.$/, "") + ". " : ""}Accessed ${iso}}
+}`;
+  return { plain, bib, link };
+}
+export function cite(el, get) {
+  const box = document.createElement("div");
+  box.className = "export cite";
+  box.innerHTML = `<details><summary>Cite</summary><div class="citebox"></div></details>`;
+  el.classList.contains("export") ? el.after(box) : el.append(box);
+  const d = box.querySelector("details"), out = box.querySelector(".citebox");
+  d.addEventListener("toggle", () => {
+    if (!d.open) return;
+    const r = get();
+    if (!r) { out.innerHTML = `<p class="small muted">Load a text first.</p>`; return; }
+    const c = citation(r), e = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    out.innerHTML = `<p class="small muted">Cite this result. The link reopens it with the same data version; the tool version is named so the result can be checked against that release.</p>
+      <p class="citetext" data-k="plain">${e(c.plain)}</p><button type="button" data-k="plain">Copy citation</button>
+      <pre class="citetext" data-k="bib">${e(c.bib)}</pre><button type="button" data-k="bib">Copy BibTeX</button>`;
+    for (const b of out.querySelectorAll("button")) b.onclick = async () => {
+      try { await navigator.clipboard.writeText(c[b.dataset.k]); b.textContent = "Copied"; } catch { b.textContent = "Select the text and copy it"; }
+    };
+  });
 }

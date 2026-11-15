@@ -51,6 +51,11 @@ function draw() {
     ["Traditions (CSV)", () => X.downloadCSV(A.exportRows(res, set).traditions, `${name}_traditions`)],
     ["Everything (JSON)", () => X.downloadJSON({ query: q, settings: set, ...A.exportRows(res, set) }, `${name}_closest`)],
   ]);
+  if (!$("export").nextElementSibling?.classList.contains("cite")) X.cite($("export"), () => res && {
+    title: `${res.q.id ?? "A pasted fragment"}: closest traditions, compositions and manuscripts`,
+    result: `Closest manuscript ${res.manuscripts[0]?.doc.id ?? "none"} (similarity ${res.manuscripts[0]?.sim.toFixed(3) ?? "–"}); closest composition CTH ${res.compositions[0]?.cth ?? "–"}; nearest tradition ${res.traditions[0].tradition}`,
+    path: res.q.id ? "closest.html#id=" + encodeURIComponent(res.q.id) : "closest.html",
+  });
 }
 
 async function win(k) {

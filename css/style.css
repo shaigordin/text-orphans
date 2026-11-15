@@ -391,3 +391,13 @@ header { position: relative; }
 .help-label { position: absolute; z-index: 900; background: var(--accent); color: var(--surface-1); font-size: 14px; line-height: 1.35; padding: 6px 9px; border-radius: 6px; box-shadow: 0 3px 10px rgb(0 0 0 / .25); pointer-events: none; }
 .help-label b { display: block; font-size: 15px; }
 @media (max-width: 700px) { .tour-bar { position: static; margin: 8px 0; } }
+
+/* 1.3: "Cite" button beside "Export" (js/export.js cite) */
+.export.cite { margin-left: 8px; }
+.export.cite summary::before { content: "❝ "; }
+.export.cite .citebox { width: min(560px, 90vw); padding: 12px 14px; gap: 8px; }
+.citebox .citetext { font-size: 14px; line-height: 1.45; background: var(--surface-0); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 0; white-space: pre-wrap; user-select: all; }
+.citebox pre.citetext { font-size: 12px; }
+.citebox button { justify-self: start; border: 1px solid var(--border) !important; padding: 3px 10px; }
+#qCite { display: flex; justify-content: flex-end; margin-top: 6px; }
+#qCite .export.cite { margin-left: 0; }
