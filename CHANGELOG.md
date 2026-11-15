@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0 (2026-11-15)
+
+- Carousel: only the method now. One picture of the five steps (read, count, compare, decide, explain), then one slide per step on the orphan KBo 44.52 with its photograph, ending with its closest manuscript KBo 59.165 (CTH 701). The numbers are computed by the site's own code (`build/make_steps.mjs`). Slides change every 15 seconds. The earlier collages, screenshots and their builders are removed.
+- Wording follows the paper and the talk, and is shorter: "undecided" replaces "too close to call", the margin is called "the lead", traditions are "reference traditions" (their average profiles are the archetypes), and only words "visible on the tablet" count.
+- New colours, "Faience": a turquoise band with gold, light turquoise ground, brighter tradition colours (also in the carousel).
+- Browse is one table: Laroche's residual bins (CTH 470, 500, 670, 832) and the EBo fragments as rows, the ten traditions, undecided, outside the ten and under 5 words as columns, and the reference manuscripts (held out) as a test row. Click a number to list those manuscripts; any other CTH number, title or siglum is found with the search below. Old `#open=` links still work.
+- A "Cite" button next to "Export" on every result (opening page, Place, Closest, Compare): a citation in plain text and BibTeX, naming the tool version and data version, with a link that reopens the same result. `?data=C` or `?data=A` in the address selects the data version.
+
 ## 1.2.0 (2026-11-13)
 
 - New page, Check a join from photos (`join.html`, `js/join.js`, `js/joinfit.js`): load two photographs, scale each by the ruler's 1 cm blocks (or a typed distance), cut the pieces out of the background, measure line spacing (marked by hand, or an automatic estimate shown as check lines), then arrange both at true scale: drag, rotate, align edges, move until they touch. Exports a PNG with legend and caveat and the measurements as JSON. A port of the measuring steps of `orphans/run_joinfit.py` (measuring-scribal-literacy); on the KBo 44.140 and EBo 133 photographs it gives the same px per cm. Photos stay in the browser.

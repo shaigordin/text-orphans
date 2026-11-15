@@ -3,22 +3,21 @@
 const STEPS = {
   "index.html": [
     ["#nav", "The tools", "Each tab is one tool. Start here on the opening page, or go straight to a tool."],
-    ["#carousel", "Examples from the research", "Fragments whose known duplicate the method finds, and how the method works, step by step."],
+    ["#carousel", "The method", "The method in five steps, on a real orphan: KBo 44.52."],
     ["#qForm", "Check a text", "Type a text number such as KBo 44.52, paste a TLHdig or Konkordanz link, or paste a transliteration, and press Check."],
     ["#qVer", "Which data", "Results count only the signs on the tablet (version C). The tool pages let you switch to the editors' full text (version A) to compare."],
     [".intro", "Go deeper", "Each card opens a tool with more detail, settings and exports."],
   ],
   "browse.html": [
     ["#settings", "Settings", "Choose the version of the data and whether placements that rest on common words count."],
-    ["#tiles", "The orphan bins at a glance", "How many fragments of each bin (CTH 470, 500, 670, 832, EBo) the method places, and where."],
-    ["#group", "Filter and sort", "Narrow the list by bin, by what the method says, or by a text number."],
-    ["#bins", "Every CTH number", "Open a CTH number to see its texts, where each is placed, and links to place, closest texts and the portal."],
+    ["#matrix", "Where the orphans go", "Each row is a residual bin, each column a tradition. Click a number to list those manuscripts. The last row tests the method on known manuscripts."],
+    ["#findForm", "Any CTH number or text", "Type a CTH number, a title or a siglum to list its manuscripts and where each is placed."],
     ["#export", "Export", "Download the bins or the texts as CSV or JSON, with the data version named."],
   ],
   "place.html": [
     ["#fetchForm", "Load a text", "Type a TLHdig text number or paste a link; or paste a transliteration in the box below."],
     ["#settings", "Settings", "Data version, what to compare (words, signs or both) and which writing (logograms or phonetic). Only the default is the calibrated model of the paper."],
-    ["#verdict", "The verdict", "Where the fragment is placed, or why not: too close to call, too short, or outside the ten traditions."],
+    ["#verdict", "The verdict", "Where the fragment is placed, or why not: undecided, too short, or outside the ten traditions. Cite gives a citation for this result."],
     ["#chips", "The words", "Each word of the fragment, coloured by the tradition it pulls toward; the tag gives its word class."],
     ["#contrib", "Why this tradition", "Which kinds of words decide between the nearest tradition and the runner-up."],
     ["#hex", "Tradition wheel", "The fragment among all manuscripts: each corner is a tradition defined in the scholarly literature."],

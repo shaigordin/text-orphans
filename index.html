@@ -12,7 +12,7 @@
   <div class="hero-in">
     <h1 class="wordmark">Orphans <span class="amp">&amp;</span> Archetypes</h1>
     <p class="tagline">Finding a home for every Hittite fragment</p>
-    <p class="lede">Where does a Hittite fragment belong? This tool compares any fragment with the entire digitised Hittite corpus, word by word and sign by sign, and shows the textual tradition, the compositions and the manuscripts it is closest to, with the evidence for each.</p>
+    <p class="lede">Where does a Hittite fragment belong? The tool compares it with every manuscript in TLHdig, by its words and their spellings, and names the tradition, compositions and manuscripts it is closest to, with the words each result rests on.</p>
     <nav class="tabs" id="nav"></nav>
   </div>
 </header>
@@ -22,7 +22,7 @@
 
   <section class="card quick" aria-labelledby="qTitle">
     <h2 id="qTitle">Check a text</h2>
-    <p class="sub">Type a text number (<a href="#" data-try="KBo 44.52">KBo 44.52</a>, <a href="#" data-try="HT 49">HT 49</a>, or <a href="#" data-try="KBo 41.22">KBo 41.22</a>, whose placement rests on restored words), paste a TLHdig or Konkordanz link, or paste a transliteration.</p>
+    <p class="sub">A text number (<a href="#" data-try="KBo 44.52">KBo 44.52</a>, <a href="#" data-try="HT 49">HT 49</a>, <a href="#" data-try="KBo 41.22">KBo 41.22</a>), a TLHdig or Konkordanz link, or a transliteration.</p>
     <form id="qForm" class="qrow">
       <textarea id="qIn" rows="2" spellcheck="false" placeholder="KBo 44.52, or {NINDA}ta-kar-mu-un pár-ši-ia 1-ŠU e-ku-zi …" aria-label="Text number or transliteration"></textarea>
       <button type="submit" class="primary">Check</button>
@@ -35,7 +35,7 @@
           <div class="verdict" id="qVerdict"></div>
           <p class="sub" id="qWhy"></p>
         </div>
-        <div id="qRose"></div>
+        <div><div id="qRose"></div><div id="qCite"></div></div>
       </div>
       <div class="qgrid">
         <div><h3>Closest traditions</h3><div class="bars" id="qTrad"></div></div>
@@ -50,11 +50,12 @@
   </section>
 
   <section class="intro" aria-label="The tools">
-    <a class="card" href="browse.html"><h3>Browse the CTH bins</h3><p>Every TLHdig text in its CTH number, as the Konkordanz files it, next to where the method places it. See how much of the "orphan" bins (CTH 470, EBo) finds a home.</p></a>
-    <a class="card" href="place.html"><h3>Place a fragment</h3><p>The ten textual traditions defined in the scholarly literature, the fragment's position among them, and which words decide it: function words, verbs, deities, realia, spelling or logograms.</p></a>
-    <a class="card" href="closest.html"><h3>Closest texts and joins</h3><p>The compositions and manuscripts a fragment is closest to, with a word-by-word check for duplicates and possible joins: shared words, same spellings, shared phrases.</p></a>
-    <a class="card" href="compare.html"><h3>Compare word by word</h3><p>Two witnesses side by side: which words they share, which are distinctive, and how each is spelled.</p></a>
-    <a class="card" href="about.html"><h3>About, cite, rebuild</h3><p>The method in short, the data it uses (TLHdig 0.3), how to cite the tool and the dataset, and how to rebuild everything on your own computer.</p></a>
+    <a class="card" href="browse.html"><h3>Browse the CTH bins</h3><p>Laroche's residual bins (CTH 470, 500, 670, 832) and the EBo fragments: where the method places their orphans.</p></a>
+    <a class="card" href="place.html"><h3>Place a fragment</h3><p>A fragment against the ten reference traditions: where it is placed, by what margin, and which words decide it.</p></a>
+    <a class="card" href="closest.html"><h3>Closest texts and joins</h3><p>The closest compositions and manuscripts, with three checks for a duplicate or join: shared words, same spellings, a shared phrase.</p></a>
+    <a class="card" href="compare.html"><h3>Compare word by word</h3><p>Two witnesses side by side: what they share, what sets them apart, and how each word is spelled.</p></a>
+    <a class="card" href="join.html"><h3>Check a join from photos</h3><p>Two photographs at true scale by their rulers, with their line spacing, to test a proposed join.</p></a>
+    <a class="card" href="about.html"><h3>About, cite, rebuild</h3><p>The method, the data (TLHdig 0.3), how to cite, and how to rebuild.</p></a>
   </section>
 </main>
 <footer id="foot"></footer>

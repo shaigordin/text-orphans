@@ -237,7 +237,7 @@ function draw(target = ctx, scale = S, opts = {}) {
     target.restore();
     if (!opts.bare) {   // label
       target.font = `600 ${Math.max(12, scale * 0.32)}px system-ui, sans-serif`;
-      target.fillStyle = p.key === sel && !opts.export ? "#8a4b1f" : "#3c382f";
+      target.fillStyle = p.key === sel && !opts.export ? "#0a7c86" : "#3c382f";
       target.fillText(`${p.key}: ${p.name || "piece " + p.key}`, p.pos.x * scale, p.pos.y * scale - 6);
     }
   }

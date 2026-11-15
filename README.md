@@ -55,10 +55,7 @@ verdict. Every table can be exported as CSV or JSON, the wheel and the rose as S
 | `js/home.js`, `js/browse.js`, `js/place.js`, `js/closest.js`, `js/compare.js` | One script per page. |
 | `js/draw.js`, `js/verdict.js`, `js/portal.js` | Colours and figures, one verdict per text, links into hethport.net. |
 | `build/build_data.py` | Writes `data/` from the TLHdig token table, using the experiments' model code. |
-| `build/make_collages.mjs`, `build/collages.json` | The photograph collages of the carousel. |
-| `build/make_screens.mjs` | The screenshots of the carousel. |
-| `build/make_pipeline.mjs` | The "Method pipeline" slide of the carousel (KBo 44.52, step by step). |
-| `build/make_restorations.mjs` | The KBo 41.22 slide: placed with the editors' restorations (A), too close to call from the tablet alone (C). |
+| `build/make_steps.mjs` | The carousel: the method in one picture, then one slide per step (read, count, compare, decide, explain) on KBo 44.52, numbers computed by the site's own code. |
 | `tests/check.mjs`, `tests/check_library.mjs` | Browser model against the Python export, and closest manuscripts and join checks against the Python case study (EBo 133). |
 
 ## Rebuild
@@ -83,15 +80,13 @@ For a newer TLHdig release: change the Zenodo address and checksum in `reproduce
 steps, update `DATA` in `js/site.js`, `about.html`, `CITATION.cff` and this README, rebuild the
 carousel images if their numbers changed, and add a version to `CHANGELOG.md`.
 
-The carousel collages need the photographs, which are not in this repository: fetch them with
-`orphans/fotarch/fetch_photos.js` (one photo per fragment, with pauses), then
-`PHOTOS=<folder> node build/make_collages.mjs` (Playwright). The pairs and their ranks come from
-`orphans/run_known_joins.py` (Konkordanz joins and duplicates against the closest-manuscript
-ranking).
+The carousel needs two photographs, which are not in this repository: fetch them with
+`orphans/fotarch/fetch_photos.js <folder> "KBo 44.52" "KBo 59.165"` (with pauses), then
+`PHOTOS=<folder> node build/make_steps.mjs` (Playwright). It writes the slides and
+`img/carousel/slides.json`.
 
 ## Rights
 
 Code: MIT licence (`LICENSE`). The fonts in `fonts/` (Cormorant Garamond) are under the SIL Open Font License (`fonts/OFL.txt`). The files in `data/` are derived from TLHdig and shared, like it, under CC BY 4.0. The photographs in the carousel are
-from the Hethitologie-Archiv Mainz (hethiter.net/: fotarch, numbers on each image; HT 49 ©
-The Trustees of the British Museum) and are shown, credited, to illustrate results; the rights
+from the Hethitologie-Archiv Mainz (hethiter.net/: fotarch, numbers in each credit) and are shown, credited, to illustrate results; the rights
 stay with their holders.

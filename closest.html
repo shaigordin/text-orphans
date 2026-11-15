@@ -9,7 +9,7 @@
 <body>
 <header>
   <h1>Closest texts and joins</h1>
-  <p>For any fragment: the traditions, compositions (CTH numbers) and manuscripts it is closest to in all of TLHdig, and for each manuscript a word-by-word check of whether it could be a duplicate or a join.</p>
+  <p>For any fragment: the closest traditions, compositions and manuscripts in TLHdig, and for each manuscript three checks for a duplicate or join.</p>
   <nav class="tabs" id="nav"></nav>
 </header>
 
@@ -31,9 +31,9 @@
       <div id="export"></div>
     </div>
     <div class="qgrid three">
-      <div><h3>Traditions</h3><p class="sub">The ten traditions of the paper, defined from the scholarly literature.</p><div class="bars" id="trad"></div></div>
-      <div><h3>Compositions</h3><p class="sub">CTH numbers, each as the average of its manuscripts (not the bins CTH 470, 500, 670, 832, and not the orphans).</p><ol class="rank" id="comp"></ol></div>
-      <div><h3>How to read the lists</h3><p class="sub">Numbers are cosine similarities: 1 means the same words and spellings in the same proportions, 0 nothing in common. Rare words count for more than common ones. Fragments under about 8 words give unstable lists.</p></div>
+      <div><h3>Traditions</h3><p class="sub">The ten reference traditions, from the literature.</p><div class="bars" id="trad"></div></div>
+      <div><h3>Compositions</h3><p class="sub">CTH numbers, each the average of its manuscripts (residual bins and orphans left out).</p><ol class="rank" id="comp"></ol></div>
+      <div><h3>How to read the lists</h3><p class="sub">Cosine similarity: 1 = the same words and spellings in the same proportions, 0 = nothing shared. Rare words weigh more. Below about 8 words the lists are unstable.</p></div>
     </div>
   </section>
 

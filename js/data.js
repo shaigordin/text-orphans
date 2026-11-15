@@ -7,7 +7,8 @@
 import { load, addGroup } from "./settings.js";
 
 export const INFO = await (await fetch("data/versions.json")).json();
-const want = load().reading;
+// ?data=C in the address (as in a citation's link) overrides the saved choice, without saving it
+const want = (typeof location !== "undefined" && new URLSearchParams(location.search).get("data")) || load().reading;
 export const KEY = INFO.versions[want] ? want : INFO.default;
 export const DIR = `data/${KEY}`;
 export const LABEL = `version ${KEY} (${INFO.versions[KEY].label})`;

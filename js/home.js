@@ -4,6 +4,7 @@ import * as A from "./analyse.js";
 import * as D from "./draw.js";
 import * as P from "./portal.js";
 import * as T from "./settings.js";
+import * as X from "./export.js";
 
 const $ = id => document.getElementById(id);
 const S = await A.setup();
@@ -69,6 +70,11 @@ async function win(k) {
 $("qForm").onsubmit = e => { e.preventDefault(); check($("qIn").value); };
 $("qIn").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); check($("qIn").value); } });
 for (const a of document.querySelectorAll("[data-try]")) a.onclick = e => { e.preventDefault(); $("qIn").value = a.dataset.try; check(a.dataset.try); };
+X.cite($("qCite"), () => res && {
+  title: `${res.q.id ?? "A pasted fragment"}: placement and closest texts`,
+  result: `${$("qVerdict").textContent.trim().replace(/^[^:]*: /, "")}; closest manuscript ${res.manuscripts[0]?.doc.id ?? "none"}`,
+  path: res.q.id ? "index.html#q=" + encodeURIComponent(res.q.id) : "index.html",
+});
 const asked = new URLSearchParams(location.hash.slice(1)).get("q");
 if (asked) { $("qIn").value = asked; check(asked); }
 
