@@ -105,9 +105,9 @@ def text_of(d):
 
 
 LABELS = {
-    "A": ("editor's full text", "Every sign of the edition counts, including the signs the editor restored in breaks."),
-    "C": ("preserved signs and supported restorations",
-          "Only signs preserved on the tablet count, plus restorations supported by the same text; damaged and uncertain signs count but are flagged."),
+    "A": ("with restorations", "Every sign of the edition counts, including the signs the editor restored in breaks."),
+    "C": ("without restorations",
+          "Only signs visible on the tablet count, plus restorations that the same text supports; damaged and uncertain signs count."),
 }
 
 

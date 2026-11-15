@@ -1,6 +1,6 @@
 // Shared page frame: the navigation and the footer with the data citation, the same on every page.
 import * as V from "./data.js";
-export const VERSION = "1.4.0";
+export const VERSION = "1.5.0";
 export const DATA = {
   name: "TLHdig Beta 0.3",
   cite: "G. Müller, D. Prechel, E. Rieken, D. Schwemer, Thesaurus Linguarum Hethaeorum digitalis (TLHdig) Beta Version 0.3, Zenodo, 21 May 2026, CC BY 4.0",

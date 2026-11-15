@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.0 (2026-11-15)
+
+- Two datasets, named for what they count: **without restorations** (the default) and **with restorations**. The settings bar, footer, exports and citations use these names.
+- Data rebuilt from the current measuring-scribal-literacy results (`results/tlhdig03_literature_C_filled` and `_A_filled`): words without a TLHdig analysis take the analysis of the same spelling elsewhere in TLHdig, Cuneiform Luwian words their eDiAna lemma; restored signs are read line by line. About page numbers updated (held-out placement 83%, 84% with restorations; known duplicates and joins against the Konkordanz of 15 November 2026).
+
 ## 1.4.0 (2026-11-15)
 
 - The tool is named **Adoptio: A quantitative tool for placing Hittite fragments** (title, page names, citations, exports, CITATION.cff). The method keeps its name from the paper, *Orphans and Archetypes*. The address stays shaigordin.github.io/text-orphans.

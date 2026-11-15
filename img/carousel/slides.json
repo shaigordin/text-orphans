@@ -11,7 +11,7 @@
   "src": "step_1_read.jpg",
   "alt": "KBo 44.52: the photograph and its transliteration; restored signs grey",
   "title": "1 · Read",
-  "caption": "Only what is visible on the tablet counts: 49 of the 53 words of the edition. A word counts if at least half its signs are preserved, or if it is preserved elsewhere on the same tablet.",
+  "caption": "Only what is visible on the tablet counts: 50 of the 53 words of the edition. A word counts if at least half its signs are preserved, or if it is preserved elsewhere on the same tablet.",
   "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.3.",
   "link": "closest.html#id=KBo%2044.52"
  },
@@ -33,9 +33,9 @@
  },
  {
   "src": "step_4_decide.jpg",
-  "alt": "The lead of Syro-Mesopotamian (Hurrian) over the Kizzuwatna rituals, 0.115, against the 0.028 needed",
+  "alt": "The lead of Syro-Mesopotamian (Hurrian) over the Kizzuwatna rituals, 0.113, against the 0.026 needed",
   "title": "4 · Decide",
-  "caption": "A fragment is placed only when the nearest tradition leads the runner-up by at least 0.028, the margin at which 8 of 10 test fragments of known tradition land correctly. Below it the answer is \"undecided\".",
+  "caption": "A fragment is placed only when the nearest tradition leads the runner-up by at least 0.026, the margin at which 8 of 10 test fragments of known tradition land correctly. Below it the answer is \"undecided\".",
   "credit": "Text: TLHdig Beta 0.3.",
   "link": "place.html#id=KBo%2044.52"
  },

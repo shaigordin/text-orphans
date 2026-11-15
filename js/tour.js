@@ -6,7 +6,7 @@ const STEPS = {
     ["#carousel", "The method", "The method in five steps, on a real orphan: KBo 44.52."],
     ["#qForm", "Check a text", "Type a text number such as KBo 44.52, paste a TLHdig or Konkordanz link, or paste a transliteration, and press Check."],
     ["#qCite .cite", "Cite", "After a check: a citation of the result in plain text and BibTeX, with a link that reopens it."],
-    ["#qVer", "Which data", "Results count only the signs on the tablet (version C). The tool pages let you switch to the editors' full text (version A) to compare."],
+    ["#qVer", "Which data", "Results count only the signs visible on the tablet (without restorations). The tool pages let you switch to the data with the editors' restorations."],
     [".intro", "Go deeper", "Each card opens a tool with more detail, settings and exports."],
   ],
   "browse.html": [
@@ -14,7 +14,7 @@ const STEPS = {
     ["#matrix", "Where the orphans go", "Each row is a residual bin, each column a tradition. Click a number to list those manuscripts. The last row tests the method on known manuscripts."],
     ["#findForm", "Any CTH number or text", "Type a CTH number, a title or a siglum to list its manuscripts and where each is placed."],
     ["#export", "Export", "Download the table, or the manuscripts of a cell or a search, as CSV or JSON."],
-    [".export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool and data version and a link that reopens it."],
+    [".export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool version, the dataset and a link that reopens it."],
   ],
   "place.html": [
     ["#fetchForm", "Load a text", "Type a TLHdig text number or paste a link; or paste a transliteration in the box below."],
@@ -24,7 +24,7 @@ const STEPS = {
     ["#contrib", "Why this tradition", "Which kinds of words decide between the nearest tradition and the runner-up."],
     ["#hex", "Tradition wheel", "The fragment among all manuscripts: each corner is a tradition defined in the scholarly literature."],
     ["#export", "Export", "Scores, words and figures as CSV, SVG or PNG."],
-    [".export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool and data version and a link that reopens it."],
+    [".export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool version, the dataset and a link that reopens it."],
   ],
   "closest.html": [
     ["#form", "Choose a text", "A text number, a link, or a transliteration."],
@@ -34,14 +34,14 @@ const STEPS = {
     ["#ms", "Closest manuscripts", "The texts most like this one in all of TLHdig, with three checks for a duplicate or join: half the words, the same spellings, a shared phrase. Click a row to read both texts."],
     ["#win", "Both texts side by side", "Shared words are marked; restored signs are grey in [ ], damaged ones in ⸢ ⸣."],
     ["#export", "Export", "Download the lists as CSV or JSON."],
-    [".export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool and data version and a link that reopens it."],
+    [".export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool version, the dataset and a link that reopens it."],
   ],
   "compare.html": [
     ["#ids", "Two texts", "Load two witnesses by text number, or paste two transliterations."],
     ["#cos", "Overall similarity", "One number for how alike the two texts are, word by word."],
     ["#fly", "Word butterfly", "Words of one text on the left, of the other on the right; shared words in the middle. Click a word for its spellings."],
     ["#export", "Export", "Download all words as CSV, or the figure's data."],
-    [".export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool and data version and a link that reopens it."],
+    [".export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool version, the dataset and a link that reopens it."],
   ],
   "join.html": [
     ["#steps", "How it works", "Five steps: load two photos, scale each by its ruler, cut out the pieces, measure line spacing, then arrange them."],

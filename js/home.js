@@ -78,4 +78,4 @@ X.cite($("qCite"), () => res && {
 const asked = new URLSearchParams(location.hash.slice(1)).get("q");
 if (asked) { $("qIn").value = asked; check(asked); }
 
-document.getElementById("qVer").innerHTML = `Data: ${V.LABEL}. Switch versions in the settings bar of the tool pages; <a href="about.html">About</a> explains the difference.`;
+document.getElementById("qVer").innerHTML = `Data: ${V.LABEL}. The settings bar of the tool pages switches to the data ${V.KEY === V.INFO.default ? "with" : "without"} restorations; <a href="about.html">About</a> explains the difference.`;

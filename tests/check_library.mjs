@@ -8,7 +8,7 @@ globalThis.fetch = async p => ({ json: async () => JSON.parse(fs.readFileSync(ne
 const V = await import("../js/data.js");
 const Q = await import("../js/model.js");
 const L = await import("../js/library.js");
-// the fixture comes from the version A run (results/tlhdig03_literature); VERSION=C with a C fixture
+// the fixture comes from the run with restorations (results/tlhdig03_literature_A_filled); VERSION=C with the fixture from results/tlhdig03_literature_C_filled
 const VER = process.env.VERSION || "A", base = `data/${VER}`;
 console.log(`data version ${VER}`);
 const model = await Q.loadModel(base);
@@ -22,9 +22,14 @@ const sims = L.similarities(r.vec, filter, model.vocab.length);
 const top = L.closestManuscripts(sims, { exclude: id, top: py.candidates.length });
 const frag = L.fragmentColumns(lib.byId.get(id).words, lib.byId.get(id).translits);
 let same = 0, simErr = 0, barcodes = 0, flags = 0;
+// the full ranking, so that two manuscripts with equal similarity (a tie, broken in either order)
+// count as the same rank
+const wide = L.closestManuscripts(sims, { exclude: id, top: py.candidates.length + 5 });
 top.forEach((t, k) => {
-  const p = py.candidates[k], j = L.joinChecks(frag, t.doc);
-  same += t.doc.id === p.txtid;
+  const p = py.candidates[k];
+  const tied = t.doc.id !== p.txtid && wide.find(u => u.doc.id === p.txtid && Math.abs(u.sim - t.sim) < 1e-4);
+  const doc = tied ? tied.doc : t.doc, j = L.joinChecks(frag, doc);
+  same += doc.id === p.txtid;
   simErr = Math.max(simErr, Math.abs(t.sim - p.similarity));
   barcodes += j.cells === p.barcode;
   flags += j.flagged === p.flagged;
