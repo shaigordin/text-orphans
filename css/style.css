@@ -247,7 +247,7 @@ mark.other { outline: 1.5px dashed var(--accent); outline-offset: -1px; }
 /* carousel */
 .carousel { position: relative; margin-top: 16px; border-radius: 12px; overflow: hidden; background: var(--surface-1); border: 1px solid var(--border); outline: none; }
 .carousel .slide { margin: 0; }
-.carousel img { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: 60vh; object-fit: contain; background: #f3efe6; }
+.carousel img { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: 60vh; object-fit: contain; background: var(--surface-0); }
 .carousel figcaption { padding: 10px 56px 34px 16px; font-size: 14px; color: var(--text-secondary); min-height: 5.2em; }
 .carousel figcaption b { color: var(--text-primary); }
 .carousel .credit { display: block; font-size: 12px; color: var(--text-muted); margin-top: 4px; }
