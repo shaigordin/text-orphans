@@ -357,7 +357,7 @@ function exportPNG() {
   x.fillText(line("A", m.A), 20, y + 18); x.fillText(line("B", m.B), 20, y + 44);
   x.fillStyle = "#6c665a"; x.font = "15px system-ui, sans-serif";
   x.fillText("Each piece scaled by the ruler in its own photograph. A visual aid, not proof of a join: photos show neither the break surfaces nor the thickness.", 20, y + 76);
-  x.fillText("Orphans & Archetypes, Check a join from photos (github.com/shaigordin/text-orphans)", 20, y + 100);
+  x.fillText("Adoptio, Check a join from photos (github.com/shaigordin/text-orphans)", 20, y + 100);
   draw();
   c.toBlob(b => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = `join_check_${(m.A.siglum || "A").replace(/\W+/g, "_")}_${(m.B.siglum || "B").replace(/\W+/g, "_")}.png`; a.click(); });
 }

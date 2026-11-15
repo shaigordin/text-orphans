@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0 (2026-11-15)
+
+- The tool is named **Adoptio: A quantitative tool for placing Hittite fragments** (title, page names, citations, exports, CITATION.cff). The method keeps its name from the paper, *Orphans and Archetypes*. The address stays shaigordin.github.io/text-orphans.
+
+## 1.3.2 (2026-11-15)
+
+- The tour and the "What does this do?" labels now show the Cite button on every page that has one.
+
 ## 1.3.1 (2026-11-15)
 
 - The tradition is called "Syro-Mesopotamian (Hurrian)" everywhere (data, labels, carousel). `build/build_data.py` renames it on export (`RENAME`), so a rebuild keeps the name.

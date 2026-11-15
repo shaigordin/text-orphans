@@ -1,4 +1,4 @@
-# Orphans & Archetypes: finding a home for every Hittite fragment
+# Adoptio: a quantitative tool for placing Hittite fragments
 
 Where does a Hittite fragment belong? This static website compares any fragment with the entire
 digitised Hittite corpus (TLHdig), word by word and sign by sign, and shows the textual tradition, the compositions and

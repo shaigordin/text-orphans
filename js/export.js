@@ -2,7 +2,7 @@
 // Every file says where its numbers come from (TLHdig Beta 0.3, this site's version).
 import * as V from "./data.js";
 import { VERSION, DATA } from "./site.js";
-const SOURCE = "Orphans and Archetypes tool (github.com/shaigordin/text-orphans); data TLHdig Beta 0.3, doi:10.5281/zenodo.20328284";
+const SOURCE = "Adoptio: a quantitative tool for placing Hittite fragments (github.com/shaigordin/text-orphans); data TLHdig Beta 0.3, doi:10.5281/zenodo.20328284";
 
 function save(blob, name) {
   const a = document.createElement("a");
@@ -68,7 +68,7 @@ export function citation({ title, result, path }) {
   const today = new Date(), iso = today.toISOString().slice(0, 10);
   const day = today.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   const link = path ? SITE + path.replace(/^([^#?]*)/, `$1?data=${V.KEY}`) : SITE;
-  const tool = `Orphans and Archetypes: A Tool for Hittite Fragments, version ${VERSION}, data version ${V.KEY} (${DATA.name}, doi:${DATA.doi})`;
+  const tool = `Adoptio: A Quantitative Tool for Placing Hittite Fragments, version ${VERSION}, data version ${V.KEY} (${DATA.name}, doi:${DATA.doi})`;
   const plain = `Gordin, Shai. 2026. “${title}.” In ${tool}. ${result ? result.replace(/\.?$/, ".") + " " : ""}${link}. Accessed ${day}.`;
   const key = ("gordin2026" + title).replace(/[^A-Za-z0-9]+/g, "").slice(0, 40);
   const bib = `@misc{${key},

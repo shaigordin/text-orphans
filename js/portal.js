@@ -13,7 +13,7 @@ export const konkordanzCth = cth => `${PORTAL}/hetkonk/hetkonk_abfrage.php?c=${q
 export const konkordanzText = id => `${PORTAL}/hetkonk/hetkonk_abfrage.php?p=${q(id.split(/\s*\+/)[0].trim())}`;
 
 export function portalLinks(id, cth) {
-  return `<a href="${tlhdigText(id, cth)}" target="_blank" rel="noopener">TLHdig</a> · ` +
+  return `<a href="${tlhdigText(id, cth)}" target="_blank" rel="noopener">TLH<sup>dig</sup></a> · ` +
     `<a href="${konkordanzText(id)}" target="_blank" rel="noopener">Konkordanz</a>`;
 }
 

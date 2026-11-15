@@ -115,7 +115,7 @@ function find(q) {
   if (cth) {
     found = corpus.filter(c => c.cth === cth[1] || c.cth.startsWith(cth[1] + "."));
     head = `CTH ${esc(cth[1])}${titles[cth[1]] ? ": " + esc(titles[cth[1]]) : ""}. ${found.length.toLocaleString()} manuscripts` +
-      (found.length ? ` · <a href="${P.tlhdigCth(cth[1])}" target="_blank" rel="noopener">in TLHdig</a> · <a href="${P.konkordanzCth(cth[1])}" target="_blank" rel="noopener">in the Konkordanz</a>` : "");
+      (found.length ? ` · <a href="${P.tlhdigCth(cth[1])}" target="_blank" rel="noopener">in TLH<sup>dig</sup></a> · <a href="${P.konkordanzCth(cth[1])}" target="_blank" rel="noopener">in the Konkordanz</a>` : "");
   } else {
     const byTitle = s.length > 2 ? new Set(Object.entries(titles).filter(([, t]) => t.toLowerCase().includes(s)).map(([k]) => k)) : new Set();
     found = corpus.filter(c => c.id.toLowerCase().includes(s) || byTitle.has(c.cth));
