@@ -76,9 +76,20 @@ def attribute(words, signs, classes, x, c, index):
     return out
 
 
+# Tradition names as the site shows them, where they differ from the experiments' labels
+# (ShG, 2026-11-15: "Syro-Mesopotamian", an adjective like the other names).
+RENAME = {"Syro-Mesopotamia (Hurrian)": "Syro-Mesopotamian (Hurrian)"}
+
+
+def renamed(text):
+    for a, b in RENAME.items():
+        text = text.replace(a, b)
+    return text
+
+
 def dump(obj, path):
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, separators=(",", ":"))
+        f.write(renamed(json.dumps(obj, ensure_ascii=False, separators=(",", ":"))))
     print(f"{path}: {os.path.getsize(path) / 1e6:.2f} MB")
 
 
@@ -287,6 +298,10 @@ def main():
                    "similarity_share": baseline[lab][ci][li], "decision_share": decision[lab][ci][li]}
                   for lab in labs for ci in range(len(CATEGORIES)) for li in range(len(LAYERS))]
                  ).to_csv(f"{a.out}/category_shares.csv", index=False)
+    with open(f"{a.out}/category_shares.csv", encoding="utf-8") as f:
+        text = f.read()
+    with open(f"{a.out}/category_shares.csv", "w", encoding="utf-8") as f:
+        f.write(renamed(text))
     # E11d/E11b numbers the page quotes (precision of placed windows resting mostly on common features)
     rep11 = json.load(open(f"{a.run}/E11_report.json"))
     d = rep11["E11d"]
