@@ -9,7 +9,7 @@
 <body>
 <header>
   <h1>Browse the CTH bins</h1>
-  <p>Every TLHdig manuscript in its CTH number, and where the method places it. Open a CTH number to see its manuscripts.</p>
+  <p>Laroche's residual bins and where the method places their orphans, in one table. Any other CTH number or text can be found below.</p>
   <nav class="tabs" id="nav"></nav>
 </header>
 
@@ -17,36 +17,23 @@
 <div class="grid">
   <section class="card span2"><div id="settings"></div></section>
   <section class="card span2">
-    <div class="row" style="justify-content:space-between;margin:0"><h2>How many orphans are placed</h2><div id="export"></div></div>
-    <p class="sub">Manuscripts with at least five words visible on the tablet are tested; shorter ones are listed but not tested. Placed: the nearest tradition leads by the margin, and the fragment does not fall outside the ten traditions. Reference manuscripts are tested held out.</p>
-    <div class="tiles" id="tiles"></div>
-    <div class="legend" id="legend"></div>
+    <div class="row" style="justify-content:space-between;margin:0"><h2>Where the orphans go</h2><div id="export"></div></div>
+    <p class="sub">Rows: Laroche's residual bins and the EBo fragments. Columns: where the method places their manuscripts. Click a number to list those manuscripts.</p>
+    <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+    <p class="small muted" id="mnote"></p>
   </section>
-
+  <section class="card span2" id="listCard" hidden>
+    <div class="row" style="justify-content:space-between;margin:0"><h2 id="listTitle"></h2><button type="button" id="listClose" class="link">close</button></div>
+    <div id="list"></div>
+  </section>
   <section class="card span2">
-    <div class="row" style="margin-top:0">
-      <label class="small" for="group">Group by</label>
-      <select id="group">
-        <option value="cth">original CTH bin</option>
-        <option value="verdict">placement</option>
-      </select>
-      <label class="small" for="kind">Texts</label>
-      <select id="kind">
-        <option value="all">all of TLHdig</option>
-        <option value="orphan">orphans (CTH 470 and EBo)</option>
-        <option value="other">other non-reference texts</option>
-        <option value="ref">reference manuscripts</option>
-      </select>
-      <label class="small" for="sort">Order</label>
-      <select id="sort">
-        <option value="size">most texts first</option>
-        <option value="placed">most placed first</option>
-        <option value="key">by number</option>
-      </select>
-      <input type="search" id="q" placeholder="CTH, title or siglum" aria-label="Filter bins" style="flex:1 1 12em">
-    </div>
+    <h2>Any CTH number or text</h2>
+    <form id="findForm" class="row" style="margin-top:0">
+      <input type="search" id="q" placeholder="CTH 701, a title, or a siglum such as KBo 44.52" aria-label="CTH number, title or siglum" style="flex:1 1 16em">
+      <button type="submit">Find</button>
+    </form>
     <p class="small muted" id="count"></p>
-    <div class="bins" id="bins"></div>
+    <div id="found"></div>
   </section>
 </div>
 </main>

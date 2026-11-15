@@ -1,4 +1,5 @@
-// Browse every TLHdig text by its original CTH bin, or by the model's new classification.
+// Browse: one table of Laroche's residual bins (rows) against where the method places their
+// manuscripts (columns), a list for any cell, and a search for every other CTH number or text.
 import * as V from "./data.js";
 import { loadModel } from "./model.js";
 import { SHORT } from "./draw.js";
@@ -14,7 +15,7 @@ const [model, corpus, titles] = await Promise.all([
   fetch(V.url("cth_titles.json")).then(r => r.json()),
 ]);
 // "Treat as unplaced" (settings): a placement resting mostly on common words counts as undecided
-let set = T.bar($("settings"), ["reading", "common"], s => { set = s; judge(); tiles(); draw(); });
+let set = T.bar($("settings"), ["reading", "common"], s => { set = s; judge(); matrix(); if (state.cell) showCell(...state.cell.split("|")); });
 function judge() {
   for (const c of corpus) {
     c.verdict = verdictOf(c, model);
@@ -23,146 +24,129 @@ function judge() {
 }
 judge();
 
-const pct = (a, b) => (b ? Math.round((100 * a) / b) + "%" : "–");
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
 const label = v => SHORT[v] ?? v;
 const isPlaced = v => !UNPLACED.includes(v);
-const esc = s => String(s).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
+const pct = (a, b) => (b ? Math.round((100 * a) / b) + "%" : "–");
 
-function counts(texts) {
-  const n = Object.fromEntries(CATEGORIES.map(v => [v, 0]));
-  for (const c of texts) n[c.verdict]++;
-  const judged = texts.length - n["Under 5 words"];
-  const placed = CATEGORIES.filter(isPlaced).reduce((a, v) => a + n[v], 0);
-  return { n, total: texts.length, judged, placed };
-}
-
-// one stacked bar: a segment per category, in the order of the legend
-function stack(k) {
-  return `<span class="stack">${CATEGORIES.filter(v => k.n[v]).map(v =>
-    `<span style="width:${(100 * k.n[v]) / k.total}%;background:${verdictColor(v)}" title="${esc(v)}: ${k.n[v]}" data-v="${esc(v)}"></span>`).join("")}</span>`;
-}
-
-// ---------- headline tiles ----------
-const TILES = [
-  ["CTH 470 ritual fragments", c => c.cth === "470"],
-  ["EBo fragments", c => c.id.startsWith("EBo")],
-  ["CTH 670 festival fragments", c => c.cth === "670" && !c.id.startsWith("EBo")],
-  ["CTH 832 diverse fragments", c => c.cth === "832" && !c.id.startsWith("EBo")],
-  ["Reference manuscripts, held out", c => c.kind === "ref"],
+// rows: the residual bins as Laroche left them, the EBo fragments apart, and the reference
+// manuscripts (held out) as the test of the method
+const ROWS = [
+  ["CTH 470", "fragments of rituals", c => c.cth === "470" && !c.id.startsWith("EBo")],
+  ["CTH 500", "fragments of Kizzuwatna rituals", c => c.cth === "500" && !c.id.startsWith("EBo")],
+  ["CTH 670", "fragments of festivals", c => c.cth === "670" && !c.id.startsWith("EBo")],
+  ["CTH 832", "fragments of various content", c => c.cth === "832" && !c.id.startsWith("EBo")],
+  ["EBo", "EBo fragments, any CTH number", c => c.id.startsWith("EBo")],
+  ["Reference", "known manuscripts, held out (test)", c => c.kind === "ref"],
 ];
-function tiles() {
-$("tiles").innerHTML = TILES.map(([name, f]) => {
-  const texts = corpus.filter(f), k = counts(texts);
-  const right = name.startsWith("Reference") ? texts.filter(c => c.verdict === c.label).length : null;
-  return `<div class="tile">
-    <div class="small muted">${name}</div>
-    <div class="big">${pct(k.placed, k.judged)} <span class="small muted">placed</span></div>
-    <div class="small">${k.placed.toLocaleString()} of ${k.judged.toLocaleString()} judged texts${right === null ? "" : `, ${pct(right, k.placed)} of them correctly`}${k.n["Under 5 words"] ? `; ${k.n["Under 5 words"].toLocaleString()} more under 5 words` : ""}</div>
-    ${stack(k)}</div>`;
-}).join("");
-}
-tiles();
-$("legend").innerHTML = CATEGORIES.map(v => `<span><span class="swatch sq" style="background:${verdictColor(v)}"></span>${esc(label(v))}</span>`).join("");
+// columns: the ten traditions, then the unplaced; "outside" joins the two open-set verdicts
+const OUT = ["Fits no known tradition", "Outside the reference genres"];
+const HEAD = { "Palaic festivals": "Palaic", "Luwian festivals (Ištanuwa, Lallupiya)": "Luwian festivals", "Kizzuwatna rituals": "Kizzuwatna rituals",
+  "Luwian rituals (Puriyanni, Kuwattalla)": "Luwian rituals", "Arzawa / western rituals": "Arzawa, western", "Mixed (Hurrian, Syrian, Luwian)": "Mixed Hurrian" };
+const COLS = [...CATEGORIES.filter(v => isPlaced(v)).map(v => [v, HEAD[v] ?? label(v), x => x === v]),
+  ["Undecided", "Undecided", x => x === "Undecided"],
+  ["Outside", "Outside the ten", x => OUT.includes(x)],
+  ["Under 5 words", "Under 5 words", x => x === "Under 5 words"]];
+const colColour = k => k === "Outside" ? verdictColor(OUT[0]) : verdictColor(k);
 
-// ---------- bins ----------
-const state = Object.assign({ group: "cth", kind: "all", sort: "size", q: "", open: "" },
-  Object.fromEntries(new URLSearchParams(location.hash.slice(1))));
-for (const k of ["group", "kind", "sort", "q"]) {
-  $(k).value = state[k];
-  $(k).addEventListener("input", () => { state[k] = $(k).value; state.open = ""; draw(); });
-}
-const save = () => history.replaceState(null, "", "#" + new URLSearchParams(state));
+const state = Object.assign({ cell: "", q: "" }, Object.fromEntries(new URLSearchParams(location.hash.slice(1))));
+const save = () => history.replaceState(null, "", "#" + new URLSearchParams(Object.entries(state).filter(([, v]) => v)));
 
-function bins() {
-  const texts = corpus.filter(c => state.kind === "all" || c.kind === state.kind);
-  const key = state.group === "cth" ? c => c.cth : c => c.verdict;
-  const by = new Map();
-  for (const c of texts) { const k = key(c); if (!by.has(k)) by.set(k, []); by.get(k).push(c); }
-  let rows = [...by].map(([k, list]) => ({ k, list, counts: counts(list),
-    title: state.group === "cth" ? titles[k] ?? "" : "" }));
-  const q = state.q.trim().toLowerCase();
-  if (q) {
-    const ids = new Set(texts.filter(c => c.id.toLowerCase().includes(q)).map(c => c.id));
-    rows = rows.filter(r => r.k.toLowerCase() === q || (q.length > 2 && r.title.toLowerCase().includes(q)) ||
-                            label(r.k).toLowerCase().includes(q) || r.list.some(c => ids.has(c.id)));
-    if (q.length > 2 && ids.size) for (const r of rows) r.hits = r.list.filter(c => ids.has(c.id));
+function matrix() {
+  const head = `<thead><tr><th></th><th class="placed">Placed</th>${COLS.map(([k, l]) => `<th title="${esc(k)}"><span class="swatch sq" style="background:${colColour(k)}"></span>${esc(l)}</th>`).join("")}</tr></thead>`;
+  const body = ROWS.map(([name, desc, f]) => {
+    const texts = corpus.filter(f), n = COLS.map(([, , g]) => texts.filter(c => g(c.verdict)).length);
+    const judged = texts.length - n[n.length - 1], placed = n.slice(0, 10).reduce((a, b) => a + b, 0);
+    const max = Math.max(...n.slice(0, 10), 1);
+    return `<tr${name === "Reference" ? ' class="ref"' : ""}><th scope="row"><b>${esc(name)} <span class="muted small">${texts.length.toLocaleString()}</span></b><span class="small muted">${esc(desc)}</span></th>` +
+      `<td class="placed"><b>${pct(placed, judged)}</b><br><span class="small muted">${placed.toLocaleString()} of ${judged.toLocaleString()}</span></td>` +
+      n.map((v, i) => {
+        const [k] = COLS[i], trad = i < 10;
+        const bg = trad && v ? `background:color-mix(in srgb, ${colColour(k)} ${Math.round(12 + 70 * v / max)}%, transparent)` : "";
+        return `<td class="num${v ? " hit" : ""}${state.cell === name + "|" + k ? " on" : ""}" style="${bg}" ${v ? `data-cell="${esc(name)}|${esc(k)}" tabindex="0" title="${esc(name)}: ${v} placed in ${esc(k)}"` : ""}>${v ? v.toLocaleString() : "·"}</td>`;
+      }).join("") + `</tr>`;
+  }).join("");
+  $("matrix").innerHTML = head + `<tbody>${body}</tbody>`;
+  for (const td of $("matrix").querySelectorAll("td[data-cell]")) {
+    const go = () => { showCell(...td.dataset.cell.split("|")); $("listCard").scrollIntoView({ behavior: "smooth", block: "start" }); };
+    td.onclick = go; td.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
   }
-  const num = k => parseFloat(k) || 1e9;
-  const order = {
-    size: (a, b) => b.list.length - a.list.length,
-    placed: (a, b) => b.counts.placed / (b.counts.judged || 1) - a.counts.placed / (a.counts.judged || 1) || b.list.length - a.list.length,
-    key: state.group === "cth" ? (a, b) => num(a.k) - num(b.k) || a.k.localeCompare(b.k)
-                               : (a, b) => CATEGORIES.indexOf(a.k) - CATEGORIES.indexOf(b.k),
-  }[state.sort];
-  return rows.sort(order);
+  $("mnote").innerHTML = `Placed: the nearest tradition leads the runner-up by at least ${model.margin}, and the manuscript is not outside the ten traditions. Manuscripts under 5 words are not tested. Reference manuscripts are tested held out, so their row shows how often the method gets a known manuscript right.`;
 }
 
-function draw() {
-  save();
-  const rows = bins();
-  const nTexts = rows.reduce((a, r) => a + r.list.length, 0);
-  $("count").textContent = `${rows.length} ${state.group === "cth" ? (rows.length === 1 ? "CTH bin" : "CTH bins") : (rows.length === 1 ? "class" : "classes")}, ${nTexts.toLocaleString()} texts. Click a row to list its texts.`;
-  $("bins").innerHTML = `<div class="bin head"><span>${state.group === "cth" ? "CTH" : "Class"}</span><span></span><span class="num">Texts</span><span>${state.group === "cth" ? "Where the model places them" : ""}</span><span class="num">Placed</span></div>` +
-    rows.map(r => {
-      const name = state.group === "cth"
-        ? `<b>${esc(r.k)}</b> <span class="muted">${esc(r.title)}</span>`
-        : `<span class="swatch sq" style="background:${verdictColor(r.k)}"></span><b>${esc(r.k)}</b>`;
-      const bar = state.group === "cth" ? stack(r.counts)
-        : `<span class="kinds small muted">${Object.entries(KINDS).map(([k, l]) => `${r.list.filter(c => c.kind === k).length.toLocaleString()} ${l}`).join(" · ")}</span>`;
-      const open = state.open === r.k || (r.hits && rows.length <= 3);
-      return `<details class="bin" data-k="${esc(r.k)}" ${open ? "open" : ""}><summary>
-          <span class="name">${name}</span><span></span><span class="num">${r.list.length.toLocaleString()}</span>
-          ${bar}<span class="num">${state.group === "cth" ? pct(r.counts.placed, r.counts.judged) : ""}</span></summary>
-          <div class="list" data-k="${esc(r.k)}"></div></details>`;
-    }).join("");
-  for (const d of $("bins").querySelectorAll("details")) {
-    const r = rows.find(x => x.k === d.dataset.k);
-    const fill = () => list(d.querySelector(".list"), r);
-    if (d.open) fill();
-    d.addEventListener("toggle", () => { if (d.open) { state.open = r.k; save(); fill(); } });
-  }
-}
-
+// ---------- the manuscripts of one cell, or of a search ----------
 const LIMIT = 200;
-function list(box, r, filter = "", all = false) {
-  if (box.dataset.filled === filter + all) return;
-  box.dataset.filled = filter + all;
-  const texts = (r.hits ?? r.list).filter(c => !filter || c.verdict === filter)
-    .sort((a, b) => (isPlaced(b.verdict) - isPlaced(a.verdict)) || b.n - a.n);
+function table(texts, all = false) {
+  texts = texts.slice().sort((a, b) => (isPlaced(b.verdict) - isPlaced(a.verdict)) || (b.gap ?? 0) - (a.gap ?? 0) || b.n - a.n);
   const shown = all ? texts : texts.slice(0, LIMIT);
-  const present = [...new Set(r.list.map(c => c.verdict))].sort((a, b) => CATEGORIES.indexOf(a) - CATEGORIES.indexOf(b));
-  const links = state.group === "cth" ? ` · <a href="${P.tlhdigCth(r.k)}" target="_blank" rel="noopener">CTH ${esc(r.k)} in TLHdig</a> · <a href="${P.konkordanzCth(r.k)}" target="_blank" rel="noopener">in the Konkordanz</a>` : "";
-  box.innerHTML = `<div class="row small">${state.group === "cth" ? `<span class="muted">Show:</span>` +
-      [["", "all"], ...present.map(v => [v, label(v)])].map(([v, l]) => `<button class="pill ${v === filter ? "on" : ""}" data-v="${esc(v)}">${esc(l)}</button>`).join("") : ""}
-      <span class="muted">${r.hits ? `${r.hits.length} matching` : ""}${links}</span></div>
-    <table class="texts"><tr><th>Text</th><th class="num">Words</th>${state.group === "cth" ? "" : "<th>CTH</th>"}<th>Kind</th><th>Model</th><th class="num">Margin</th><th>Open</th></tr>` +
-    shown.map(c => `<tr><td>${esc(c.id)}</td><td class="num">${c.n}</td>${state.group === "cth" ? "" : `<td>${esc(c.cth)}</td>`}
-      <td class="muted">${KINDS[c.kind]}</td>
-      <td><span class="swatch sq" style="background:${verdictColor(c.verdict)}"></span>${esc(label(c.verdict))}${c.kind === "ref" && c.verdict !== c.label && isPlaced(c.verdict) ? ` <span class="muted" title="Reference manuscript of ${esc(c.label)}">(is ${esc(label(c.label))})</span>` : ""}${notes(c)}</td>
+  return `<table class="texts"><tr><th>Manuscript</th><th>CTH</th><th class="num">Words</th><th>Placement</th><th class="num">Lead</th><th>Open</th></tr>` +
+    shown.map(c => `<tr><td>${esc(c.id)}</td><td>${esc(c.cth)}</td><td class="num">${c.n}</td>
+      <td><span class="swatch sq" style="background:${verdictColor(c.verdict)}"></span>${esc(c.verdict)}${c.kind === "ref" && c.verdict !== c.label && isPlaced(c.verdict) ? ` <span class="muted">(reference of ${esc(label(c.label))})</span>` : ""}${isPlaced(c.verdict) && c.common > 0.5 ? ` <span class="warn" title="More than half of the lead comes from words every tradition shares, such as nu.">common words</span>` : ""}</td>
       <td class="num">${c.gap === undefined ? "" : c.gap.toFixed(3)}</td>
       <td class="small">${c.short ? "" : `<a href="place.html#id=${encodeURIComponent(c.id)}">place</a> · <a href="closest.html#id=${encodeURIComponent(c.id)}">closest</a> · `}${P.portalLinks(c.id, c.cth)}</td></tr>`).join("") +
-    `</table>` + (shown.length < texts.length ? `<button class="more">Show all ${texts.length.toLocaleString()}</button>` : "");
-  for (const b of box.querySelectorAll(".pill")) b.onclick = () => list(box, r, b.dataset.v);
-  box.querySelector(".more")?.addEventListener("click", () => list(box, r, filter, true));
+    `</table>` + (shown.length < texts.length ? `<button type="button" class="more">Show all ${texts.length.toLocaleString()}</button>` : "");
 }
+function fill(box, texts) {
+  box.innerHTML = table(texts);
+  box.querySelector(".more")?.addEventListener("click", () => { box.innerHTML = table(texts, true); });
+}
+let listed = [];
+function showCell(row, col) {
+  const r = ROWS.find(x => x[0] === row), c = COLS.find(x => x[0] === col);
+  if (!r || !c) return;
+  state.cell = row + "|" + col; save();
+  listed = corpus.filter(r[2]).filter(x => c[2](x.verdict));
+  $("listCard").hidden = false;
+  $("listTitle").innerHTML = `${esc(row)} <span class="muted">→</span> <span class="swatch sq" style="background:${colColour(col)}"></span>${esc(c[1])}: ${listed.length.toLocaleString()} manuscripts`;
+  fill($("list"), listed);
+  for (const td of $("matrix").querySelectorAll("td.on")) td.classList.remove("on");
+  $("matrix").querySelector(`td[data-cell="${CSS.escape(state.cell)}"]`)?.classList.add("on");
+}
+$("listClose").onclick = () => { $("listCard").hidden = true; state.cell = ""; save(); for (const td of $("matrix").querySelectorAll("td.on")) td.classList.remove("on"); };
 
-function notes(c) {
-  const n = [];
-  if (isPlaced(c.verdict) && c.common > 0.5) n.push(`<span class="warn" title="More than half of the margin comes from features common to all traditions (like nu); such placements are right much less often (E11d).">common words</span>`);
-  if (c.gate_fit) n.push(`<span class="muted" title="One of the texts the open-set check was fitted on, so its open-set verdict is not a test.">gate text</span>`);
-  return n.length ? " " + n.join(" ") : "";
+// ---------- search: a CTH number, a title, or a siglum ----------
+let found = [];
+function find(q) {
+  state.q = q.trim(); save();
+  const s = state.q.toLowerCase();
+  if (!s) { $("count").textContent = ""; $("found").innerHTML = ""; found = []; return; }
+  const cth = s.match(/^(?:cth\s*)?(\d+(?:\.\w+)?)$/);
+  let head;
+  if (cth) {
+    found = corpus.filter(c => c.cth === cth[1] || c.cth.startsWith(cth[1] + "."));
+    head = `CTH ${esc(cth[1])}${titles[cth[1]] ? ": " + esc(titles[cth[1]]) : ""}. ${found.length.toLocaleString()} manuscripts` +
+      (found.length ? ` · <a href="${P.tlhdigCth(cth[1])}" target="_blank" rel="noopener">in TLHdig</a> · <a href="${P.konkordanzCth(cth[1])}" target="_blank" rel="noopener">in the Konkordanz</a>` : "");
+  } else {
+    const byTitle = s.length > 2 ? new Set(Object.entries(titles).filter(([, t]) => t.toLowerCase().includes(s)).map(([k]) => k)) : new Set();
+    found = corpus.filter(c => c.id.toLowerCase().includes(s) || byTitle.has(c.cth));
+    head = `${found.length.toLocaleString()} manuscripts match “${esc(state.q)}”` + (byTitle.size ? ` (titles: ${[...byTitle].slice(0, 6).map(k => "CTH " + esc(k)).join(", ")}${byTitle.size > 6 ? " …" : ""})` : "");
+  }
+  $("count").innerHTML = head;
+  fill($("found"), found);
 }
+$("findForm").onsubmit = e => { e.preventDefault(); find($("q").value); };
 
 // ---------- export ----------
-const exportBins = () => bins().map(r => ({ [state.group === "cth" ? "cth" : "class"]: r.k, title: r.title, texts: r.list.length,
-  judged: r.counts.judged, placed: r.counts.placed, ...Object.fromEntries(CATEGORIES.map(v => [v, r.counts.n[v]])) }));
-const exportTexts = () => bins().flatMap(r => r.list).map(c => ({ txtid: c.id, cth: c.cth, words: c.n, kind: KINDS[c.kind],
-  model_verdict: c.verdict, reference_tradition: c.label ?? "", margin: c.gap ?? "", margin_mostly_common_words: c.common > 0.5,
+const rowsOut = texts => texts.map(c => ({ txtid: c.id, cth: c.cth, words: c.n, kind: KINDS[c.kind], placement: c.verdict,
+  reference_tradition: c.label ?? "", lead: c.gap ?? "", lead_mostly_common_words: c.common > 0.5,
   tlhdig: P.tlhdigText(c.id, c.cth), konkordanz: P.konkordanzText(c.id) }));
+const matrixOut = () => ROWS.map(([name, desc, f]) => {
+  const texts = corpus.filter(f);
+  return { bin: name, description: desc, manuscripts: texts.length, ...Object.fromEntries(COLS.map(([k, , g]) => [k, texts.filter(c => g(c.verdict)).length])) };
+});
 X.menu($("export"), [
-  ["Rows shown (CSV)", () => X.downloadCSV(exportBins(), `bins_by_${state.group}`)],
-  ["Texts in the rows shown (CSV)", () => X.downloadCSV(exportTexts(), `texts_by_${state.group}`)],
-  ["Texts in the rows shown (JSON)", () => X.downloadJSON({ settings: set, texts: exportTexts() }, `texts_by_${state.group}`)],
+  ["The table (CSV)", () => X.downloadCSV(matrixOut(), "bins_by_tradition")],
+  ["Manuscripts of the open cell (CSV)", () => listed.length && X.downloadCSV(rowsOut(listed), state.cell.replace("|", "_to_"))],
+  ["Manuscripts found by the search (CSV)", () => found.length && X.downloadCSV(rowsOut(found), "search_" + state.q)],
+  ["Everything shown (JSON)", () => X.downloadJSON({ settings: set, table: matrixOut(), cell: state.cell, cell_manuscripts: rowsOut(listed), search: state.q, found: rowsOut(found) }, "browse")],
 ]);
+X.cite($("export"), () => ({
+  title: state.cell ? `${state.cell.replace("|", " placed in ")}: manuscripts` : "Laroche's residual bins by reference tradition",
+  result: state.cell ? `${listed.length} manuscripts` : `CTH 470: ${matrixOut()[0].manuscripts} manuscripts`,
+  path: "browse.html" + (state.cell ? "#" + new URLSearchParams({ cell: state.cell }) : ""),
+}));
 
-draw();
+matrix();
+if (state.cell) showCell(...state.cell.split("|"));
+if (state.open) { state.q = "CTH " + state.open; delete state.open; }   // old links: browse.html#open=701
+if (state.q) { $("q").value = state.q; find(state.q); }

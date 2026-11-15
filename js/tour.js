@@ -10,9 +10,8 @@ const STEPS = {
   ],
   "browse.html": [
     ["#settings", "Settings", "Choose the version of the data and whether placements that rest on common words count."],
-    ["#tiles", "The orphan bins at a glance", "How many fragments of each bin (CTH 470, 500, 670, 832, EBo) the method places, and where."],
-    ["#group", "Filter and sort", "Narrow the list by bin, by what the method says, or by a text number."],
-    ["#bins", "Every CTH number", "Open a CTH number to see its texts, where each is placed, and links to place, closest texts and the portal."],
+    ["#matrix", "Where the orphans go", "Each row is a residual bin, each column a tradition. Click a number to list those manuscripts. The last row tests the method on known manuscripts."],
+    ["#findForm", "Any CTH number or text", "Type a CTH number, a title or a siglum to list its manuscripts and where each is placed."],
     ["#export", "Export", "Download the bins or the texts as CSV or JSON, with the data version named."],
   ],
   "place.html": [

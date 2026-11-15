@@ -31,13 +31,13 @@ function draw() {
   const mx = res.traditions[0].sim || 1;
   $("trad").innerHTML = res.traditions.slice(0, Math.min(set.top, 10)).map(t => `<span><span class="swatch" style="background:${D.colorVar(t.tradition)}"></span>${D.SHORT[t.tradition]}</span>
     <span class="track"><span class="fill" style="width:${(100 * Math.max(t.sim, 0)) / mx}%;background:${D.colorVar(t.tradition)}"></span></span><span class="val">${fmt(t.sim)}</span>`).join("");
-  $("comp").innerHTML = res.compositions.map(c => `<li><a href="browse.html#open=${c.cth}">CTH ${c.cth}</a> <span class="muted small">${c.title}</span>
+  $("comp").innerHTML = res.compositions.map(c => `<li><a href="browse.html#q=${encodeURIComponent("CTH " + c.cth)}">CTH ${c.cth}</a> <span class="muted small">${c.title}</span>
     <span class="val">${fmt(c.sim)}</span> <span class="muted small">${c.texts} ms.</span></li>`).join("");
   $("msCard").hidden = false;
   $("ms").tBodies[0].innerHTML = res.manuscripts.slice(0, set.top).map((x, k) => {
     const j = x.join, ck = (ok, t) => `<span class="ck ${ok ? "ok" : ""}" title="${t}">${ok ? "✓" : "·"}</span>`;
     return `<tr data-k="${k}"><td class="num">${x.rank}</td><td>${x.doc.id}<br><span class="small">${P.portalLinks(x.doc.id, x.doc.cth)}</span></td>
-      <td><a href="browse.html#open=${x.doc.cth}">${x.doc.cth}</a></td><td class="num">${x.doc.n}</td><td class="small">${x.verdict}</td><td class="num">${fmt(x.sim)}</td>
+      <td><a href="browse.html#q=${encodeURIComponent("CTH " + x.doc.cth)}">${x.doc.cth}</a></td><td class="num">${x.doc.n}</td><td class="small">${x.verdict}</td><td class="num">${fmt(x.sim)}</td>
       <td><span class="barcode-line">${[...j.cells].map((ch, i) => `<span class="bc ${ch === "." ? "o" : ch}" title="${res.frag.cols[i][1]}"></span>`).join("")}</span></td>
       <td>${ck(j.checks.half, "at least half of the words")}${ck(j.checks.spelling, "all shared words spelled the same")}${ck(j.checks.phrase, "a shared two-word phrase" + (j.phrases.length ? ": " + j.phrases.map(p => p.join(" ")).join("; ") : ""))}
         ${j.flagged ? '<span class="badge">passes</span>' : ""}</td></tr>`;
