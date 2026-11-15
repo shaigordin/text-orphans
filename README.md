@@ -29,11 +29,12 @@ Links: `place.html#id=KBo%2044.52`, `closest.html#id=HT%2049`, `browse.html#open
 
 ## Data versions
 
-`data/<version>/` holds one build per reading of the text, listed in `data/versions.json`
-(written by `build/build_data.py --version`). **C** counts preserved signs plus restorations
-supported by the same text (damaged and "?" signs count but are flagged): the main results.
-**A** is the editor's full text, restorations included, for comparison. The settings bar offers
-the versions built; the footer and every export name the one in use (`js/data.js`).
+`data/<version>/` holds one build per dataset, listed in `data/versions.json` (written by
+`build/build_data.py --version`). **C**, *without restorations* (the default), counts the signs
+visible on the tablet plus restorations supported by the same text; damaged and "?" signs count.
+**A**, *with restorations*, is the editor's full text. The settings bar offers both; the footer
+and every export name the one in use (`js/data.js`). `?data=C` or `?data=A` in the address
+selects one.
 
 ## Settings and exports
 
@@ -71,7 +72,8 @@ cd measuring-scribal-literacy/orphans
 python3 -m pip install -r requirements.txt     # Python 3.13
 bash reproduce.sh                              # TLHdig 0.3 from Zenodo (checksum-verified), token table, experiments
 cd ../../text-orphans
-python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens.csv --version A   # writes data/A/
+python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens_F.csv --run ../measuring-scribal-literacy/orphans/results/tlhdig03_literature_C_filled --version C --default
+python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens_FA.csv --run ../measuring-scribal-literacy/orphans/results/tlhdig03_literature_A_filled --version A --edition ../measuring-scribal-literacy/orphans/data/tokens_marks_filled.csv
 node tests/check.mjs && node tests/check_library.mjs
 python3 -m http.server                         # open http://localhost:8000
 ```
