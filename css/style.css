@@ -416,3 +416,5 @@ table.matrix td.hit:hover, table.matrix td.hit:focus { outline: 2px solid var(--
 table.matrix td.on { outline: 3px solid var(--text-primary); outline-offset: -3px; }
 table.matrix tr.ref th, table.matrix tr.ref td { border-top: 2px solid var(--border); }
 table.matrix .placed { text-align: right; color: var(--text-primary); white-space: nowrap; padding-right: 12px; border-right: 2px solid var(--border); border-radius: 0; }
+.hero .lede a { color: var(--clay-text); text-decoration: underline; text-decoration-color: var(--clay-accent); }
+sup { line-height: 0; }

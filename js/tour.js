@@ -59,7 +59,7 @@ const STEPS = {
 const page = location.pathname.split("/").pop() || "index.html";
 const steps = () => (STEPS[page] || []).map(([sel, t, x]) => [document.querySelector(sel), t, x]).filter(([el]) => el && el.offsetParent !== null);
 const KEY = "text-orphans-tour-" + page;
-const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/TLHdig/g, "TLH<sup>dig</sup>");
 
 // ---------- the tour ----------
 let layer = null;

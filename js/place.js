@@ -94,7 +94,7 @@ const CLS_ABBR = Object.fromEntries(model.categories.map(c => [c, {
 const drop = { classes: new Set(), layers: new Set() };
 $("restLegend").innerHTML = model.layers.map((l, i) => `<span><span class="swatch sq" style="background:var(--layer-${i + 1})"></span>${l}</span>`).join("") +
   `<span><span class="tick-swatch"></span>same share in the tradition's manuscripts</span>` +
-  `<span class="muted">Word tags: ${Object.entries(CLS_ABBR).map(([k, v]) => v + " " + k.toLowerCase()).join(", ")}; a dashed tag marks a class of low confidence (TLHdig's automatic analyses disagree or are missing).</span>`;
+  `<span class="muted">Word tags: ${Object.entries(CLS_ABBR).map(([k, v]) => v + " " + k.toLowerCase()).join(", ")}; a dashed tag marks a class of low confidence (TLH<sup>dig</sup>'s automatic analyses disagree or are missing).</span>`;
 $("dropRow").innerHTML = `<span class="muted">Leave out and rescore:</span>` +
   model.categories.map(c => `<label><input type="checkbox" data-c="${c}"> ${c.toLowerCase()}</label>`).join("") +
   model.layers.map((l, i) => `<label><input type="checkbox" data-l="${i}"> ${l.toLowerCase()}</label>`).join("");
