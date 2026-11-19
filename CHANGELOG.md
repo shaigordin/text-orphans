@@ -2,7 +2,7 @@
 
 ## 1.7.0 (2026-11-19)
 
-- Data rebuilt on **TLHdig Beta Version 0.4** (Zenodo, 19 November 2026, doi:10.5281/zenodo.24373727; 0.3 is deprecated), from the final runs of measuring-scribal-literacy (`results/tlhdig04_literature_C_filled` and `_A_filled`, commit ea892c6), the same runs as the Zenodo dataset 2.1.0. Without restorations: 515 of 2,024 orphans placed, held-out placement 83%; with restorations: 885 of 2,037, 84%. About page figures, Konkordanz comparison (accessed 19 November 2026), carousel and test fixtures updated.
+- Data rebuilt on **TLHdig Beta Version 0.4** (Zenodo, 19 November 2026, doi:10.5281/zenodo.24373727; 0.3 is deprecated), from the final runs of measuring-scribal-literacy (`results/tlhdig04_literature_C_filled` and `_A_filled`, commit ea892c6), the same runs as the Zenodo dataset 2.1.0. Without restorations: 515 orphans placed, held-out placement 82.8%; with restorations: 885 orphans placed, 84.1%. These match the Zenodo dataset 2.1.0. About page figures, Konkordanz comparison (accessed 19 November 2026), carousel and test fixtures updated.
 
 ## 1.6.0 (2026-11-19)
 
