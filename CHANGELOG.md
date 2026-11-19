@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0 (2026-11-19)
+
+- **Genres and compositions** replaces "Browse the CTH bins". The corpus is shown by the genres of the CTH catalogue (its main sections and lettered subsections, after Košak, Müller, Görke and Steitler, hethiter.net/: CTH, 2026-07-22; `js/genres.js`). Each genre opens to its compositions by title, with the CTH number as a label, and a bar of where their manuscripts are placed. A filter shows only the manuscripts placed in one tradition. Laroche's residual bins and the EBo fragments keep their table as "Fragments without a composition"; the search for a CTH number, title or siglum stays. Old links (`browse.html#open=701`, `#cell=`) still work.
+
 ## 1.5.0 (2026-11-15)
 
 - Two datasets, named for what they count: **without restorations** (the default) and **with restorations**. The settings bar, footer, exports and citations use these names.

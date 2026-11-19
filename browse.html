@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Browse the CTH bins · Adoptio</title>
+<title>Genres and compositions · Adoptio</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header>
-  <h1>Browse the CTH bins</h1>
-  <p>Laroche's residual bins and where the method places their orphans, in one table. Any other CTH number or text can be found below.</p>
+  <h1>Genres and compositions</h1>
+  <p>The corpus by genre, as the Catalogue of Hittite Texts divides it, and where the method places the manuscripts of each composition. One composition, or one genre, can spread over several traditions.</p>
   <nav class="tabs" id="nav"></nav>
 </header>
 
@@ -17,14 +17,21 @@
 <div class="grid">
   <section class="card span2"><div id="settings"></div></section>
   <section class="card span2">
-    <div class="row" style="justify-content:space-between;margin:0"><h2>Where the orphans go</h2><div id="export"></div></div>
-    <p class="sub">Rows: Laroche's residual bins and the EBo fragments. Columns: where the method places their manuscripts. Click a number to list those manuscripts.</p>
-    <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
-    <p class="small muted" id="mnote"></p>
+    <div class="row" style="justify-content:space-between;margin:0"><h2>Genres</h2><div class="row" style="gap:6px;margin:0"><div id="gexport"></div></div></div>
+    <p class="sub">The genres and subgenres are the main sections and subsections of the CTH catalogue (<a href="https://hethport.net/CTH/index.php?lang=EN" target="_blank" rel="noopener">Košak, Müller, Görke and Steitler, hethiter.net/: CTH</a>). Open a genre to see its compositions; click a composition to list its manuscripts.</p>
+    <div id="tfilter" class="chips"></div>
+    <div id="genres"></div>
+    <p class="small muted legend" id="legend"></p>
   </section>
   <section class="card span2" id="listCard" hidden>
     <div class="row" style="justify-content:space-between;margin:0"><h2 id="listTitle"></h2><button type="button" id="listClose" class="link">close</button></div>
     <div id="list"></div>
+  </section>
+  <section class="card span2">
+    <div class="row" style="justify-content:space-between;margin:0"><h2>Fragments without a composition</h2><div class="row" style="gap:6px;margin:0"><div id="export"></div></div></div>
+    <p class="sub">Laroche's residual bins and the EBo fragments, and where the method places them. Click a number to list those manuscripts. The last row tests the method on known manuscripts.</p>
+    <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+    <p class="small muted" id="mnote"></p>
   </section>
   <section class="card span2">
     <h2>Any CTH number or text</h2>

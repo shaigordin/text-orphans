@@ -11,10 +11,12 @@ const STEPS = {
   ],
   "browse.html": [
     ["#settings", "Settings", "Choose the version of the data and whether placements that rest on common words count."],
-    ["#matrix", "Where the orphans go", "Each row is a residual bin, each column a tradition. Click a number to list those manuscripts. The last row tests the method on known manuscripts."],
+    ["#tfilter", "One tradition", "Show only the manuscripts placed in one tradition, across all genres."],
+    ["#genres", "Genres", "The main sections of the CTH catalogue. Open one for its subgenres and compositions; the bar shows where their manuscripts are placed. Click a composition to list them."],
+    ["#gexport", "Export", "Download the compositions by genre and tradition, or the manuscripts of a composition, as CSV or JSON."],
+    ["#gexport + .export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool and data version and a link that reopens it."],
+    ["#matrix", "Fragments without a composition", "Laroche's residual bins and the EBo fragments against the traditions. Click a number to list those manuscripts. The last row tests the method on known manuscripts."],
     ["#findForm", "Any CTH number or text", "Type a CTH number, a title or a siglum to list its manuscripts and where each is placed."],
-    ["#export", "Export", "Download the table, or the manuscripts of a cell or a search, as CSV or JSON."],
-    [".export.cite", "Cite", "A citation of this result in plain text and BibTeX, with the tool version, the dataset and a link that reopens it."],
   ],
   "place.html": [
     ["#fetchForm", "Load a text", "Type a TLHdig text number or paste a link; or paste a transliteration in the box below."],
