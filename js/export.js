@@ -1,8 +1,8 @@
 // Export buttons: tables as CSV or JSON, figures (SVG elements) as SVG or PNG.
-// Every file says where its numbers come from (TLHdig Beta 0.3, this site's version).
+// Every file says where its numbers come from (TLHdig Beta 0.4, this site's version).
 import * as V from "./data.js";
 import { VERSION, DATA } from "./site.js";
-const SOURCE = "Adoptio: a quantitative tool for placing Hittite fragments (github.com/shaigordin/text-orphans); data TLHdig Beta 0.3, doi:10.5281/zenodo.20328284";
+const SOURCE = "Adoptio: a quantitative tool for placing Hittite fragments (github.com/shaigordin/text-orphans); data TLHdig Beta 0.4, doi:10.5281/zenodo.24373727";
 
 function save(blob, name) {
   const a = document.createElement("a");

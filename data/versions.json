@@ -4,13 +4,13 @@
   "A": {
    "label": "with restorations",
    "long": "Every sign of the edition counts, including the signs the editor restored in breaks.",
-   "built": "2026-11-15",
+   "built": "2026-11-19",
    "edition": true
   },
   "C": {
    "label": "without restorations",
    "long": "Only signs visible on the tablet count, plus restorations that the same text supports; damaged and uncertain signs count.",
-   "built": "2026-11-15",
+   "built": "2026-11-19",
    "edition": true
   }
  }

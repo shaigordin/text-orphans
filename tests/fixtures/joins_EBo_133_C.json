@@ -1,6 +1,6 @@
 {
  "txtid": "EBo 133",
- "pool_size": 19197,
+ "pool_size": 19416,
  "min_words": 5,
  "columns": [
   {
@@ -105,7 +105,7 @@
    "cth": "670",
    "group": "",
    "n_words": 19,
-   "similarity": 0.3849,
+   "similarity": 0.3841,
    "barcode": "SS.S......",
    "shared_words": 3,
    "different_spellings": [],
@@ -127,8 +127,8 @@
    "txtid": "KBo 21.51",
    "cth": "705",
    "group": "Mixed (Hurrian, Syrian, Luwian)",
-   "n_words": 19,
-   "similarity": 0.3793,
+   "n_words": 20,
+   "similarity": 0.3773,
    "barcode": "SS.S......",
    "shared_words": 3,
    "different_spellings": [],
@@ -151,7 +151,7 @@
    "cth": "470",
    "group": "orphan",
    "n_words": 6,
-   "similarity": 0.3444,
+   "similarity": 0.3446,
    "barcode": ".........S",
    "shared_words": 1,
    "different_spellings": [],
@@ -169,7 +169,7 @@
    "cth": "670",
    "group": "",
    "n_words": 26,
-   "similarity": 0.3328,
+   "similarity": 0.3326,
    "barcode": "SS.S......",
    "shared_words": 3,
    "different_spellings": [],
@@ -192,7 +192,7 @@
    "cth": "670",
    "group": "",
    "n_words": 33,
-   "similarity": 0.3313,
+   "similarity": 0.331,
    "barcode": "SS.S......",
    "shared_words": 3,
    "different_spellings": [],
@@ -215,7 +215,7 @@
    "cth": "670",
    "group": "orphan",
    "n_words": 5,
-   "similarity": 0.3239,
+   "similarity": 0.3257,
    "barcode": ".S.S......",
    "shared_words": 2,
    "different_spellings": [],
@@ -229,34 +229,11 @@
   },
   {
    "rank": 7,
-   "txtid": "KBo 49.126",
-   "cth": "656",
-   "group": "",
-   "n_words": 24,
-   "similarity": 0.3231,
-   "barcode": "SS..S.....",
-   "shared_words": 3,
-   "different_spellings": [],
-   "shared_phrases": [
-    [
-     "takarmun",
-     "paršia"
-    ]
-   ],
-   "checks": {
-    "half_the_words": false,
-    "same_spellings": true,
-    "shared_phrase": true
-   },
-   "flagged": false
-  },
-  {
-   "rank": 8,
    "txtid": "KBo 34.228",
    "cth": "693",
    "group": "Ḫuwaššanna festivals",
    "n_words": 37,
-   "similarity": 0.3229,
+   "similarity": 0.3218,
    "barcode": "SS....S...",
    "shared_words": 3,
    "different_spellings": [],
@@ -274,7 +251,7 @@
    "flagged": false
   },
   {
-   "rank": 9,
+   "rank": 8,
    "txtid": "KBo 58.179",
    "cth": "670",
    "group": "",
@@ -297,12 +274,12 @@
    "flagged": false
   },
   {
-   "rank": 10,
+   "rank": 9,
    "txtid": "KBo 44.140",
    "cth": "669",
    "group": "",
    "n_words": 37,
-   "similarity": 0.3111,
+   "similarity": 0.311,
    "barcode": "SSSS....S.",
    "shared_words": 5,
    "different_spellings": [],
@@ -324,12 +301,35 @@
    "flagged": true
   },
   {
+   "rank": 10,
+   "txtid": "KBo 49.126",
+   "cth": "656",
+   "group": "",
+   "n_words": 24,
+   "similarity": 0.311,
+   "barcode": "SS..S.....",
+   "shared_words": 3,
+   "different_spellings": [],
+   "shared_phrases": [
+    [
+     "takarmun",
+     "paršia"
+    ]
+   ],
+   "checks": {
+    "half_the_words": false,
+    "same_spellings": true,
+    "shared_phrase": true
+   },
+   "flagged": false
+  },
+  {
    "rank": 11,
    "txtid": "KBo 49.186",
    "cth": "656",
    "group": "",
    "n_words": 34,
-   "similarity": 0.3067,
+   "similarity": 0.3064,
    "barcode": "SS.S......",
    "shared_words": 3,
    "different_spellings": [],
@@ -352,7 +352,7 @@
    "cth": "670",
    "group": "",
    "n_words": 20,
-   "similarity": 0.3056,
+   "similarity": 0.3059,
    "barcode": "SS.S......",
    "shared_words": 3,
    "different_spellings": [],
@@ -375,7 +375,7 @@
    "cth": "790",
    "group": "",
    "n_words": 17,
-   "similarity": 0.303,
+   "similarity": 0.3023,
    "barcode": "SS........",
    "shared_words": 2,
    "different_spellings": [],
@@ -398,7 +398,7 @@
    "cth": "670",
    "group": "",
    "n_words": 25,
-   "similarity": 0.299,
+   "similarity": 0.2981,
    "barcode": "SS.S......",
    "shared_words": 3,
    "different_spellings": [],
@@ -421,7 +421,7 @@
    "cth": "670",
    "group": "",
    "n_words": 12,
-   "similarity": 0.2977,
+   "similarity": 0.2937,
    "barcode": "...S...S..",
    "shared_words": 2,
    "different_spellings": [],
@@ -435,11 +435,34 @@
   },
   {
    "rank": 16,
+   "txtid": "IBoT 4.273",
+   "cth": "722",
+   "group": "Kizzuwatna–Lower Land (Hurrian)",
+   "n_words": 46,
+   "similarity": 0.292,
+   "barcode": ".SSS......",
+   "shared_words": 3,
+   "different_spellings": [],
+   "shared_phrases": [
+    [
+     "1-ŠU",
+     "ekuzi"
+    ]
+   ],
+   "checks": {
+    "half_the_words": false,
+    "same_spellings": true,
+    "shared_phrase": true
+   },
+   "flagged": false
+  },
+  {
+   "rank": 17,
    "txtid": "DBH 46_2.139",
    "cth": "750",
    "group": "Palaic festivals",
    "n_words": 86,
-   "similarity": 0.2909,
+   "similarity": 0.2916,
    "barcode": "SSSS...S..",
    "shared_words": 5,
    "different_spellings": [],
@@ -461,35 +484,12 @@
    "flagged": true
   },
   {
-   "rank": 17,
-   "txtid": "IBoT 4.273",
-   "cth": "722",
-   "group": "Kizzuwatna–Lower Land (Hurrian)",
-   "n_words": 46,
-   "similarity": 0.2905,
-   "barcode": ".SSS......",
-   "shared_words": 3,
-   "different_spellings": [],
-   "shared_phrases": [
-    [
-     "1-ŠU",
-     "ekuzi"
-    ]
-   ],
-   "checks": {
-    "half_the_words": false,
-    "same_spellings": true,
-    "shared_phrase": true
-   },
-   "flagged": false
-  },
-  {
    "rank": 18,
    "txtid": "DBH 43_2.78",
    "cth": "670",
    "group": "",
    "n_words": 6,
-   "similarity": 0.287,
+   "similarity": 0.2883,
    "barcode": ".......S..",
    "shared_words": 1,
    "different_spellings": [],
@@ -507,7 +507,7 @@
    "cth": "670",
    "group": "",
    "n_words": 12,
-   "similarity": 0.2862,
+   "similarity": 0.2876,
    "barcode": ".S.S......",
    "shared_words": 2,
    "different_spellings": [],
@@ -521,19 +521,24 @@
   },
   {
    "rank": 20,
-   "txtid": "KBo 42.97",
-   "cth": "635",
+   "txtid": "DBH 46_2.134",
+   "cth": "670",
    "group": "",
-   "n_words": 8,
-   "similarity": 0.2831,
-   "barcode": "S.........",
-   "shared_words": 1,
+   "n_words": 21,
+   "similarity": 0.2838,
+   "barcode": ".SSS......",
+   "shared_words": 3,
    "different_spellings": [],
-   "shared_phrases": [],
+   "shared_phrases": [
+    [
+     "1-ŠU",
+     "ekuzi"
+    ]
+   ],
    "checks": {
     "half_the_words": false,
     "same_spellings": true,
-    "shared_phrase": false
+    "shared_phrase": true
    },
    "flagged": false
   }

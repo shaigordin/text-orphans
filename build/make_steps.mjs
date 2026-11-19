@@ -89,7 +89,7 @@ h1 { font-family: CG, serif; font-size: 72px; font-weight: 600; line-height: 1; 
 .left { position: absolute; left: 70px; top: 70px; width: 600px; }
 .right { position: absolute; left: 730px; top: 70px; right: 70px; bottom: 80px; }
 `;
-const credit = (...ids) => `Photograph${ids.length > 1 ? "s" : ""}: Hethitologie-Archiv Mainz, hethiter.net/: ${ids.map(i => `fotarch ${PHOTO[i][1]} (${i})`).join(", ")}. Text: TLHdig Beta 0.3.`;
+const credit = (...ids) => `Photograph${ids.length > 1 ? "s" : ""}: Hethitologie-Archiv Mainz, hethiter.net/: ${ids.map(i => `fotarch ${PHOTO[i][1]} (${i})`).join(", ")}. Text: TLHdig Beta 0.4.`;
 // a photograph cropped to PHOTO's box, `w` px wide (height follows the crop)
 function pic(id, w) {
   const [, , , [W, H], [x0, y0, x1, y1]] = PHOTO[id], fw = x1 - x0, fh = y1 - y0, h = Math.round((w * fh * H) / (fw * W));
@@ -183,7 +183,7 @@ add("step_1_read.jpg", "1 · Read", `${ID}: the photograph and its transliterati
     </div>
     <p style="font:600 44px CG,serif;color:${D.topColour};margin-top:44px">→ placed in ${esc(D.top)}</p>
   </div>
-  <p class="foot">Text: TLHdig Beta 0.3.</p>`, "place.html#id=KBo%2044.52");
+  <p class="foot">Text: TLHdig Beta 0.4.</p>`, "place.html#id=KBo%2044.52");
 }
 // 5. Explain
 {
@@ -215,7 +215,7 @@ server.close();
 
 fs.writeFileSync(path.join(root, "img", "carousel", "slides.json"), JSON.stringify(slides.map(s => ({
   src: s.name, alt: s.alt, title: s.title, caption: s.caption,
-  credit: s.name.includes("decide") ? "Text: TLHdig Beta 0.3." : credit(...(s.name.includes("explain") ? [ID, D.ms[0].id] : [ID]))
+  credit: s.name.includes("decide") ? "Text: TLHdig Beta 0.4." : credit(...(s.name.includes("explain") ? [ID, D.ms[0].id] : [ID]))
     .replace(/fotarch (\w+) \(([^)]+)\)/g, (_, n, id) => `<a href="https://hethport.net/hetkonk/bildpraep.php?fundnr=${encodeURIComponent(PHOTO[id][2])}">fotarch ${n}</a> (${id})`),
   link: s.link,
 })), null, 1) + "\n");

@@ -307,7 +307,7 @@ async function load(id) {
 $("fetchForm").onsubmit = async ev => {
   ev.preventDefault();
   const id = P.findId($("fetchId").value, [...byId.keys()]);
-  $("fetchMsg").textContent = id ? "" : "Not in TLHdig Beta 0.3. Try a siglum like KBo 27.160, or paste a TLHdig or Konkordanz link.";
+  $("fetchMsg").textContent = id ? "" : "Not in TLHdig Beta 0.4. Try a siglum like KBo 27.160, or paste a TLHdig or Konkordanz link.";
   if (id) { $("fetchId").value = id; await load(id); }
 };
 $("fetchIds").innerHTML = corpus.filter(c => c.kind !== "other").map(c => `<option value="${c.id}">`).join("");

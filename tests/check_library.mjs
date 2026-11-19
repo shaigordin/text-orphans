@@ -8,7 +8,7 @@ globalThis.fetch = async p => ({ json: async () => JSON.parse(fs.readFileSync(ne
 const V = await import("../js/data.js");
 const Q = await import("../js/model.js");
 const L = await import("../js/library.js");
-// the fixture comes from the run with restorations (results/tlhdig03_literature_A_filled); VERSION=C with the fixture from results/tlhdig03_literature_C_filled
+// the fixture comes from the run with restorations (results/tlhdig04_literature_A_filled); VERSION=C with the fixture from results/tlhdig04_literature_C_filled
 const VER = process.env.VERSION || "A", base = `data/${VER}`;
 console.log(`data version ${VER}`);
 const model = await Q.loadModel(base);

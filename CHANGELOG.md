@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.0 (2026-11-19)
+
+- Data rebuilt on **TLHdig Beta Version 0.4** (Zenodo, 19 November 2026, doi:10.5281/zenodo.24373727; 0.3 is deprecated), from the final runs of measuring-scribal-literacy (`results/tlhdig04_literature_C_filled` and `_A_filled`, commit ea892c6), the same runs as the Zenodo dataset 2.1.0. Without restorations: 515 of 2,024 orphans placed, held-out placement 83%; with restorations: 885 of 2,037, 84%. About page figures, Konkordanz comparison (accessed 19 November 2026), carousel and test fixtures updated.
+
 ## 1.6.0 (2026-11-19)
 
 - **Genres and compositions** replaces "Browse the CTH bins". The corpus is shown by the genres of the CTH catalogue (its main sections and lettered subsections, after Košak, Müller, Görke and Steitler, hethiter.net/: CTH, 2026-07-22; `js/genres.js`). Each genre opens to its compositions by title, with the CTH number as a label, and a bar of where their manuscripts are placed. A filter shows only the manuscripts placed in one tradition. Laroche's residual bins and the EBo fragments keep their table as "Fragments without a composition"; the search for a CTH number, title or siglum stays. Old links (`browse.html#open=701`, `#cell=`) still work.
