@@ -129,7 +129,7 @@ export function sharedHTML(a, b) {
 
 // Rows for the export buttons.
 export function exportRows(res, set) {
-  const meta = { query: res.q.id ?? "pasted text", settings: describe(res.r.filter), data: "TLHdig Beta 0.3 (doi:10.5281/zenodo.20328284)" };
+  const meta = { query: res.q.id ?? "pasted text", settings: describe(res.r.filter), data: "TLHdig Beta 0.4 (doi:10.5281/zenodo.24373727)" };
   return {
     traditions: res.traditions.map((t, i) => ({ ...meta, rank: i + 1, tradition: t.tradition, similarity: +t.sim.toFixed(4) })),
     compositions: res.compositions.map(c => ({ ...meta, rank: c.rank, cth: c.cth, title: c.title, texts: c.texts, similarity: +c.sim.toFixed(4) })),

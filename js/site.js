@@ -1,15 +1,15 @@
 // Shared page frame: the navigation and the footer with the data citation, the same on every page.
 import * as V from "./data.js";
-export const VERSION = "1.5.0";
+export const VERSION = "1.7.0";
 export const DATA = {
-  name: "TLHdig Beta 0.3",
-  cite: "G. Müller, D. Prechel, E. Rieken, D. Schwemer, Thesaurus Linguarum Hethaeorum digitalis (TLHdig) Beta Version 0.3, Zenodo, 21 May 2026, CC BY 4.0",
-  doi: "10.5281/zenodo.20328284",
+  name: "TLHdig Beta 0.4",
+  cite: "G. Müller, D. Prechel, E. Rieken, D. Schwemer, Thesaurus Linguarum Hethaeorum digitalis (TLHdig) Beta Version 0.4, Zenodo, 19 November 2026, CC BY 4.0",
+  doi: "10.5281/zenodo.24373727",
   date: "2026-05-21",
 };
 const PAGES = [
   ["index.html", "Home"],
-  ["browse.html", "Browse the CTH bins"],
+  ["browse.html", "Genres and compositions"],
   ["place.html", "Place a fragment"],
   ["closest.html", "Closest texts and joins"],
   ["compare.html", "Compare word by word"],
@@ -27,7 +27,7 @@ export function frame() {
   const foot = document.getElementById("foot");
   if (foot) foot.insertAdjacentHTML("beforeend",
     `<p>All results are computed from <b><a href="https://hethport.net/TLHdig/">TLH<sup>dig</sup></a> ${DATA.name.replace("TLHdig ", "")}</b>, ${V.LABEL} (${DATA.cite.replace("(TLHdig)", "(TLH<sup>dig</sup>)")}; Zenodo <a href="https://doi.org/${DATA.doi}">doi:${DATA.doi}</a>). ` +
-    `The method is that of S. Gordin, <i>Orphans and Archetypes</i> (2026); see <a href="about.html">About, cite, rebuild</a> for how to cite this tool and how to rebuild it with newer data. ` +
+    `The method, Quantitative Tradition Mapping (QTM), is that of S. Gordin, <i>Orphans and Archetypes</i> (2026); see <a href="about.html">About, cite, rebuild</a> for how to cite this tool and how to rebuild it with newer data. ` +
     `CTH numbers and titles follow TLH<sup>dig</sup> and the Konkordanz der hethitischen Keilschrifttafeln (S. Košak, <a href="https://hethport.net">hethport.net</a>). ` +
     `Everything runs in your browser; nothing you paste is sent anywhere. Version ${VERSION}.</p>`);
 }

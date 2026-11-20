@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this tool or its results, please cite it as below, together with the TLHdig release it is built on."
 title: "Adoptio: a quantitative tool for placing Hittite fragments"
-version: 1.5.0
-date-released: 2026-11-15
+version: 1.7.0
+date-released: 2026-11-19
 authors:
   - family-names: Gordin
     given-names: Shai
@@ -12,7 +12,7 @@ license: MIT
 keywords: [Hittite, cuneiform, TLHdig, CTH, textual traditions, fragments, joins, digital humanities]
 references:
   - type: dataset
-    title: "Thesaurus Linguarum Hethaeorum digitalis (TLHdig) Beta Version 0.3"
+    title: "Thesaurus Linguarum Hethaeorum digitalis (TLHdig) Beta Version 0.4"
     authors:
       - family-names: Müller
         given-names: Gerfrid
@@ -22,6 +22,6 @@ references:
         given-names: Elisabeth
       - family-names: Schwemer
         given-names: Daniel
-    date-released: 2026-05-21
-    doi: 10.5281/zenodo.20328284
+    date-released: 2026-11-19
+    doi: 10.5281/zenodo.24373727
     license: CC-BY-4.0

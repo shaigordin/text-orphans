@@ -17,7 +17,7 @@ async function check(input) {
   if (!q) return;
   if (q.cth) { location.href = `browse.html#open=${q.cth}`; return; }
   if (q.text && q.text.split(/\s+/).length < 3 && /^[A-Za-z]+\s*\d/.test(q.text)) {
-    $("qMsg").textContent = `"${q.text}" is not a text of TLHdig Beta 0.3. Try a siglum like KBo 44.52, or paste a transliteration.`;
+    $("qMsg").textContent = `"${q.text}" is not a text of TLHdig Beta 0.4. Try a siglum like KBo 44.52, or paste a transliteration.`;
     return;
   }
   $("qMsg").textContent = "Reading the corpus (about 5 MB, once per visit)…";

@@ -2,14 +2,14 @@
 
 Where does a Hittite fragment belong? This static website compares any fragment with the entire
 digitised Hittite corpus (TLHdig), word by word and sign by sign, and shows the textual tradition, the compositions and
-the manuscripts it is closest to, with a duplicate/join check for each manuscript. It
-accompanies S. Gordin, *Orphans and Archetypes* (2026). Everything runs in the browser.
+the manuscripts it is closest to, with a duplicate/join check for each manuscript, using the method
+Quantitative Tradition Mapping (QTM) of S. Gordin, *Orphans and Archetypes* (2026). Everything runs in the browser.
 
 **Site:** <https://shaigordin.github.io/text-orphans/> · **Version:** see `VERSION` and `CHANGELOG.md`
 · **Cite:** `CITATION.cff`
 
-All results are computed from **TLHdig Beta Version 0.3** (G. Müller, D. Prechel, E. Rieken,
-D. Schwemer, Zenodo, 21 May 2026, [doi:10.5281/zenodo.20328284](https://doi.org/10.5281/zenodo.20328284),
+All results are computed from **TLHdig Beta Version 0.4** (G. Müller, D. Prechel, E. Rieken,
+D. Schwemer, Zenodo, 19 November 2026, [doi:10.5281/zenodo.24373727](https://doi.org/10.5281/zenodo.24373727),
 CC BY 4.0). The site is rebuilt when a new TLHdig release appears; the version used is named
 on every page and in every export.
 
@@ -70,10 +70,10 @@ git clone https://github.com/shaigordin/text-orphans
 git clone https://github.com/shaigordin/measuring-scribal-literacy
 cd measuring-scribal-literacy/orphans
 python3 -m pip install -r requirements.txt     # Python 3.13
-bash reproduce.sh                              # TLHdig 0.3 from Zenodo (checksum-verified), token table, experiments
+bash reproduce.sh                              # TLHdig 0.4 from Zenodo (checksum-verified), token table, experiments
 cd ../../text-orphans
-python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens_F.csv --run ../measuring-scribal-literacy/orphans/results/tlhdig03_literature_C_filled --version C --default
-python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens_FA.csv --run ../measuring-scribal-literacy/orphans/results/tlhdig03_literature_A_filled --version A --edition ../measuring-scribal-literacy/orphans/data/tokens_marks_filled.csv
+python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens_F.csv --run ../measuring-scribal-literacy/orphans/results/tlhdig04_literature_C_filled --version C --default
+python3 build/build_data.py ../measuring-scribal-literacy/orphans/data/tokens_FA.csv --run ../measuring-scribal-literacy/orphans/results/tlhdig04_literature_A_filled --version A --edition ../measuring-scribal-literacy/orphans/data/tokens_marks_filled.csv
 node tests/check.mjs && node tests/check_library.mjs
 python3 -m http.server                         # open http://localhost:8000
 ```

@@ -23,7 +23,8 @@ export async function loadLibrary(model, corpus, base = V.DIR) {
     const c = meta.get(id), text = texts[id];
     if (!c || text === undefined) continue;
     const words = fi.map(i => F.forms[i]), translits = text.split(" ").filter(Boolean);  // as forms.json, without empty words
-    const d = { id, cth: c.cth, n: c.n, c, text, words, translits };
+    const cls = F.classes?.[id];                // each word's own category in its context
+    const d = { id, cth: c.cth, n: c.n, c, text, words, translits, cls };
     if (c.n >= MIN_WORDS && !c.short) {
       const tf = new Map();
       const add = t => { const j = model.index.get(t); if (j !== undefined) tf.set(j, (tf.get(j) || 0) + 1); };
@@ -46,7 +47,8 @@ export async function loadLibrary(model, corpus, base = V.DIR) {
 export function parsedOf(id, model) {
   const d = LIB.byId.get(id);
   return { dropped: [], words: d.translits.map((t, i) => ({ raw: t, translit: t, signs: Q.signs(t),
-    word: model.index.has(d.words[i]) ? d.words[i] : null, form: d.words[i] })) };
+    word: model.index.has(d.words[i]) ? d.words[i] : null, form: d.words[i],
+    ...(d.cls ? { cls: model.categories[parseInt(d.cls[i], 36)] } : {}) })) };
 }
 
 // Norm of each pool text over the features a filter keeps.
@@ -166,10 +168,11 @@ export { normSp };
 let FORMS = null;
 export async function parsedById(id, text, model, base = V.DIR) {
   FORMS ??= await json(`${base}/forms.json`);
-  const fi = FORMS.texts[id];
+  const fi = FORMS.texts[id], cls = FORMS.classes?.[id];
   if (!fi) return null;
   return { dropped: [], words: text.split(" ").map((t, i) => {
     const f = FORMS.forms[fi[i]];
-    return { raw: t, translit: t, signs: Q.signs(t), word: model.index.has(f) ? f : null, form: f };
+    return { raw: t, translit: t, signs: Q.signs(t), word: model.index.has(f) ? f : null, form: f,
+      ...(cls ? { cls: model.categories[parseInt(cls[i], 36)] } : {}) };
   }) };
 }

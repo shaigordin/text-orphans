@@ -5,7 +5,7 @@ Reuses ../orphans/qtm so the page scores fragments exactly as run_experiments.py
 nearest-centroid cosine, abstention margin), and adds the E9 open-set check of run_openset.py
 (fit floor per fragment size, and a genre gate with the outside genres as classes).
 
-Usage: python build_data.py TOKENS.csv [--run ../orphans/results/tlhdig03_literature] [--out data]
+Usage: python build_data.py TOKENS.csv [--run ../orphans/results/tlhdig04_literature] [--out data]
 """
 import argparse
 import json
@@ -172,7 +172,7 @@ def register_version(a):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("tokens")
-    ap.add_argument("--run", default=os.path.join(ORPHANS, "results", "tlhdig03_literature"))
+    ap.add_argument("--run", default=os.path.join(ORPHANS, "results", "tlhdig04_literature"))
     ap.add_argument("--version", default="A", help="data version key (C: preserved + supported restorations, A: editor's full text)")
     ap.add_argument("--label", default=None, help="short name of the version, shown in the settings bar")
     ap.add_argument("--long", default=None, help="one sentence on what the version counts")
@@ -313,7 +313,7 @@ def main():
            "common_share_of_decision": rep11["E11b"]["common_features_share"]["all_correct"],
            "common_share_of_similarity": rep11["E11b"]["similarity_common_features_share"]}
     model = {
-        "source": "TLHdig Beta 0.3 (Zenodo 10.5281/zenodo.20328284)",
+        "source": "TLHdig Beta 0.4 (Zenodo 10.5281/zenodo.24373727)",
         "traditions": labs.tolist(),
         "cths": {lab: groups[lab] for lab in labs},
         "margin": round(float(margin), 6),
@@ -373,9 +373,14 @@ def main():
     alltexts = pd.concat([ref, orph, rest, short[short.kind == "orphan"]]).drop_duplicates("txtid")
     forms = sorted({w for ws in alltexts.words for w in ws})
     fidx = {w: i for i, w in enumerate(forms)}
+    # and each word's own category in its context (qtm.wordclass, with the sense rules), one character
+    # per word: the index into CATEGORIES in base 36, aligned with "texts"
+    code = lambda c: "0123456789abcdefghijklmnopqrstuvwxyz"[CATEGORIES.index(category(c))]
     dump({"forms": forms,
           "texts": {d.txtid: [fidx[w] for w, t in zip(d.words, d.translits) if canon(t)]
-                    for _, d in alltexts.iterrows()}}, f"{a.out}/forms.json")
+                    for _, d in alltexts.iterrows()},
+          "classes": {d.txtid: "".join(code(c) for c, t in zip(d.wclasses, d.translits) if canon(t))
+                      for _, d in alltexts.iterrows()}}, f"{a.out}/forms.json")
 
     edition(a, set(alltexts.txtid))
 

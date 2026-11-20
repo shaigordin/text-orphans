@@ -4,7 +4,7 @@
   "alt": "KBo 44.52 and the five steps of the method, ending in its placement with the Syro-Mesopotamian (Hurrian) rituals",
   "title": "From fragment to tradition",
   "caption": "The method in five steps, on the orphan KBo 44.52 (CTH 470).",
-  "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.3.",
+  "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.4.",
   "link": "place.html#id=KBo%2044.52"
  },
  {
@@ -12,7 +12,7 @@
   "alt": "KBo 44.52: the photograph and its transliteration; restored signs grey",
   "title": "1 · Read",
   "caption": "Only what is visible on the tablet counts: 50 of the 53 words of the edition. A word counts if at least half its signs are preserved, or if it is preserved elsewhere on the same tablet.",
-  "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.3.",
+  "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.4.",
   "link": "closest.html#id=KBo%2044.52"
  },
  {
@@ -20,7 +20,7 @@
   "alt": "Weights of words in KBo 44.52: rare words such as LÚSIMUG weigh much, the common sign nu little",
   "title": "2 · Count",
   "caption": "Every word form and every sign sequence inside a word gets a weight: high if it is rare in the other manuscripts, low if every text has it.",
-  "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.3.",
+  "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.4.",
   "link": "place.html#id=KBo%2044.52"
  },
  {
@@ -28,15 +28,15 @@
   "alt": "Similarity of KBo 44.52 to the ten traditions; Syro-Mesopotamian (Hurrian) is nearest",
   "title": "3 · Compare",
   "caption": "Each tradition is the average profile of its manuscripts. The fragment is compared with each of the ten: 1 means identical, 0 nothing shared.",
-  "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.3.",
+  "credit": "Photograph: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52). Text: TLHdig Beta 0.4.",
   "link": "place.html#id=KBo%2044.52"
  },
  {
   "src": "step_4_decide.jpg",
-  "alt": "The lead of Syro-Mesopotamian (Hurrian) over the Kizzuwatna rituals, 0.113, against the 0.026 needed",
+  "alt": "The lead of Syro-Mesopotamian (Hurrian) over the Kizzuwatna rituals, 0.113, against the 0.024 needed",
   "title": "4 · Decide",
-  "caption": "A fragment is placed only when the nearest tradition leads the runner-up by at least 0.026, the margin at which 8 of 10 test fragments of known tradition land correctly. Below it the answer is \"undecided\".",
-  "credit": "Text: TLHdig Beta 0.3.",
+  "caption": "A fragment is placed only when the nearest tradition leads the runner-up by at least 0.024, the margin at which 8 of 10 test fragments of known tradition land correctly. Below it the answer is \"undecided\".",
+  "credit": "Text: TLHdig Beta 0.4.",
   "link": "place.html#id=KBo%2044.52"
  },
  {
@@ -44,7 +44,7 @@
   "alt": "The words that decide the placement of KBo 44.52, and its closest manuscript KBo 59.165 (CTH 701), side by side",
   "title": "5 · Explain",
   "caption": "Every placement comes with the words it rests on, and with the closest manuscripts and compositions to read next to it. Here: KBo 59.165 (CTH 701), 17 shared words, 5 shared phrases; closest composition CTH 701, Drink offering for the throne of Ḫebat.",
-  "credit": "Photographs: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52), <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=909%2Fz\">fotarch B1358b</a> (KBo 59.165). Text: TLHdig Beta 0.3.",
+  "credit": "Photographs: Hethitologie-Archiv Mainz, hethiter.net/: <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=181%2Fn\">fotarch N06460</a> (KBo 44.52), <a href=\"https://hethport.net/hetkonk/bildpraep.php?fundnr=909%2Fz\">fotarch B1358b</a> (KBo 59.165). Text: TLHdig Beta 0.4.",
   "link": "closest.html#id=KBo%2044.52"
  }
 ]
