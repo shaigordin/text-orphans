@@ -40,7 +40,7 @@ const ROWS = [
   ["CTH 670", "fragments of festivals", c => c.cth === "670" && !c.id.startsWith("EBo")],
   ["CTH 832", "fragments of various content", c => c.cth === "832" && !c.id.startsWith("EBo")],
   ["EBo", "EBo fragments, any CTH number", c => c.id.startsWith("EBo")],
-  ["Reference", "known manuscripts, held out (test)", c => c.kind === "ref"],
+  ["Reference", "manuscripts of 17+ words that build the profiles, each held out (test)", c => c.kind === "ref"],
 ];
 // columns: the ten traditions, then the unplaced; "outside" joins the two open-set verdicts
 const OUT = ["Fits no known tradition", "Outside the reference genres"];
