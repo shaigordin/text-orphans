@@ -373,9 +373,14 @@ def main():
     alltexts = pd.concat([ref, orph, rest, short[short.kind == "orphan"]]).drop_duplicates("txtid")
     forms = sorted({w for ws in alltexts.words for w in ws})
     fidx = {w: i for i, w in enumerate(forms)}
+    # and each word's own category in its context (qtm.wordclass, with the sense rules), one character
+    # per word: the index into CATEGORIES in base 36, aligned with "texts"
+    code = lambda c: "0123456789abcdefghijklmnopqrstuvwxyz"[CATEGORIES.index(category(c))]
     dump({"forms": forms,
           "texts": {d.txtid: [fidx[w] for w, t in zip(d.words, d.translits) if canon(t)]
-                    for _, d in alltexts.iterrows()}}, f"{a.out}/forms.json")
+                    for _, d in alltexts.iterrows()},
+          "classes": {d.txtid: "".join(code(c) for c, t in zip(d.wclasses, d.translits) if canon(t))
+                      for _, d in alltexts.iterrows()}}, f"{a.out}/forms.json")
 
     edition(a, set(alltexts.txtid))
 
