@@ -89,7 +89,7 @@ $("clear").onclick = () => { $("input").value = ""; run(); };
 // short tags for the word categories of qtm/wordclass.py (CATEGORIES), in the same order
 const CLS_ABBR = Object.fromEntries(model.categories.map(c => [c, {
   "Function words": "fn", "Verbs": "v", "Realia": "re", "Agents and deities": "ag", "Places": "pl",
-  "Animals, body, nature": "nat", "Abstract nouns": "abs", "Adjectives": "adj", "Foreign words": "for", "Other words": "?",
+  "Animals, body, nature": "nat", "Abstract nouns": "abs", "Adjectives": "adj", "Foreign words": "for", "Scribal marks": "scr", "Other words": "?",
 }[c] ?? c.slice(0, 3).toLowerCase()]));
 const drop = { classes: new Set(), layers: new Set() };
 $("restLegend").innerHTML = model.layers.map((l, i) => `<span><span class="swatch sq" style="background:var(--layer-${i + 1})"></span>${l}</span>`).join("") +

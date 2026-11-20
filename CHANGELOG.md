@@ -2,7 +2,7 @@
 
 ## 1.7.0 (2026-11-19)
 
-- Data rebuilt on **TLHdig Beta Version 0.4** (Zenodo, 19 November 2026, doi:10.5281/zenodo.24373727; 0.3 is deprecated), from the final runs of measuring-scribal-literacy (`results/tlhdig04_literature_C_filled` and `_A_filled`, commit ea892c6), the same runs as the Zenodo dataset 2.1.0. Without restorations: 515 orphans placed, held-out placement 82.8%; with restorations: 885 orphans placed, 84.1%. These match the Zenodo dataset 2.1.0. About page figures, Konkordanz comparison (accessed 19 November 2026), carousel and test fixtures updated.
+- Data rebuilt on **TLHdig Beta Version 0.4** (Zenodo, 19 November 2026, doi:10.5281/zenodo.24373727; 0.3 is deprecated), from the final runs of measuring-scribal-literacy (`results/tlhdig04_literature_C_filled` and `_A_filled`, commit ea892c6), the same runs as the Zenodo dataset 2.1.0. Without restorations: 515 orphans placed, held-out placement 82.8%; with restorations: 885 orphans placed, 84.1%. These match the Zenodo dataset 2.1.0. Word categories from the final sense rules (msl b1b0ed2): a new category "Scribal marks" (colophon formulae such as QĀTI, DUB n.KAM; tag "scr" on the Place page), numbers as their own class within "Other words", and 30 of the model's 6,531 word forms moved category (21 of them from realia to places, mostly buildings). Placements are unchanged. The method is named Quantitative Tradition Mapping (QTM) on About, in the footer and the README. About page figures, Konkordanz comparison (accessed 19 November 2026), carousel and test fixtures updated.
 
 ## 1.6.0 (2026-11-19)
 

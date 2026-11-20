@@ -2,8 +2,8 @@
 
 Where does a Hittite fragment belong? This static website compares any fragment with the entire
 digitised Hittite corpus (TLHdig), word by word and sign by sign, and shows the textual tradition, the compositions and
-the manuscripts it is closest to, with a duplicate/join check for each manuscript. It
-accompanies S. Gordin, *Orphans and Archetypes* (2026). Everything runs in the browser.
+the manuscripts it is closest to, with a duplicate/join check for each manuscript, using the method
+Quantitative Tradition Mapping (QTM) of S. Gordin, *Orphans and Archetypes* (2026). Everything runs in the browser.
 
 **Site:** <https://shaigordin.github.io/text-orphans/> · **Version:** see `VERSION` and `CHANGELOG.md`
 · **Cite:** `CITATION.cff`
